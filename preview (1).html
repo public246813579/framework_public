@@ -1,0 +1,1173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本質的思考フレームワーク48 実用HTML</title>
+<style>
+:root {
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --text: #171923;
+  --muted: #667085;
+  --line: #e4e7ec;
+  --accent: #1f4b99;
+  --accent2: #0f766e;
+  --danger: #9f1239;
+  --chip: #eef4ff;
+  --shadow: 0 10px 30px rgba(16,24,40,.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top left, #e9f2ff 0, transparent 34rem), var(--bg);
+  line-height: 1.75;
+}
+header {
+  padding: 56px 22px 26px;
+  background: linear-gradient(135deg, #0f2147, #1f4b99 60%, #0f766e);
+  color: white;
+}
+.header-inner { max-width: 1160px; margin: 0 auto; }
+h1 { font-size: clamp(2rem, 4vw, 4rem); line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.04em; }
+.subtitle { font-size: 1.05rem; opacity: .92; max-width: 840px; }
+.meta { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+.meta span { border:1px solid rgba(255,255,255,.28); padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.12); }
+main { max-width: 1160px; margin: -22px auto 64px; padding: 0 22px; }
+.section { background: var(--panel); border:1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 26px; margin-bottom: 22px; }
+h2 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 16px; letter-spacing:-.02em; }
+h3 { font-size: 1.15rem; margin: 18px 0 8px; }
+.grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.card { grid-column: span 6; border:1px solid var(--line); border-radius:18px; padding:18px; background:#fff; box-shadow:0 6px 18px rgba(16,24,40,.04); }
+.card.full { grid-column: 1 / -1; }
+@media(max-width: 800px) { .card { grid-column: 1 / -1; } }
+.controls { position: sticky; top: 0; z-index: 10; background:rgba(246,247,251,.92); backdrop-filter: blur(10px); padding: 14px 0; margin: 0 0 8px; }
+.controls-inner { max-width: 1160px; margin:0 auto; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+input, select, textarea {
+  border:1px solid var(--line); border-radius:12px; padding:11px 13px; font: inherit; background:white; min-height:44px;
+}
+input[type="search"] { flex: 1 1 320px; }
+button, .btn {
+  border:0; border-radius:12px; padding:11px 14px; font-weight:700; cursor:pointer; background:var(--accent); color:white; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+}
+button.secondary { background:#344054; }
+button.ghost { background:#eef4ff; color:#1f4b99; }
+.kpis { display:grid; grid-template-columns: repeat(4,1fr); gap:12px; }
+.kpi { background:#f8fafc; border:1px solid var(--line); border-radius:16px; padding:16px; }
+.kpi b { font-size:1.8rem; display:block; color:var(--accent); }
+@media(max-width:800px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+.framework { border:1px solid var(--line); border-radius:20px; background:white; margin:14px 0; overflow:hidden; box-shadow:0 8px 20px rgba(16,24,40,.05); }
+.fw-head { display:flex; gap:14px; align-items:flex-start; justify-content:space-between; padding:18px 20px; cursor:pointer; }
+.fw-title { display:flex; gap:12px; align-items:flex-start; }
+.num { width:36px; height:36px; display:grid; place-items:center; border-radius:11px; background:var(--chip); color:var(--accent); font-weight:800; flex:0 0 auto; }
+.name { font-weight:800; font-size:1.15rem; line-height:1.35; }
+.cat { display:inline-block; margin-top:5px; padding:3px 9px; border-radius:999px; background:#ecfdf3; color:#067647; font-size:.82rem; font-weight:700; }
+.fw-body { display:none; border-top:1px solid var(--line); padding: 0 20px 18px; }
+.framework.open .fw-body { display:block; }
+.framework.hide { display:none; }
+.fw-body p { margin: 12px 0; }
+.cols { display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
+@media(max-width:800px) { .cols { grid-template-columns:1fr; } }
+.box { background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:14px; }
+ul { margin:8px 0 0; padding-left:1.3rem; }
+.output { border-left:4px solid var(--accent2); padding:10px 12px; background:#f0fdfa; border-radius:10px; }
+.workflow { counter-reset: step; }
+.workflow li { margin: 10px 0; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; list-style:none; }
+.workflow b { color:var(--accent); }
+.template { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+@media(max-width:900px) { .template { grid-template-columns:1fr; } }
+textarea { width:100%; min-height:150px; resize:vertical; }
+.small { color:var(--muted); font-size:.93rem; }
+.note { background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; border-radius:16px; padding:14px; }
+footer { max-width:1160px; margin:0 auto 40px; padding:0 22px; color:var(--muted); }
+.toc { columns: 2; column-gap: 26px; }
+.toc a { display:block; color:#1f4b99; text-decoration:none; padding:3px 0; break-inside: avoid; }
+@media(max-width:700px) { .toc { columns:1; } }
+mark { background:#fef08a; padding:0 .15em; }
+@media print {
+  body { background:white; } header { background:#111827 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .controls, .no-print { display:none !important; }
+  main { margin:20px auto; }
+  .section, .framework { box-shadow:none; break-inside: avoid; }
+  .fw-body { display:block !important; }
+  a { color:inherit; text-decoration:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>本質的思考フレームワーク48</h1>
+    <p class="subtitle">有名フレームワーク24個と、より根源的な思考オペレーター24個を、実務で使えるチェックリスト型HTMLに整理。検索・カテゴリ絞り込み・印刷対応。</p>
+    <div class="meta"><span>検索不要版</span><span>実用テンプレ付き</span><span>48 frameworks</span><span>HTML single file</span></div>
+  </div>
+</header>
+<main>
+  <section class="section">
+    <h2>使い方</h2>
+    <div class="kpis">
+      <div class="kpi"><b>48</b><span>思考フレーム</span></div>
+      <div class="kpi"><b>8</b><span>運用ステップ</span></div>
+      <div class="kpi"><b>検索</b><span>名前・概要・例で絞り込み</span></div>
+      <div class="kpi"><b>印刷</b><span>PDF保存にも対応</span></div>
+    </div>
+    <p>まず下の「標準ワークフロー」を見て、今の問題がどの段階にあるか決める。その後、該当するフレームワークだけを開いて使う。全部を順番に使う必要はない。</p>
+    <div class="note"><b>最短セット：</b>問いの再定義ループ → 事実・解釈・判断の三分割 → 正準形への変換 → 仮説思考 → 期待値×リスク → 破滅回避フィルタ → AAR</div>
+  </section>
+
+  <section class="section">
+    <h2>標準ワークフロー</h2>
+    <ol class="workflow">
+      <li><b>1. 問いを研ぐ</b><br>問いの再定義ループ → イシュードリブン → 定義の固定</li><li><b>2. 問題を整形する</b><br>事実・解釈・判断の三分割 → 正準形への変換 → ロジックツリー</li><li><b>3. 構造を掴む</b><br>システム思考 → 制約理論 → 因果方向ロック</li><li><b>4. 選択肢を広げる</b><br>1ステップ抽象化 → 構造同型の転用 → 生成→削除 → TRIZ</li><li><b>5. 不確実性を扱う</b><br>ベースレート優先 → フェルミ推定 → ベイズ更新 → 情報価値</li><li><b>6. 決める</b><br>価値関数の明文化 → 意思決定マトリクス → 期待値×リスク → 可逆性フィルタ</li><li><b>7. 壊す</b><br>反例探索 → 境界条件テスト → レッドチーミング → プレモーテム → 破滅回避フィルタ</li><li><b>8. 実行して学ぶ</b><br>OODA × 仮説 → 科学的方法 → AAR → 反復圧縮</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>目次</h2>
+    <div class="toc">
+      <a href="#fw-1">1. ファーストプリンシプル思考 <span class="small">/ 根本分解</span></a><a href="#fw-2">2. 5 Whys <span class="small">/ 原因追究</span></a><a href="#fw-3">3. ロジックツリー <span class="small">/ 構造化</span></a><a href="#fw-4">4. MECE <span class="small">/ 構造化</span></a><a href="#fw-5">5. イシュードリブン <span class="small">/ 問いの設計</span></a><a href="#fw-6">6. ピラミッド原則 <span class="small">/ 伝達</span></a><a href="#fw-7">7. 仮説思考 <span class="small">/ 検証</span></a><a href="#fw-8">8. 科学的方法 <span class="small">/ 検証</span></a><a href="#fw-9">9. OODA × 仮説 <span class="small">/ 実行学習</span></a><a href="#fw-10">10. ベイズ更新 <span class="small">/ 不確実性</span></a><a href="#fw-11">11. セカンドオーダー思考 <span class="small">/ 影響予測</span></a><a href="#fw-12">12. システム思考 <span class="small">/ 構造理解</span></a><a href="#fw-13">13. 制約理論 TOC <span class="small">/ ボトルネック</span></a><a href="#fw-14">14. 80/20 パレート思考 <span class="small">/ 優先順位</span></a><a href="#fw-15">15. バックキャスティング <span class="small">/ 計画</span></a><a href="#fw-16">16. 目的手段連鎖 <span class="small">/ 計画</span></a><a href="#fw-17">17. ダブルダイヤモンド <span class="small">/ 探索</span></a><a href="#fw-18">18. デザインスプリント <span class="small">/ 検証</span></a><a href="#fw-19">19. TRIZ 矛盾解決 <span class="small">/ 発想</span></a><a href="#fw-20">20. レッドチーミング <span class="small">/ 反証</span></a><a href="#fw-21">21. プレモーテム <span class="small">/ リスク</span></a><a href="#fw-22">22. 意思決定マトリクス <span class="small">/ 意思決定</span></a><a href="#fw-23">23. 期待値 × リスク <span class="small">/ 意思決定</span></a><a href="#fw-24">24. AAR 事後ふりかえり <span class="small">/ 学習</span></a><a href="#fw-25">25. 問いの再定義ループ <span class="small">/ 問いの設計</span></a><a href="#fw-26">26. 定義の固定 <span class="small">/ 精密化</span></a><a href="#fw-27">27. 事実・解釈・判断の三分割 <span class="small">/ 精密化</span></a><a href="#fw-28">28. 不確実性の分類 <span class="small">/ 不確実性</span></a><a href="#fw-29">29. 境界条件テスト <span class="small">/ 反証</span></a><a href="#fw-30">30. 反例探索 <span class="small">/ 反証</span></a><a href="#fw-31">31. 生成→削除の二段階 <span class="small">/ 発想</span></a><a href="#fw-32">32. フェルミ推定 <span class="small">/ 推定</span></a><a href="#fw-33">33. ベースレート優先 <span class="small">/ 不確実性</span></a><a href="#fw-34">34. 因果方向ロック <span class="small">/ 原因追究</span></a><a href="#fw-35">35. 構造同型の転用 <span class="small">/ 発想</span></a><a href="#fw-36">36. 最小十分条件 <span class="small">/ 設計</span></a><a href="#fw-37">37. 価値関数の明文化 <span class="small">/ 意思決定</span></a><a href="#fw-38">38. 可逆性フィルタ <span class="small">/ 意思決定</span></a><a href="#fw-39">39. 情報価値 <span class="small">/ 検証</span></a><a href="#fw-40">40. 1ステップ抽象化 <span class="small">/ 抽象化</span></a><a href="#fw-41">41. 1ステップ具体化 <span class="small">/ 具体化</span></a><a href="#fw-42">42. 正準形への変換 <span class="small">/ 構造化</span></a><a href="#fw-43">43. 単位・次元チェック <span class="small">/ 検算</span></a><a href="#fw-44">44. 参照点の固定 <span class="small">/ 比較</span></a><a href="#fw-45">45. 総所有コスト TCO <span class="small">/ 比較</span></a><a href="#fw-46">46. 依存関係グラフ <span class="small">/ 実行設計</span></a><a href="#fw-47">47. 破滅回避フィルタ <span class="small">/ リスク</span></a><a href="#fw-48">48. 反復圧縮 <span class="small">/ 理解</span></a>
+    </div>
+  </section>
+
+  <div class="controls no-print">
+    <div class="controls-inner">
+      <input id="search" type="search" placeholder="キーワード検索：例）意思決定、反証、仮説、制約、リスク">
+      <select id="category">
+        <option value="">全カテゴリ</option>
+        <option value="ボトルネック">ボトルネック</option><option value="リスク">リスク</option><option value="不確実性">不確実性</option><option value="伝達">伝達</option><option value="優先順位">優先順位</option><option value="具体化">具体化</option><option value="原因追究">原因追究</option><option value="反証">反証</option><option value="問いの設計">問いの設計</option><option value="学習">学習</option><option value="実行学習">実行学習</option><option value="実行設計">実行設計</option><option value="影響予測">影響予測</option><option value="意思決定">意思決定</option><option value="抽象化">抽象化</option><option value="探索">探索</option><option value="推定">推定</option><option value="根本分解">根本分解</option><option value="検算">検算</option><option value="検証">検証</option><option value="構造化">構造化</option><option value="構造理解">構造理解</option><option value="比較">比較</option><option value="理解">理解</option><option value="発想">発想</option><option value="精密化">精密化</option><option value="計画">計画</option><option value="設計">設計</option>
+      </select>
+      <button class="ghost" onclick="expandAll()">全て開く</button>
+      <button class="secondary" onclick="collapseAll()">全て閉じる</button>
+      <button onclick="window.print()">印刷/PDF保存</button>
+    </div>
+  </div>
+
+  <section class="section" id="frameworks">
+    <h2>フレームワーク一覧</h2>
+    <p class="small">カードをクリックすると詳細が開きます。</p>
+    
+    <article class="framework" id="fw-1" data-category="根本分解" data-text="ファーストプリンシプル思考 根本分解 常識・慣習・前例を疑い、変えられない制約と変えられる前提を分けてゼロベースで再設計する。 例：会議資料作成なら『資料が必要』ではなく『意思決定に必要な情報伝達が必要』まで戻す。結果、10ページ資料ではなく1枚の判断表で足りる可能性がある。 前提をすべて列挙する 事実・制約・解釈・慣習に分類する 変えられない制約だけ残す 最小要素から再構成する 『これは本当に必要か？』を前提ごとに問う 不可侵の制約と可変前提を表にする 業界の常識ではなく目的関数から設計し直す">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">1</div>
+          <div><div class="name">ファーストプリンシプル思考</div><span class="cat">根本分解</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>常識・慣習・前例を疑い、変えられない制約と変えられる前提を分けてゼロベースで再設計する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>前提をすべて列挙する</li><li>事実・制約・解釈・慣習に分類する</li><li>変えられない制約だけ残す</li><li>最小要素から再構成する</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『これは本当に必要か？』を前提ごとに問う</li><li>不可侵の制約と可変前提を表にする</li><li>業界の常識ではなく目的関数から設計し直す</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：会議資料作成なら『資料が必要』ではなく『意思決定に必要な情報伝達が必要』まで戻す。結果、10ページ資料ではなく1枚の判断表で足りる可能性がある。</p>
+        <p class="output"><b>成果物：</b>不可侵制約リスト／可変前提リスト／再設計案</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-2" data-category="原因追究" data-text="5 whys 原因追究 症状ではなく、再発防止可能な根本原因に到達する。 例：納期遅れ→レビューが遅れた→レビュー依頼が曖昧→完了条件が未定義→依頼テンプレが存在しない。対策は教育ではなく依頼テンプレ化。 現象を一文で定義 なぜ？を繰り返す 人のせいで止めず仕組みに戻す 根本原因に対する防止策を設計 各whyで証拠を添える 原因候補を1本に決め打ちしない 最後は『検知策』と『防止策』に分ける">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">2</div>
+          <div><div class="name">5 Whys</div><span class="cat">原因追究</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>症状ではなく、再発防止可能な根本原因に到達する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>現象を一文で定義</li><li>なぜ？を繰り返す</li><li>人のせいで止めず仕組みに戻す</li><li>根本原因に対する防止策を設計</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>各Whyで証拠を添える</li><li>原因候補を1本に決め打ちしない</li><li>最後は『検知策』と『防止策』に分ける</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：納期遅れ→レビューが遅れた→レビュー依頼が曖昧→完了条件が未定義→依頼テンプレが存在しない。対策は教育ではなく依頼テンプレ化。</p>
+        <p class="output"><b>成果物：</b>原因連鎖図／再発防止策／検知指標</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-3" data-category="構造化" data-text="ロジックツリー 構造化 複雑な問題を漏れなく分解し、どの枝に集中すべきか判断する。 例：売上改善＝顧客数×購入頻度×単価。顧客数をさらに流入×転換率に分解し、最も効く枝を選ぶ。 最上位の目的を置く 足し算・掛け算・プロセスで分解 末端を実行可能な粒度にする 影響度・確度・コストで優先順位付け 議論中の発言を必ず枝に紐づける 分解軸を途中で混ぜない 末端が行動になっているか確認する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">3</div>
+          <div><div class="name">ロジックツリー</div><span class="cat">構造化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>複雑な問題を漏れなく分解し、どの枝に集中すべきか判断する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>最上位の目的を置く</li><li>足し算・掛け算・プロセスで分解</li><li>末端を実行可能な粒度にする</li><li>影響度・確度・コストで優先順位付け</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>議論中の発言を必ず枝に紐づける</li><li>分解軸を途中で混ぜない</li><li>末端が行動になっているか確認する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：売上改善＝顧客数×購入頻度×単価。顧客数をさらに流入×転換率に分解し、最も効く枝を選ぶ。</p>
+        <p class="output"><b>成果物：</b>論点ツリー／施策ツリー／優先順位表</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-4" data-category="構造化" data-text="mece 構造化 分類のモレ・ダブりを減らし、議論の抜け漏れを防ぐ。 例：顧客分類で『若者・法人・高所得者』と並べると軸が混ざる。年齢、法人/個人、所得のどれかに揃える。 分類軸を明示 同じ階層で並べる 境界条件を定義 モレと重複をチェック 完璧なmeceより意思決定に使えるmeceを目指す 属性、プロセス、構成要素など軸を混ぜない 章立て・報告・分析の整理に使う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">4</div>
+          <div><div class="name">MECE</div><span class="cat">構造化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>分類のモレ・ダブりを減らし、議論の抜け漏れを防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>分類軸を明示</li><li>同じ階層で並べる</li><li>境界条件を定義</li><li>モレと重複をチェック</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>完璧なMECEより意思決定に使えるMECEを目指す</li><li>属性、プロセス、構成要素など軸を混ぜない</li><li>章立て・報告・分析の整理に使う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：顧客分類で『若者・法人・高所得者』と並べると軸が混ざる。年齢、法人/個人、所得のどれかに揃える。</p>
+        <p class="output"><b>成果物：</b>分類表／論点整理表／章立て</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-5" data-category="問いの設計" data-text="イシュードリブン 問いの設計 答える価値のある問いだけを選び、不要な分析を捨てる。 例：『市場を調べる』ではなく『今月中に参入判断するために、初期顧客が100社あるか確認する』に変える。 最終目的を確認 意思決定を特定 結論で行動が変わる論点だけ残す 検証可能な問いに変換 『この分析で何を決めるのか？』から始める a/bで行動が変わらない問いは捨てる 重要度と答えやすさで論点を選ぶ">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">5</div>
+          <div><div class="name">イシュードリブン</div><span class="cat">問いの設計</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>答える価値のある問いだけを選び、不要な分析を捨てる。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>最終目的を確認</li><li>意思決定を特定</li><li>結論で行動が変わる論点だけ残す</li><li>検証可能な問いに変換</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『この分析で何を決めるのか？』から始める</li><li>A/Bで行動が変わらない問いは捨てる</li><li>重要度と答えやすさで論点を選ぶ</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『市場を調べる』ではなく『今月中に参入判断するために、初期顧客が100社あるか確認する』に変える。</p>
+        <p class="output"><b>成果物：</b>主要イシューリスト／検証優先順位</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-6" data-category="伝達" data-text="ピラミッド原則 伝達 結論・根拠・事実を階層化し、相手がすぐ判断できる形にする。 例：『a案を推奨します。理由はコスト、納期、リスクの3点で最も優位だからです。次に承認いただきたいのは予算上限です。』 結論を一文で置く 根拠を3点以内にする 各根拠を事実で支える 次アクションを明示 報告は結論から始める 根拠は同じ階層で並べる 詳細は後ろに回す">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">6</div>
+          <div><div class="name">ピラミッド原則</div><span class="cat">伝達</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>結論・根拠・事実を階層化し、相手がすぐ判断できる形にする。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>結論を一文で置く</li><li>根拠を3点以内にする</li><li>各根拠を事実で支える</li><li>次アクションを明示</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>報告は結論から始める</li><li>根拠は同じ階層で並べる</li><li>詳細は後ろに回す</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『A案を推奨します。理由はコスト、納期、リスクの3点で最も優位だからです。次に承認いただきたいのは予算上限です。』</p>
+        <p class="output"><b>成果物：</b>1ページ報告／提案骨子／メール構成</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-7" data-category="検証" data-text="仮説思考 検証 調べ尽くす前に暫定結論を置き、最短で反証して学習する。 例：『顧客は価格で離脱している』という仮説なら、価格以外を固定した割引テストやヒアリングで反証する。 暫定結論を置く 反証条件を決める 最短検証を設計 結果に応じて更新 『もし正しいなら何が観測されるか』を書く 当てに行くより外しに行く 検証単位を小さくする">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">7</div>
+          <div><div class="name">仮説思考</div><span class="cat">検証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>調べ尽くす前に暫定結論を置き、最短で反証して学習する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>暫定結論を置く</li><li>反証条件を決める</li><li>最短検証を設計</li><li>結果に応じて更新</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『もし正しいなら何が観測されるか』を書く</li><li>当てに行くより外しに行く</li><li>検証単位を小さくする</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『顧客は価格で離脱している』という仮説なら、価格以外を固定した割引テストやヒアリングで反証する。</p>
+        <p class="output"><b>成果物：</b>仮説リスト／反証条件／検証計画</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-8" data-category="検証" data-text="科学的方法 検証 観察・仮説・実験・解釈を分け、再現性ある学習を行う。 例：業務改善案を全体導入せず、1チームだけで2週間試し、処理時間とミス率を比較する。 観察 仮説 実験 結果 解釈 次の仮説 対照群または比較対象を置く 結果と解釈を混ぜない 失敗も学習として記録する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">8</div>
+          <div><div class="name">科学的方法</div><span class="cat">検証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>観察・仮説・実験・解釈を分け、再現性ある学習を行う。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>観察</li><li>仮説</li><li>実験</li><li>結果</li><li>解釈</li><li>次の仮説</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>対照群または比較対象を置く</li><li>結果と解釈を混ぜない</li><li>失敗も学習として記録する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：業務改善案を全体導入せず、1チームだけで2週間試し、処理時間とミス率を比較する。</p>
+        <p class="output"><b>成果物：</b>実験ログ／比較結果／学習メモ</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-9" data-category="実行学習" data-text="ooda × 仮説 実行学習 変化の速い状況で、計画より観察と更新を重視して高速に動く。 例：新規企画で最初から仕様を固めず、顧客反応を毎週取り、次週の仮説を更新する。 observe：観察 orient：意味づけ decide：決定 act：行動 週次でoodaを何周したか見る orientでフレームワークを使う 完璧な計画より小さい行動を優先">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">9</div>
+          <div><div class="name">OODA × 仮説</div><span class="cat">実行学習</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>変化の速い状況で、計画より観察と更新を重視して高速に動く。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>Observe：観察</li><li>Orient：意味づけ</li><li>Decide：決定</li><li>Act：行動</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>週次でOODAを何周したか見る</li><li>Orientでフレームワークを使う</li><li>完璧な計画より小さい行動を優先</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：新規企画で最初から仕様を固めず、顧客反応を毎週取り、次週の仮説を更新する。</p>
+        <p class="output"><b>成果物：</b>週次OODAログ／次アクション</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-10" data-category="不確実性" data-text="ベイズ更新 不確実性 白黒判断ではなく、確率的な見立てを情報で更新する。 例：a案成功確率40%。顧客10人中7人が有料意向なら60%へ更新。ただし発言だけなら証拠強度は低めに扱う。 事前確率 新しい証拠 証拠の強さ 事後確率 初期見立てを％で置く 新情報で何％動いたか記録する 強いストーリーよりベースレートを重視する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">10</div>
+          <div><div class="name">ベイズ更新</div><span class="cat">不確実性</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>白黒判断ではなく、確率的な見立てを情報で更新する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>事前確率</li><li>新しい証拠</li><li>証拠の強さ</li><li>事後確率</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>初期見立てを％で置く</li><li>新情報で何％動いたか記録する</li><li>強いストーリーよりベースレートを重視する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：A案成功確率40%。顧客10人中7人が有料意向なら60%へ更新。ただし発言だけなら証拠強度は低めに扱う。</p>
+        <p class="output"><b>成果物：</b>確率メモ／更新履歴／判断理由</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-11" data-category="影響予測" data-text="セカンドオーダー思考 影響予測 直接効果だけでなく、副作用・反作用・構造変化を読む。 例：値下げ→売上増→低価格顧客が増える→サポート負荷増→ブランド低下。 1次効果 2次効果 3次効果 副作用対策 『それが成功したら次に何が起きる？』を3回問う 関係者の適応行動を考える 短期最適を疑う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">11</div>
+          <div><div class="name">セカンドオーダー思考</div><span class="cat">影響予測</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>直接効果だけでなく、副作用・反作用・構造変化を読む。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>1次効果</li><li>2次効果</li><li>3次効果</li><li>副作用対策</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『それが成功したら次に何が起きる？』を3回問う</li><li>関係者の適応行動を考える</li><li>短期最適を疑う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：値下げ→売上増→低価格顧客が増える→サポート負荷増→ブランド低下。</p>
+        <p class="output"><b>成果物：</b>波及影響表／副作用リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-12" data-category="構造理解" data-text="システム思考 構造理解 問題を単発原因ではなく、因果ループ・遅れ・蓄積として捉える。 例：残業増→疲労増→ミス増→手戻り増→さらに残業増、という強化ループを断つには作業量制限が必要。 要素 因果矢印 強化ループ 均衡ループ 時間遅れ 対策したのに悪化したら反作用を疑う kpiよりインセンティブ構造を見る レバレッジポイントを探す">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">12</div>
+          <div><div class="name">システム思考</div><span class="cat">構造理解</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>問題を単発原因ではなく、因果ループ・遅れ・蓄積として捉える。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>要素</li><li>因果矢印</li><li>強化ループ</li><li>均衡ループ</li><li>時間遅れ</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>対策したのに悪化したら反作用を疑う</li><li>KPIよりインセンティブ構造を見る</li><li>レバレッジポイントを探す</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：残業増→疲労増→ミス増→手戻り増→さらに残業増、という強化ループを断つには作業量制限が必要。</p>
+        <p class="output"><b>成果物：</b>因果ループ図／介入点リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-13" data-category="ボトルネック" data-text="制約理論 toc ボトルネック 全体成果を決めている最も詰まった一点に集中する。 例：設計が遅いと思っていたが、実は承認者レビュー待ちが制約。改善対象は設計速度ではなく承認フロー。 制約を特定 制約を最大活用 他を制約に従属 制約を強化 制約移動を確認 制約以外の改善で満足しない クリティカルな詰まりを先に解く バッファを置いて流れを安定化">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">13</div>
+          <div><div class="name">制約理論 TOC</div><span class="cat">ボトルネック</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>全体成果を決めている最も詰まった一点に集中する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>制約を特定</li><li>制約を最大活用</li><li>他を制約に従属</li><li>制約を強化</li><li>制約移動を確認</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>制約以外の改善で満足しない</li><li>クリティカルな詰まりを先に解く</li><li>バッファを置いて流れを安定化</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：設計が遅いと思っていたが、実は承認者レビュー待ちが制約。改善対象は設計速度ではなく承認フロー。</p>
+        <p class="output"><b>成果物：</b>ボトルネック診断／流れ改善案</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-14" data-category="優先順位" data-text="80/20 パレート思考 優先順位 成果の大半を生む少数要因に集中する。 例：仕事成果の80%が重要会議の事前準備から出るなら、メール処理より準備時間を死守する。 成果指標を決める 要因を列挙 寄与度順に並べる 上位要因に集中 努力量ではなく成果寄与で見る 上位20%以外は最低限にする 定期的に寄与度を更新する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">14</div>
+          <div><div class="name">80/20 パレート思考</div><span class="cat">優先順位</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>成果の大半を生む少数要因に集中する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>成果指標を決める</li><li>要因を列挙</li><li>寄与度順に並べる</li><li>上位要因に集中</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>努力量ではなく成果寄与で見る</li><li>上位20%以外は最低限にする</li><li>定期的に寄与度を更新する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：仕事成果の80%が重要会議の事前準備から出るなら、メール処理より準備時間を死守する。</p>
+        <p class="output"><b>成果物：</b>寄与度ランキング／集中対象</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-15" data-category="計画" data-text="バックキャスティング 計画 理想状態から逆算し、今必要な最初の行動を決める。 例：1年後にpm候補になる→必要条件は実績、社内認知、資料力→今週は小規模改善を1件提案する。 目標状態 必要条件 マイルストーン 今日の一手 願望ではなく到達条件を書く 期限を入れる 最初の一手は可逆で小さくする">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">15</div>
+          <div><div class="name">バックキャスティング</div><span class="cat">計画</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>理想状態から逆算し、今必要な最初の行動を決める。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>目標状態</li><li>必要条件</li><li>マイルストーン</li><li>今日の一手</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>願望ではなく到達条件を書く</li><li>期限を入れる</li><li>最初の一手は可逆で小さくする</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：1年後にPM候補になる→必要条件は実績、社内認知、資料力→今週は小規模改善を1件提案する。</p>
+        <p class="output"><b>成果物：</b>逆算ロードマップ／初手タスク</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-16" data-category="計画" data-text="目的手段連鎖 計画 施策を目的・kpi・行動に接続し、やることの増殖を防ぐ。 例：目的＝信頼獲得、kpi＝任される案件数、リード指標＝週1提案、施策＝改善メモの定例提出。 目的 kgi kpi リード指標 施策 施策ごとに『どのkpiが動くか』を確認 kpiに効かない施策を捨てる 行動指標まで落とす">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">16</div>
+          <div><div class="name">目的手段連鎖</div><span class="cat">計画</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>施策を目的・KPI・行動に接続し、やることの増殖を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>目的</li><li>KGI</li><li>KPI</li><li>リード指標</li><li>施策</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>施策ごとに『どのKPIが動くか』を確認</li><li>KPIに効かない施策を捨てる</li><li>行動指標まで落とす</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：目的＝信頼獲得、KPI＝任される案件数、リード指標＝週1提案、施策＝改善メモの定例提出。</p>
+        <p class="output"><b>成果物：</b>KPIツリー／施策対応表</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-17" data-category="探索" data-text="ダブルダイヤモンド 探索 問題探索と解決策探索を分け、早すぎる結論を防ぐ。 例：『新人教育ツールを作る』ではなく、まず新人がどこで詰まるか発散してから、教育・仕組み・資料のどれで解くか決める。 問題の発散 問題の収束 解決策の発散 解決策の収束 いきなり解決策会議にしない 収束時は評価軸を事前に決める 問題定義に時間を使う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">17</div>
+          <div><div class="name">ダブルダイヤモンド</div><span class="cat">探索</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>問題探索と解決策探索を分け、早すぎる結論を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>問題の発散</li><li>問題の収束</li><li>解決策の発散</li><li>解決策の収束</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>いきなり解決策会議にしない</li><li>収束時は評価軸を事前に決める</li><li>問題定義に時間を使う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『新人教育ツールを作る』ではなく、まず新人がどこで詰まるか発散してから、教育・仕組み・資料のどれで解くか決める。</p>
+        <p class="output"><b>成果物：</b>問題定義／解決策候補／選定理由</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-18" data-category="検証" data-text="デザインスプリント 検証 議論を減らし、短期間でプロトタイプとテストにより学ぶ。 例：新サービス案を資料で議論するより、lp風の画面を作って5人に見せ、購入意向を確認する。 課題設定 発想 決定 試作 テスト 完成品ではなく学習用プロトタイプを作る 5日が無理なら2日版で実施 顧客反応を最優先にする">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">18</div>
+          <div><div class="name">デザインスプリント</div><span class="cat">検証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>議論を減らし、短期間でプロトタイプとテストにより学ぶ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>課題設定</li><li>発想</li><li>決定</li><li>試作</li><li>テスト</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>完成品ではなく学習用プロトタイプを作る</li><li>5日が無理なら2日版で実施</li><li>顧客反応を最優先にする</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：新サービス案を資料で議論するより、LP風の画面を作って5人に見せ、購入意向を確認する。</p>
+        <p class="output"><b>成果物：</b>試作品／テスト結果／次の判断</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-19" data-category="発想" data-text="triz 矛盾解決 発想 aを上げるとbが下がるという矛盾を、発明的に突破する。 例：軽くしたいが強度を落としたくない→材料置換だけでなく、リブ配置、荷重経路変更、局所補強を検討。 矛盾定義 解決原理の適用 案の量産 評価 速度と精度、軽量と剛性など矛盾を明文化 分割・逆転・事前作用などの型で発想 最低20案出してから選ぶ">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">19</div>
+          <div><div class="name">TRIZ 矛盾解決</div><span class="cat">発想</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>Aを上げるとBが下がるという矛盾を、発明的に突破する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>矛盾定義</li><li>解決原理の適用</li><li>案の量産</li><li>評価</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>速度と精度、軽量と剛性など矛盾を明文化</li><li>分割・逆転・事前作用などの型で発想</li><li>最低20案出してから選ぶ</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：軽くしたいが強度を落としたくない→材料置換だけでなく、リブ配置、荷重経路変更、局所補強を検討。</p>
+        <p class="output"><b>成果物：</b>矛盾定義表／アイデアリスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-20" data-category="反証" data-text="レッドチーミング 反証 自案を敵視点で破壊し、致命的な弱点を事前に潰す。 例：コミュニティ設計なら『外からカルトに見えないか』『女性や外国人が入りにくくないか』をあえて攻撃する。 前提攻撃 実行攻撃 悪用攻撃 修正案 推進役と破壊役を分ける 人格ではなく案を攻撃する 修正すべき上位3点に絞る">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">20</div>
+          <div><div class="name">レッドチーミング</div><span class="cat">反証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>自案を敵視点で破壊し、致命的な弱点を事前に潰す。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>前提攻撃</li><li>実行攻撃</li><li>悪用攻撃</li><li>修正案</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>推進役と破壊役を分ける</li><li>人格ではなく案を攻撃する</li><li>修正すべき上位3点に絞る</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：コミュニティ設計なら『外からカルトに見えないか』『女性や外国人が入りにくくないか』をあえて攻撃する。</p>
+        <p class="output"><b>成果物：</b>弱点リスト／修正優先順位</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-21" data-category="リスク" data-text="プレモーテム リスク 失敗した未来を先に仮定し、失敗原因を予防する。 例：半年後に企画が失敗したと仮定し、『責任者不明』『継続負荷過大』『顧客不在』を先に対策する。 失敗未来を仮定 失敗理由を列挙 予防策 撤退条件 キックオフ時に実施 楽観バイアスを潰す 撤退条件を数字で置く">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">21</div>
+          <div><div class="name">プレモーテム</div><span class="cat">リスク</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>失敗した未来を先に仮定し、失敗原因を予防する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>失敗未来を仮定</li><li>失敗理由を列挙</li><li>予防策</li><li>撤退条件</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>キックオフ時に実施</li><li>楽観バイアスを潰す</li><li>撤退条件を数字で置く</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：半年後に企画が失敗したと仮定し、『責任者不明』『継続負荷過大』『顧客不在』を先に対策する。</p>
+        <p class="output"><b>成果物：</b>失敗原因表／予防策／撤退条件</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-22" data-category="意思決定" data-text="意思決定マトリクス 意思決定 声の大きさや好みではなく、評価軸と重みで比較する。 例：転職候補を年収、成長性、裁量、人脈、リスクで重み付けし、点数ではなく違和感も最後に確認。 代替案 評価軸 重み スコア 感度分析 評価軸は5つ程度に絞る 確度を入れる 重みを変えても勝つ案か確認する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">22</div>
+          <div><div class="name">意思決定マトリクス</div><span class="cat">意思決定</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>声の大きさや好みではなく、評価軸と重みで比較する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>代替案</li><li>評価軸</li><li>重み</li><li>スコア</li><li>感度分析</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>評価軸は5つ程度に絞る</li><li>確度を入れる</li><li>重みを変えても勝つ案か確認する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：転職候補を年収、成長性、裁量、人脈、リスクで重み付けし、点数ではなく違和感も最後に確認。</p>
+        <p class="output"><b>成果物：</b>比較表／推奨案／前提条件</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-23" data-category="意思決定" data-text="期待値 × リスク 意思決定 確率と結果の掛け算で判断し、一撃死を避ける。 例：副業で収益期待が高くても、会社規定違反で信用を失う可能性があるなら期待値だけでは判断しない。 シナリオ 確率 結果 期待値 最悪ケース耐性 金銭以外に信用・時間・健康も入れる 期待値が高くても破滅可能性があれば避ける 確率の前提を更新する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">23</div>
+          <div><div class="name">期待値 × リスク</div><span class="cat">意思決定</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>確率と結果の掛け算で判断し、一撃死を避ける。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>シナリオ</li><li>確率</li><li>結果</li><li>期待値</li><li>最悪ケース耐性</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>金銭以外に信用・時間・健康も入れる</li><li>期待値が高くても破滅可能性があれば避ける</li><li>確率の前提を更新する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：副業で収益期待が高くても、会社規定違反で信用を失う可能性があるなら期待値だけでは判断しない。</p>
+        <p class="output"><b>成果物：</b>期待値表／リスク対策／判断メモ</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-24" data-category="学習" data-text="aar 事後ふりかえり 学習 経験を学習に変換し、次の行動を改善する。 例：会議で発言が通らなかった→期待は合意、実際は保留、差分は根拠不足、次回は事前根回し。 期待 実際 差分 原因 次に変えること 週1回10分で実施 自責ではなく仕組み改善へ 学びを次アクションに接続する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">24</div>
+          <div><div class="name">AAR 事後ふりかえり</div><span class="cat">学習</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>経験を学習に変換し、次の行動を改善する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>期待</li><li>実際</li><li>差分</li><li>原因</li><li>次に変えること</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>週1回10分で実施</li><li>自責ではなく仕組み改善へ</li><li>学びを次アクションに接続する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：会議で発言が通らなかった→期待は合意、実際は保留、差分は根拠不足、次回は事前根回し。</p>
+        <p class="output"><b>成果物：</b>ふりかえりログ／改善アクション</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-25" data-category="問いの設計" data-text="問いの再定義ループ 問いの設計 答えを出す前に問いを改善し、解くべき問題を正しくする。 例：『mbaに行くべきか』ではなく『起業人脈と肩書獲得に対して、mbaが他手段より費用対効果で勝つか』に変える。 現在の問い 目的 制約 成功条件 再定義された問い 『それが分かると何を決められるか？』を問う 問いを意思決定形にする 曖昧な問いを測定可能にする">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">25</div>
+          <div><div class="name">問いの再定義ループ</div><span class="cat">問いの設計</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>答えを出す前に問いを改善し、解くべき問題を正しくする。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>現在の問い</li><li>目的</li><li>制約</li><li>成功条件</li><li>再定義された問い</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『それが分かると何を決められるか？』を問う</li><li>問いを意思決定形にする</li><li>曖昧な問いを測定可能にする</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『MBAに行くべきか』ではなく『起業人脈と肩書獲得に対して、MBAが他手段より費用対効果で勝つか』に変える。</p>
+        <p class="output"><b>成果物：</b>再定義された問い／成功条件</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-26" data-category="精密化" data-text="定義の固定 精密化 抽象語の意味ズレを潰し、議論を操作可能にする。 例：『優秀なpm』を、期限遵守率、関係者合意速度、リスク検知数などで定義する。 用語 測定方法 境界条件 反例 成功・本質・効率などを数値や観測行動で定義 定義に合わない反例を置く 相手と定義を共有してから議論する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">26</div>
+          <div><div class="name">定義の固定</div><span class="cat">精密化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>抽象語の意味ズレを潰し、議論を操作可能にする。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>用語</li><li>測定方法</li><li>境界条件</li><li>反例</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>成功・本質・効率などを数値や観測行動で定義</li><li>定義に合わない反例を置く</li><li>相手と定義を共有してから議論する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『優秀なPM』を、期限遵守率、関係者合意速度、リスク検知数などで定義する。</p>
+        <p class="output"><b>成果物：</b>操作的定義表</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-27" data-category="精密化" data-text="事実・解釈・判断の三分割 精密化 観測事実、推測、価値判断を分け、思考の混線を防ぐ。 例：『上司が返信しない』は事実。『軽視されている』は解釈。『催促すべき』は判断。 fact：事実 interpretation：解釈 judgment：判断 主張を3色に分ける 揉めている層を特定する 判断を変えるには事実か解釈のどちらを更新すべきか見る">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">27</div>
+          <div><div class="name">事実・解釈・判断の三分割</div><span class="cat">精密化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>観測事実、推測、価値判断を分け、思考の混線を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>Fact：事実</li><li>Interpretation：解釈</li><li>Judgment：判断</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>主張を3色に分ける</li><li>揉めている層を特定する</li><li>判断を変えるには事実か解釈のどちらを更新すべきか見る</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『上司が返信しない』は事実。『軽視されている』は解釈。『催促すべき』は判断。</p>
+        <p class="output"><b>成果物：</b>FIJ整理表</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-28" data-category="不確実性" data-text="不確実性の分類 不確実性 分からないことを種類分けし、検証すべき不確実性だけに集中する。 例：新規事業で市場規模は既知の未知、規制変更は未知の未知に近い。後者には監視指標を置く。 既知の既知 既知の未知 未知の未知 影響度分類 分からないが重要なものだけ検証対象にする 未知の未知には早期警戒指標を置く 不明を不明のまま扱う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">28</div>
+          <div><div class="name">不確実性の分類</div><span class="cat">不確実性</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>分からないことを種類分けし、検証すべき不確実性だけに集中する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>既知の既知</li><li>既知の未知</li><li>未知の未知</li><li>影響度分類</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>分からないが重要なものだけ検証対象にする</li><li>未知の未知には早期警戒指標を置く</li><li>不明を不明のまま扱う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：新規事業で市場規模は既知の未知、規制変更は未知の未知に近い。後者には監視指標を置く。</p>
+        <p class="output"><b>成果物：</b>不確実性マップ／検証リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-29" data-category="反証" data-text="境界条件テスト 反証 平均ではなく極端条件を見て、モデルや案の弱点を発見する。 例：コミュニティ制度で参加者が10人なら機能するか、1000人なら荒れないかを両端で見る。 最悪 最良 ゼロ 最大 例外条件 最悪ケースで壊れ方を見る 極限を考えて直感チェック 例外で成立しない条件を明確化する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">29</div>
+          <div><div class="name">境界条件テスト</div><span class="cat">反証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>平均ではなく極端条件を見て、モデルや案の弱点を発見する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>最悪</li><li>最良</li><li>ゼロ</li><li>最大</li><li>例外条件</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>最悪ケースで壊れ方を見る</li><li>極限を考えて直感チェック</li><li>例外で成立しない条件を明確化する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：コミュニティ制度で参加者が10人なら機能するか、1000人なら荒れないかを両端で見る。</p>
+        <p class="output"><b>成果物：</b>境界条件リスト／壊れ方一覧</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-30" data-category="反証" data-text="反例探索 反証 主張の正しさを証明するより、壊れる条件を探して精密化する。 例：『オンライン学習はコスパが良い』の反例は、人脈形成が主目的の場合。ならば主張を学習効率に限定する。 主張 反例候補 成立条件 修正版主張 常に・必ず・最もという言葉が出たら反例を探す 反例で主張を捨てるか条件を狭める 強い主張を実務で使える主張に変換する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">30</div>
+          <div><div class="name">反例探索</div><span class="cat">反証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>主張の正しさを証明するより、壊れる条件を探して精密化する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>主張</li><li>反例候補</li><li>成立条件</li><li>修正版主張</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>常に・必ず・最もという言葉が出たら反例を探す</li><li>反例で主張を捨てるか条件を狭める</li><li>強い主張を実務で使える主張に変換する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『オンライン学習はコスパが良い』の反例は、人脈形成が主目的の場合。ならば主張を学習効率に限定する。</p>
+        <p class="output"><b>成果物：</b>反例表／修正版主張</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-31" data-category="発想" data-text="生成→削除の二段階 発想 発想と評価を分け、早期収束による凡庸化を防ぐ。 例：起業アイデアを3案で考えると既存案に寄る。先に50案出し、後で市場性と独自性で削る。 生成フェーズ 保留 評価フェーズ 剪定 最初は質を問わず数を出す 評価コメントを一時禁止する 後で評価軸により削る">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">31</div>
+          <div><div class="name">生成→削除の二段階</div><span class="cat">発想</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>発想と評価を分け、早期収束による凡庸化を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>生成フェーズ</li><li>保留</li><li>評価フェーズ</li><li>剪定</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>最初は質を問わず数を出す</li><li>評価コメントを一時禁止する</li><li>後で評価軸により削る</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：起業アイデアを3案で考えると既存案に寄る。先に50案出し、後で市場性と独自性で削る。</p>
+        <p class="output"><b>成果物：</b>候補リスト／剪定後リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-32" data-category="推定" data-text="フェルミ推定 推定 不完全な情報でも桁感を掴み、議論を現実に接続する。 例：市場規模＝対象人数×購入率×単価×頻度。どの因子が結果を支配するか見れば調査対象が分かる。 分解 仮定 計算 感度分析 数字がない議論でまず桁を置く 正確さより支配因子を見つける 仮定を明示する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">32</div>
+          <div><div class="name">フェルミ推定</div><span class="cat">推定</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>不完全な情報でも桁感を掴み、議論を現実に接続する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>分解</li><li>仮定</li><li>計算</li><li>感度分析</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>数字がない議論でまず桁を置く</li><li>正確さより支配因子を見つける</li><li>仮定を明示する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：市場規模＝対象人数×購入率×単価×頻度。どの因子が結果を支配するか見れば調査対象が分かる。</p>
+        <p class="output"><b>成果物：</b>概算モデル／支配因子</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-33" data-category="不確実性" data-text="ベースレート優先 不確実性 自分の特殊ストーリーより、似た事例の平均的成功率を基準にする。 例：資格取得計画なら、合格率や必要学習時間をベースにし、自分の英語力や専門性で補正する。 類似事例 基礎確率 今回の差分 補正後確率 まず一般的成功率から入る 自分の特別さは後で補正する 過度な楽観を抑える">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">33</div>
+          <div><div class="name">ベースレート優先</div><span class="cat">不確実性</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>自分の特殊ストーリーより、似た事例の平均的成功率を基準にする。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>類似事例</li><li>基礎確率</li><li>今回の差分</li><li>補正後確率</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>まず一般的成功率から入る</li><li>自分の特別さは後で補正する</li><li>過度な楽観を抑える</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：資格取得計画なら、合格率や必要学習時間をベースにし、自分の英語力や専門性で補正する。</p>
+        <p class="output"><b>成果物：</b>基礎確率メモ／補正理由</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-34" data-category="原因追究" data-text="因果方向ロック 原因追究 相関を因果と誤認せず、介入可能な原因を特定する。 例：勉強時間が長い人が合格するのか、理解が進むから勉強が続くのか、第三要因として基礎学力があるのかを見る。 a→b b→a 第三要因 介入可能性 逆因果と交絡を必ず列挙 介入できる側を打ち手にする 相関データだけで施策化しない">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">34</div>
+          <div><div class="name">因果方向ロック</div><span class="cat">原因追究</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>相関を因果と誤認せず、介入可能な原因を特定する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>A→B</li><li>B→A</li><li>第三要因</li><li>介入可能性</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>逆因果と交絡を必ず列挙</li><li>介入できる側を打ち手にする</li><li>相関データだけで施策化しない</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：勉強時間が長い人が合格するのか、理解が進むから勉強が続くのか、第三要因として基礎学力があるのかを見る。</p>
+        <p class="output"><b>成果物：</b>因果仮説表／検証案</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-35" data-category="発想" data-text="構造同型の転用 発想 別領域の同じ構造を見つけ、既存の解法を転用する。 例：社内承認待ちは待ち行列問題。レビュー担当者の処理能力と到着率を見てバッファや優先制御を考える。 構造抽出 同型問題探索 解法転用 現実条件に調整 これは在庫問題か、待ち行列か、探索問題かと置き換える 表面ではなく関係性を見る 他分野の解法を借りる">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">35</div>
+          <div><div class="name">構造同型の転用</div><span class="cat">発想</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>別領域の同じ構造を見つけ、既存の解法を転用する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>構造抽出</li><li>同型問題探索</li><li>解法転用</li><li>現実条件に調整</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>これは在庫問題か、待ち行列か、探索問題かと置き換える</li><li>表面ではなく関係性を見る</li><li>他分野の解法を借りる</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：社内承認待ちは待ち行列問題。レビュー担当者の処理能力と到着率を見てバッファや優先制御を考える。</p>
+        <p class="output"><b>成果物：</b>構造写像メモ／転用案</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-36" data-category="設計" data-text="最小十分条件 設計 目的達成に必要十分な最小セットを見つけ、過剰設計を防ぐ。 例：英語で会議する力なら、完璧な文法ではなく、要点説明・質問・確認・合意形成が最小十分条件。 条件候補 削除テスト 成立確認 最小構成 要件を一つずつ外して成立するか見る mvpや学習計画に使う 『あると良い』を削る">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">36</div>
+          <div><div class="name">最小十分条件</div><span class="cat">設計</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>目的達成に必要十分な最小セットを見つけ、過剰設計を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>条件候補</li><li>削除テスト</li><li>成立確認</li><li>最小構成</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>要件を一つずつ外して成立するか見る</li><li>MVPや学習計画に使う</li><li>『あると良い』を削る</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：英語で会議する力なら、完璧な文法ではなく、要点説明・質問・確認・合意形成が最小十分条件。</p>
+        <p class="output"><b>成果物：</b>最小要件リスト／MVP仕様</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-37" data-category="意思決定" data-text="価値関数の明文化 意思決定 何を最大化し何を避けるかを明示し、評価のズレを解消する。 例：mba選びなら、肩書、人脈、費用、時間、学習内容のどれを最大化するかで最適解が変わる。 最大化対象 罰則 重み トレードオフ 『何を勝ちとするか』を先に書く 関係者間の価値関数の違いを出す 評価軸に重みを付ける">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">37</div>
+          <div><div class="name">価値関数の明文化</div><span class="cat">意思決定</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>何を最大化し何を避けるかを明示し、評価のズレを解消する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>最大化対象</li><li>罰則</li><li>重み</li><li>トレードオフ</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『何を勝ちとするか』を先に書く</li><li>関係者間の価値関数の違いを出す</li><li>評価軸に重みを付ける</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：MBA選びなら、肩書、人脈、費用、時間、学習内容のどれを最大化するかで最適解が変わる。</p>
+        <p class="output"><b>成果物：</b>価値関数メモ／重み表</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-38" data-category="意思決定" data-text="可逆性フィルタ 意思決定 戻せる決定は速く、戻せない決定は慎重に扱う。 例：勉強教材購入は可逆に近いので即試す。退職は不可逆性が高いので副業・面談・休職検討で情報を増やす。 可逆 部分的可逆 不可逆 実験可能性 悩んだらまず可逆性を見る 可逆なら小さく試す 不可逆なら情報価値の高い検証を先に行う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">38</div>
+          <div><div class="name">可逆性フィルタ</div><span class="cat">意思決定</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>戻せる決定は速く、戻せない決定は慎重に扱う。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>可逆</li><li>部分的可逆</li><li>不可逆</li><li>実験可能性</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>悩んだらまず可逆性を見る</li><li>可逆なら小さく試す</li><li>不可逆なら情報価値の高い検証を先に行う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：勉強教材購入は可逆に近いので即試す。退職は不可逆性が高いので副業・面談・休職検討で情報を増やす。</p>
+        <p class="output"><b>成果物：</b>可逆性判定／実験案</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-39" data-category="検証" data-text="情報価値 検証 追加調査や検証が意思決定を変える価値を持つか判断する。 例：どのmbaが良いかを調べ続ける前に、補助金対象かどうかで候補が大きく変わるなら、そこを先に調べる。 結論が変わる確率 変わった場合の利益差 調査コスト 実施判断 その調査で判断が変わるか問う 調査コストを時間で見る 分析沼を断つ">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">39</div>
+          <div><div class="name">情報価値</div><span class="cat">検証</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>追加調査や検証が意思決定を変える価値を持つか判断する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>結論が変わる確率</li><li>変わった場合の利益差</li><li>調査コスト</li><li>実施判断</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>その調査で判断が変わるか問う</li><li>調査コストを時間で見る</li><li>分析沼を断つ</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：どのMBAが良いかを調べ続ける前に、補助金対象かどうかで候補が大きく変わるなら、そこを先に調べる。</p>
+        <p class="output"><b>成果物：</b>調査優先順位／やらない調査リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-40" data-category="抽象化" data-text="1ステップ抽象化 抽象化 詰まった具体問題を一段上位概念に上げ、解空間を広げる。 例：『資料を作る時間がない』→『意思決定に必要な情報を届ける手段不足』→口頭説明、表、既存資料転用も候補になる。 具体問題 上位概念 代替解 再具体化 『これは何の一例か？』を問う 手段ではなく機能に戻す 上げすぎたら再具体化する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">40</div>
+          <div><div class="name">1ステップ抽象化</div><span class="cat">抽象化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>詰まった具体問題を一段上位概念に上げ、解空間を広げる。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>具体問題</li><li>上位概念</li><li>代替解</li><li>再具体化</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『これは何の一例か？』を問う</li><li>手段ではなく機能に戻す</li><li>上げすぎたら再具体化する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『資料を作る時間がない』→『意思決定に必要な情報を届ける手段不足』→口頭説明、表、既存資料転用も候補になる。</p>
+        <p class="output"><b>成果物：</b>上位概念メモ／代替解リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-41" data-category="具体化" data-text="1ステップ具体化 具体化 抽象論を行動・数値・観測可能なものに落とす。 例：『社内で存在感を出す』→『月2回、上司に改善案を1ページで出す』へ。 抽象目標 具体行動 測定指標 期限 『改善する』を何をどれだけに変える 行動が書けないなら理解不足と見る 今日やることまで落とす">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">41</div>
+          <div><div class="name">1ステップ具体化</div><span class="cat">具体化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>抽象論を行動・数値・観測可能なものに落とす。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>抽象目標</li><li>具体行動</li><li>測定指標</li><li>期限</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>『改善する』を何をどれだけに変える</li><li>行動が書けないなら理解不足と見る</li><li>今日やることまで落とす</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：『社内で存在感を出す』→『月2回、上司に改善案を1ページで出す』へ。</p>
+        <p class="output"><b>成果物：</b>具体アクション／測定指標</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-42" data-category="構造化" data-text="正準形への変換 構造化 曖昧な問題を、目的関数・制約・変数という解ける形に整える。 例：転職検討＝目的関数は将来期待値、制約は勤務地・年収下限・家族条件、変数は職種・業界・学習投資。 目的関数 制約 操作変数 評価方法 モヤモヤした相談を最適化問題として書く 何を動かせるかを明確にする 制約と目標を混ぜない">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">42</div>
+          <div><div class="name">正準形への変換</div><span class="cat">構造化</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>曖昧な問題を、目的関数・制約・変数という解ける形に整える。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>目的関数</li><li>制約</li><li>操作変数</li><li>評価方法</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>モヤモヤした相談を最適化問題として書く</li><li>何を動かせるかを明確にする</li><li>制約と目標を混ぜない</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：転職検討＝目的関数は将来期待値、制約は勤務地・年収下限・家族条件、変数は職種・業界・学習投資。</p>
+        <p class="output"><b>成果物：</b>問題の正準形／操作変数リスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-43" data-category="検算" data-text="単位・次元チェック 検算 単位が合わない推論を発見し、数字の嘘を防ぐ。 例：作業効率を語るなら、件数/時間なのか、価値/時間なのか、ミス削減/人日なのかを揃える。 変数 単位 演算 結果単位 円、時間、件、人日、%などを必ず付ける 効率の議論で特に使う 数式化しなくても単位だけ確認する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">43</div>
+          <div><div class="name">単位・次元チェック</div><span class="cat">検算</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>単位が合わない推論を発見し、数字の嘘を防ぐ。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>変数</li><li>単位</li><li>演算</li><li>結果単位</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>円、時間、件、人日、%などを必ず付ける</li><li>効率の議論で特に使う</li><li>数式化しなくても単位だけ確認する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：作業効率を語るなら、件数/時間なのか、価値/時間なのか、ミス削減/人日なのかを揃える。</p>
+        <p class="output"><b>成果物：</b>単位付きモデル／矛盾点</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-44" data-category="比較" data-text="参照点の固定 比較 比較対象を固定し、改善や優劣を差分で判断する。 例：mba費用300万円が高いかではなく、同じ300万円で得られる人脈・資格・事業投資との比較で見る。 現状維持 代替案 何もしない場合 差分 提案には必ず現状維持を入れる 絶対値ではなく差分で語る 比較対象を途中で変えない">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">44</div>
+          <div><div class="name">参照点の固定</div><span class="cat">比較</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>比較対象を固定し、改善や優劣を差分で判断する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>現状維持</li><li>代替案</li><li>何もしない場合</li><li>差分</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>提案には必ず現状維持を入れる</li><li>絶対値ではなく差分で語る</li><li>比較対象を途中で変えない</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：MBA費用300万円が高いかではなく、同じ300万円で得られる人脈・資格・事業投資との比較で見る。</p>
+        <p class="output"><b>成果物：</b>比較表／差分評価</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-45" data-category="比較" data-text="総所有コスト tco 比較 初期費用だけでなく、運用・学習・切替・失敗コストまで見る。 例：安いオンラインmbaでも、修了率が低く人脈が弱ければ、時間の浪費というtcoが高い。 初期費用 運用費 学習コスト 切替コスト 失敗時損失 安い選択肢ほど隠れコストを見る 時間コストを金額換算する 長期利用前提で比較する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">45</div>
+          <div><div class="name">総所有コスト TCO</div><span class="cat">比較</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>初期費用だけでなく、運用・学習・切替・失敗コストまで見る。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>初期費用</li><li>運用費</li><li>学習コスト</li><li>切替コスト</li><li>失敗時損失</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>安い選択肢ほど隠れコストを見る</li><li>時間コストを金額換算する</li><li>長期利用前提で比較する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：安いオンラインMBAでも、修了率が低く人脈が弱ければ、時間の浪費というTCOが高い。</p>
+        <p class="output"><b>成果物：</b>TCO表／真のコスト比較</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-46" data-category="実行設計" data-text="依存関係グラフ 実行設計 タスクの遅れをやる気ではなく依存と順序で捉える。 例：資料作成が遅いのではなく、必要データ入手が先行条件。ならば初日にデータ依頼を出す。 タスク 前提条件 依存矢印 クリティカルパス 進まない理由を依存で見る クリティカルパス上だけ最優先 待ちを減らすため先行依頼する">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">46</div>
+          <div><div class="name">依存関係グラフ</div><span class="cat">実行設計</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>タスクの遅れをやる気ではなく依存と順序で捉える。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>タスク</li><li>前提条件</li><li>依存矢印</li><li>クリティカルパス</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>進まない理由を依存で見る</li><li>クリティカルパス上だけ最優先</li><li>待ちを減らすため先行依頼する</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：資料作成が遅いのではなく、必要データ入手が先行条件。ならば初日にデータ依頼を出す。</p>
+        <p class="output"><b>成果物：</b>依存グラフ／先行タスクリスト</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-47" data-category="リスク" data-text="破滅回避フィルタ リスク 期待値より先に、一撃で復帰不能になるリスクを排除する。 例：高リターン副業でも会社規定違反なら破滅リスクあり。匿名・合法・承認済みなどの安全設計が先。 破滅条件 発生確率 損失規模 上限設定 分散 投資・キャリア・副業で必ず使う 信用・健康・法務リスクを含める 勝つ前に死なない設計にする">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">47</div>
+          <div><div class="name">破滅回避フィルタ</div><span class="cat">リスク</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>期待値より先に、一撃で復帰不能になるリスクを排除する。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>破滅条件</li><li>発生確率</li><li>損失規模</li><li>上限設定</li><li>分散</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>投資・キャリア・副業で必ず使う</li><li>信用・健康・法務リスクを含める</li><li>勝つ前に死なない設計にする</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：高リターン副業でも会社規定違反なら破滅リスクあり。匿名・合法・承認済みなどの安全設計が先。</p>
+        <p class="output"><b>成果物：</b>破滅条件表／安全策</p>
+      </div>
+    </article>
+    
+    <article class="framework" id="fw-48" data-category="理解" data-text="反復圧縮 理解 長い説明を短く圧縮し、理解の核を取り出す。 例：新規事業案を10ページ、3文、1文、タグラインまで圧縮する。残った言葉が価値の核。 長文説明 3文 1文 10語 キーワード 企画や学習内容を段階的に圧縮 圧縮できない部分を理解不足として掘る 相手への説明前に使う">
+      <div class="fw-head" onclick="toggleFw(this)">
+        <div class="fw-title">
+          <div class="num">48</div>
+          <div><div class="name">反復圧縮</div><span class="cat">理解</span></div>
+        </div>
+        <div class="small">開く/閉じる</div>
+      </div>
+      <div class="fw-body">
+        <p><b>概要：</b>長い説明を短く圧縮し、理解の核を取り出す。</p>
+        <div class="cols">
+          <div class="box"><b>構造</b><ul><li>長文説明</li><li>3文</li><li>1文</li><li>10語</li><li>キーワード</li></ul></div>
+          <div class="box"><b>具体的な使い方</b><ul><li>企画や学習内容を段階的に圧縮</li><li>圧縮できない部分を理解不足として掘る</li><li>相手への説明前に使う</li></ul></div>
+        </div>
+        <p><b>具体例：</b>例：新規事業案を10ページ、3文、1文、タグラインまで圧縮する。残った言葉が価値の核。</p>
+        <p class="output"><b>成果物：</b>圧縮版説明／核心メッセージ</p>
+      </div>
+    </article>
+    
+  </section>
+
+  <section class="section">
+    <h2>実務用テンプレート</h2>
+    <p>このHTMLを開いたまま、下の枠をコピーしてノートやドキュメントに貼り付けて使う。</p>
+    <div class="template">
+      <div class="card">
+        <h3>1. 問題定義テンプレ</h3>
+        <textarea readonly>【現在の問い】
+
+【本当に決めたいこと】
+
+【成功条件】
+
+【制約】
+
+【操作できる変数】
+
+【再定義した問い】</textarea>
+      </div>
+      <div class="card">
+        <h3>2. 仮説検証テンプレ</h3>
+        <textarea readonly>【仮説】もし＿＿なら、＿＿のはず。
+
+【反証条件】何が観測されたら間違いか？
+
+【最短検証】誰に、何を、いつ、どう確認するか？
+
+【結果】
+
+【更新後の判断】</textarea>
+      </div>
+      <div class="card">
+        <h3>3. 意思決定テンプレ</h3>
+        <textarea readonly>【選択肢】A / B / C
+
+【価値関数】何を最大化するか？
+
+【評価軸と重み】
+1.
+2.
+3.
+
+【期待値】
+
+【破滅リスク】
+
+【可逆性】可逆 / 部分的可逆 / 不可逆
+
+【結論】</textarea>
+      </div>
+      <div class="card">
+        <h3>4. AARテンプレ</h3>
+        <textarea readonly>【期待していた結果】
+
+【実際の結果】
+
+【差分】
+
+【原因：事実 / 解釈 / 判断】
+
+【次に変える行動：最大3つ】
+1.
+2.
+3.</textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>用途別おすすめセット</h2>
+    <div class="grid">
+      <div class="card"><h3>仕事・PM</h3><p>イシュードリブン、依存関係グラフ、制約理論、プレモーテム、AAR。</p></div>
+      <div class="card"><h3>起業・新規事業</h3><p>問いの再定義、価値関数、フェルミ推定、仮説思考、デザインスプリント、破滅回避。</p></div>
+      <div class="card"><h3>学習・資格</h3><p>バックキャスティング、最小十分条件、ベースレート優先、OODA、反復圧縮。</p></div>
+      <div class="card"><h3>社内政治・説得</h3><p>ピラミッド原則、FIJ三分割、参照点の固定、セカンドオーダー思考、レッドチーミング。</p></div>
+      <div class="card"><h3>投資・キャリア</h3><p>期待値×リスク、破滅回避、可逆性フィルタ、情報価値、TCO。</p></div>
+      <div class="card"><h3>設計・技術開発</h3><p>ファーストプリンシプル、TRIZ、境界条件テスト、単位チェック、構造同型の転用。</p></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>作成日：2026-05-18 / 検索なし・思考整理用HTML。ブラウザで開き、必要に応じて印刷またはPDF保存してください。</p>
+</footer>
+<script>
+function toggleFw(el) { el.parentElement.classList.toggle('open'); }
+function expandAll() { document.querySelectorAll('.framework:not(.hide)').forEach(x => x.classList.add('open')); }
+function collapseAll() { document.querySelectorAll('.framework').forEach(x => x.classList.remove('open')); }
+const search = document.getElementById('search');
+const category = document.getElementById('category');
+function filter() {
+  const q = search.value.trim().toLowerCase();
+  const c = category.value;
+  document.querySelectorAll('.framework').forEach(card => {
+    const text = card.dataset.text || '';
+    const okQ = !q || text.includes(q);
+    const okC = !c || card.dataset.category === c;
+    card.classList.toggle('hide', !(okQ && okC));
+    if (q && okQ && okC) card.classList.add('open');
+  });
+}
+search.addEventListener('input', filter);
+category.addEventListener('change', filter);
+// 初期状態：最初の7つだけ開く
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.framework').forEach((x,i) => { if(i < 7) x.classList.add('open'); });
+});
+</script>
+</body>
+</html>

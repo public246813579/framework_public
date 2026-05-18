@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人間関係・コミュニケーション思考フレームワーク24</title>
+  <style>
+    :root {
+      --bg:#f7f7f4; --paper:#ffffff; --ink:#1f2933; --muted:#657282; --line:#d9ded7;
+      --accent:#263f34; --accent2:#d9eadf; --warn:#7c4a03; --soft:#f1f5f2;
+      --shadow: 0 10px 28px rgba(31,41,51,.08);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:linear-gradient(180deg,#f4f6f2 0%,#fbfaf7 100%); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; line-height:1.78; }
+    header.hero { padding:56px 24px 34px; background:radial-gradient(circle at top left,#dcece2 0,#f7f7f4 38%,#fbfaf7 100%); border-bottom:1px solid var(--line); }
+    .wrap { max-width:1180px; margin:0 auto; }
+    .kicker { color:var(--accent); font-weight:800; letter-spacing:.08em; font-size:14px; }
+    h1 { font-size:clamp(30px,5vw,58px); line-height:1.15; margin:12px 0 18px; letter-spacing:-.04em; }
+    .lead { font-size:18px; color:#3b4652; max-width:900px; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .pill { background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:7px 12px; font-size:13px; color:#34413c; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+    main { padding:26px 24px 80px; }
+    .toolbar { position:sticky; top:0; z-index:20; background:rgba(247,247,244,.92); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:18px; padding:14px; display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center; box-shadow:var(--shadow); margin:0 auto 26px; max-width:1180px; }
+    input[type="search"], select { width:100%; border:1px solid var(--line); border-radius:12px; padding:12px 14px; font-size:15px; background:white; color:var(--ink); }
+    button { border:0; border-radius:12px; background:var(--accent); color:white; padding:12px 14px; font-weight:700; cursor:pointer; }
+    button.secondary { background:#eef2ef; color:#23332a; border:1px solid var(--line); }
+    button.copy { padding:8px 10px; font-size:12px; background:#314b3e; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:18px; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:22px; box-shadow:var(--shadow); }
+    .span-4 { grid-column:span 4; } .span-6 { grid-column:span 6; } .span-8 { grid-column:span 8; } .span-12 { grid-column:span 12; }
+    h2 { font-size:30px; margin:38px 0 16px; letter-spacing:-.02em; }
+    h3 { font-size:22px; margin:0 0 8px; }
+    h4 { margin:20px 0 8px; font-size:16px; color:#22362c; }
+    p { margin:8px 0 12px; }
+    .muted { color:var(--muted); }
+    .toc { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+    .toc a { text-decoration:none; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:12px; display:block; }
+    .toc small { color:var(--muted); display:block; }
+    .framework { scroll-margin-top:110px; }
+    .framework-head { display:flex; gap:14px; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
+    .num { flex:0 0 auto; width:44px; height:44px; border-radius:14px; background:var(--accent2); color:var(--accent); font-weight:900; display:grid; place-items:center; }
+    .tag { font-size:12px; font-weight:800; color:var(--accent); background:#edf5ef; border:1px solid #d5e5d9; border-radius:999px; padding:4px 9px; display:inline-block; }
+    .category { font-size:12px; color:var(--muted); font-weight:700; }
+    .section-title { display:flex; align-items:center; gap:10px; margin:38px 0 14px; }
+    .section-title::before { content:""; width:10px; height:28px; border-radius:8px; background:var(--accent); display:inline-block; }
+    ul { padding-left:1.25em; }
+    li { margin:6px 0; }
+    .template { background:#f6f8f6; border:1px dashed #a8b8ac; border-radius:16px; padding:14px; position:relative; }
+    .template code { white-space:pre-wrap; font-family:inherit; color:#1f2f28; }
+    .mini { font-size:13px; color:var(--muted); }
+    table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:16px; background:white; }
+    th, td { text-align:left; vertical-align:top; padding:13px 14px; border-bottom:1px solid var(--line); }
+    th { background:#edf3ef; color:#20352b; }
+    tr:last-child td { border-bottom:0; }
+    .checklist label { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #edf0ec; }
+    .checklist label:last-child { border-bottom:0; }
+    .flow { counter-reset:step; }
+    .flow .step { display:flex; gap:14px; margin:12px 0; align-items:flex-start; }
+    .flow .step::before { counter-increment:step; content:counter(step); width:28px; height:28px; flex:0 0 auto; border-radius:50%; background:var(--accent); color:white; display:grid; place-items:center; font-weight:800; font-size:13px; margin-top:3px; }
+    .print-note { display:none; }
+    .footer { color:var(--muted); font-size:13px; margin-top:44px; text-align:center; }
+    @media (max-width: 900px) { .toolbar { grid-template-columns:1fr; } .span-4,.span-6,.span-8,.span-12 { grid-column:span 12; } }
+    @media print {
+      body { background:white; } header.hero { padding:22px 0; } main { padding:0; } .toolbar, button { display:none !important; }
+      .card { box-shadow:none; break-inside:avoid; } .framework { break-inside:avoid; page-break-inside:avoid; }
+      a { color:inherit; text-decoration:none; } .print-note { display:block; }
+    }
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">RELATIONSHIP & COMMUNICATION FRAMEWORKS</div>
+    <h1>人間関係・コミュニケーションのための<br>本質的思考フレームワーク24</h1>
+    <p class="lead">会話の上手さを「性格」や「センス」に頼らず、再現可能な手順に変えるための実用HTML。職場、恋人、友人、家族、コミュニティ運営、交渉、謝罪、会議運営に使えるよう、各フレームに構造・具体例・そのまま使えるテンプレ文を付けています。</p>
+    <div class="meta">
+      <span class="pill">24 Frameworks</span><span class="pill">検索・分類フィルター付き</span><span class="pill">コピー用テンプレ付き</span><span class="pill">印刷/PDF化対応</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="キーワード検索：例）謝罪、交渉、上司、恋人、会議、感情">
+    <select id="category"><option value="all">すべての分類</option><option value="会話前の設計">会話前の設計</option><option value="会話中の聴き方">会話中の聴き方</option><option value="衝突・交渉">衝突・交渉</option><option value="信頼形成">信頼形成</option><option value="組織・チーム">組織・チーム</option><option value="統合ワークフロー">統合ワークフロー</option></select>
+    <button class="secondary" onclick="window.print()">印刷 / PDF化</button>
+  </div>
+
+  <section class="wrap grid">
+    <div class="card span-8">
+      <h2 style="margin-top:0">最初に使うべき基本ワークフロー</h2>
+      <p>迷ったら、以下の順番で使ってください。対人問題は、いきなり正解を出すより、まず構造化してから小さく介入するほうが成功率が高いです。</p>
+      <div class="flow">
+        <div class="step"><div><strong>目的を決める。</strong><br><span class="muted">この会話は、決定・相談・謝罪・依頼・関係修復のどれか。</span></div></div>
+        <div class="step"><div><strong>事実と解釈を分ける。</strong><br><span class="muted">自分が見たことと、自分が意味づけしたことを混ぜない。</span></div></div>
+        <div class="step"><div><strong>相手の利害と感情を読む。</strong><br><span class="muted">相手は何を守りたいのか。何を恐れているのか。</span></div></div>
+        <div class="step"><div><strong>最小の一手を打つ。</strong><br><span class="muted">質問、要約、三案提示、謝罪、境界線のどれかを選ぶ。</span></div></div>
+        <div class="step"><div><strong>反応を見て更新する。</strong><br><span class="muted">一発解決を狙わず、相互作用として調整する。</span></div></div>
+      </div>
+    </div>
+    <div class="card span-4 checklist">
+      <h2 style="margin-top:0">会話前チェックリスト</h2>
+      <p class="mini">チェック状態はこのブラウザ内に保存されます。</p>
+      <label><input type="checkbox" class="persist" data-key="chk1"><span>この会話の目的は1文で言えるか。</span></label><label><input type="checkbox" class="persist" data-key="chk2"><span>相手の感情・立場・疲労・警戒を読んだか。</span></label><label><input type="checkbox" class="persist" data-key="chk3"><span>事実と解釈を分けたか。</span></label><label><input type="checkbox" class="persist" data-key="chk4"><span>自分の要求は相手が実行できる具体行動になっているか。</span></label><label><input type="checkbox" class="persist" data-key="chk5"><span>相手の利害を聞く前に、自分の立場だけを押していないか。</span></label><label><input type="checkbox" class="persist" data-key="chk6"><span>選択肢を1つではなく複数出せるか。</span></label><label><input type="checkbox" class="persist" data-key="chk7"><span>最低ラインと代替案を持っているか。</span></label><label><input type="checkbox" class="persist" data-key="chk8"><span>感情温度が7以上なら、休憩・延期を選べるか。</span></label><label><input type="checkbox" class="persist" data-key="chk9"><span>会話後に、決定事項と宿題を文字で残せるか。</span></label><label><input type="checkbox" class="persist" data-key="chk10"><span>関係修復では、謝罪後に小さな約束を守る設計になっているか。</span></label>
+    </div>
+  </section>
+
+  <section class="wrap card span-12" style="margin-top:18px">
+    <h2 style="margin-top:0">状況別クイック選択表</h2>
+    <table>
+      <thead><tr><th>状況</th><th>使うフレーム</th><th>狙い</th></tr></thead>
+      <tbody>
+        <tr><td>相手に改善を求めたい</td><td>05 SBIの代替として12 DESC / 04 NVC</td><td>事実→影響→要求→次回の基準</td></tr><tr><td>言いにくい依頼をしたい</td><td>01 PRC / 02 CRSA / 10 三案提示</td><td>関係を整え、結論を先に言い、選択肢を出す</td></tr><tr><td>相手が怒っている</td><td>13 感情温度計 / 05 OARS / 06 ラベリング</td><td>正論を止め、まず温度を下げて理解を示す</td></tr><tr><td>交渉で譲りすぎたくない</td><td>09 利害分離 / 11 BATNA / 10 三案提示</td><td>裏の利害を探り、代替案と最低ラインを決める</td></tr><tr><td>誤解・思い込みがある</td><td>15 推論のはしご / 03 FIER</td><td>事実と解釈を分けて確認質問を作る</td></tr><tr><td>関係を修復したい</td><td>14 謝罪5要素 / 16 信頼方程式 / 20 関係口座</td><td>謝罪は構造化し、その後は履歴で回復する</td></tr><tr><td>チームの責任が曖昧</td><td>21 DACI / 22 RACI / 23 会議OS</td><td>決定権、実行責任、共有先を分ける</td></tr><tr><td>恋人・家族と揉める</td><td>03 FIER / 04 NVC / 18 境界線</td><td>感情を所有し、要求は具体行動に変える</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="wrap">
+    <h2 class="section-title">目次</h2>
+    <div class="toc">
+      <a href="#fw-01"><strong>01. PRC：目的・関係・内容フレーム</strong><small>会話前の設計 / 会話設計</small></a><a href="#fw-02"><strong>02. CRSA：結論・理由・具体・次アクション</strong><small>会話前の設計 / 伝達整理</small></a><a href="#fw-03"><strong>03. FIER：事実・解釈・感情・要求</strong><small>会話前の設計 / 誤解防止</small></a><a href="#fw-04"><strong>04. NVC：観察・感情・ニーズ・依頼</strong><small>会話中の聴き方 / 衝突緩和</small></a><a href="#fw-05"><strong>05. OARS：開く質問・承認・反射・要約</strong><small>会話中の聴き方 / 傾聴</small></a><a href="#fw-06"><strong>06. ミラーリング＆ラベリング</strong><small>会話中の聴き方 / 感情把握</small></a><a href="#fw-07"><strong>07. 質問ファネル：Why・How・Whatの三段深掘り</strong><small>会話中の聴き方 / 質問設計</small></a><a href="#fw-08"><strong>08. スチールマン：相手の主張を最強化してから返す</strong><small>会話中の聴き方 / 議論</small></a><a href="#fw-09"><strong>09. 立場と利害の分離</strong><small>衝突・交渉 / 交渉</small></a><a href="#fw-10"><strong>10. 三案提示：A/B/Cオプション先出し</strong><small>衝突・交渉 / 提案</small></a><a href="#fw-11"><strong>11. BATNA/WATNA/MLATNA：交渉地盤の確認</strong><small>衝突・交渉 / 交渉準備</small></a><a href="#fw-12"><strong>12. DESC：描写・表現・指定・結果</strong><small>衝突・交渉 / アサーション</small></a><a href="#fw-13"><strong>13. 感情温度計：0〜10で測って会話を制御する</strong><small>衝突・交渉 / 感情制御</small></a><a href="#fw-14"><strong>14. 謝罪の5要素：事実・影響・責任・再発防止・償い</strong><small>衝突・交渉 / 関係修復</small></a><a href="#fw-15"><strong>15. 推論のはしご：事実から結論への飛躍を戻す</strong><small>衝突・交渉 / 認知整理</small></a><a href="#fw-16"><strong>16. 信頼の方程式：信用×実績×親密さ÷自己都合</strong><small>信頼形成 / 信頼構築</small></a><a href="#fw-17"><strong>17. 期待値の明文化：役割・期限・品質・連絡</strong><small>信頼形成 / 合意形成</small></a><a href="#fw-18"><strong>18. 境界線ワーク：OK・NG・条件・例外・結果</strong><small>信頼形成 / 境界線</small></a><a href="#fw-19"><strong>19. ジョハリの窓：公開・盲点・秘密・未知</strong><small>信頼形成 / 自己開示</small></a><a href="#fw-20"><strong>20. 関係口座：入金・出金・残高管理</strong><small>信頼形成 / 関係維持</small></a><a href="#fw-21"><strong>21. DACI：推進・承認・協力・共有</strong><small>組織・チーム / 意思決定</small></a><a href="#fw-22"><strong>22. RACI：実行・責任・相談・報告</strong><small>組織・チーム / 役割分担</small></a><a href="#fw-23"><strong>23. 会議OS：目的・論点・制約・決定・宿題</strong><small>組織・チーム / 会議運営</small></a><a href="#fw-24"><strong>24. 対人問題解決ループ：観察・整理・仮説・介入・検証</strong><small>統合ワークフロー / 総合運用</small></a>
+    </div>
+  </section>
+
+  <section class="wrap" id="frameworks">
+    <h2 class="section-title">24フレームワーク詳細</h2>
+
+    <article class="card framework" id="fw-01" data-category="会話前の設計" data-text="prc：目的・関係・内容フレーム 会話を『目的』『関係』『内容』に分ける。人間関係で失敗する人は、内容だけを正しくしようとして、相手の心理状態や関係残高を無視する。prcは、何を達成するか、相手との関係をどう扱うか、どの情報を伝えるかを事前に分離するための基本osである。 上司に『仕様追加は危険』と伝える場合、目的は追加仕様の延期合意、関係は上司が納期圧を受けている状態、内容は再試験リスクと代替案。入り方は『納期を守りたい目的は同じです。そのうえで、この追加は再試験リスクが大きいので、今週は要件凍結を提案したいです』となる。 この会話の目的は【目的】です。まず【相手の状況への理解】を前提に、【伝えたい内容】を相談させてください。私の提案は【提案】です。 会話設計">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">01</div>
+          <div>
+            <div class="category">会話前の設計</div>
+            <h3>PRC：目的・関係・内容フレーム</h3>
+            <span class="tag">会話設計</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>会話を『目的』『関係』『内容』に分ける。人間関係で失敗する人は、内容だけを正しくしようとして、相手の心理状態や関係残高を無視する。PRCは、何を達成するか、相手との関係をどう扱うか、どの情報を伝えるかを事前に分離するための基本OSである。</p>
+      <h4>構造</h4>
+      <ul><li>Purpose：この会話の最終成果を1文で定義する。決定、相談、謝罪、依頼、共有、関係修復のどれかを決める。</li><li>Relationship：相手の感情、疲労、警戒、信頼残高、上下関係、面子を読む。</li><li>Content：論点、根拠、選択肢、期限、依頼事項を整理する。</li><li>Opening：関係を整える一言から入り、その後で内容に移る。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>上司に『仕様追加は危険』と伝える場合、目的は追加仕様の延期合意、関係は上司が納期圧を受けている状態、内容は再試験リスクと代替案。入り方は『納期を守りたい目的は同じです。そのうえで、この追加は再試験リスクが大きいので、今週は要件凍結を提案したいです』となる。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-01">この会話の目的は【目的】です。まず【相手の状況への理解】を前提に、【伝えたい内容】を相談させてください。私の提案は【提案】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-01')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">目的が曖昧なまま話すと、相手は『結局何が言いたいのか』と感じる。関係を無視すると正論でも反発される。</p>
+    </article>
+
+    <article class="card framework" id="fw-02" data-category="会話前の設計" data-text="crsa：結論・理由・具体・次アクション 短時間で誤解なく伝えるための型。結論を先に置き、理由、具体例、次アクションで閉じる。ビジネスでも恋人との会話でも、論点が散らかると相手は疲れる。crsaは会話の圧縮技術である。 レビューが遅い同僚に言う場合、『結論、レビューを48時間以内に回したいです。理由は実装が止まるからです。具体的には今週2件とも72時間を超えていました。次から依頼時に締切を書きます。難しければ一言返してください』となる。 結論は【結論】です。理由は【理由1】【理由2】です。具体的には【具体例】が起きています。次は【誰が】【いつまでに】【何をする】で進めたいです。 伝達整理">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">02</div>
+          <div>
+            <div class="category">会話前の設計</div>
+            <h3>CRSA：結論・理由・具体・次アクション</h3>
+            <span class="tag">伝達整理</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>短時間で誤解なく伝えるための型。結論を先に置き、理由、具体例、次アクションで閉じる。ビジネスでも恋人との会話でも、論点が散らかると相手は疲れる。CRSAは会話の圧縮技術である。</p>
+      <h4>構造</h4>
+      <ul><li>Conclusion：最初に要点を言う。</li><li>Reason：なぜそう考えるかを1〜3点で示す。</li><li>Specific：実例、数字、出来事、過去のケースを出す。</li><li>Action：次に誰が何をいつまでにするかを決める。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>レビューが遅い同僚に言う場合、『結論、レビューを48時間以内に回したいです。理由は実装が止まるからです。具体的には今週2件とも72時間を超えていました。次から依頼時に締切を書きます。難しければ一言返してください』となる。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-02">結論は【結論】です。理由は【理由1】【理由2】です。具体的には【具体例】が起きています。次は【誰が】【いつまでに】【何をする】で進めたいです。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-02')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">結論だけだと命令に聞こえる。理由だけだと長い。具体だけだと愚痴になる。次アクションがないと会話が宙に浮く。</p>
+    </article>
+
+    <article class="card framework" id="fw-03" data-category="会話前の設計" data-text="fier：事実・解釈・感情・要求 対人摩擦の多くは、事実ではなく解釈に反応して発生する。fierは、観測事実、自分の解釈、感情、要求を分けて話すことで、責めずに本音を伝える型である。 恋人の返信が遅い場合、『朝送ったメッセージに夜まで返信がなかった。私は優先度が低いのかなと解釈して不安になった。忙しい日は“今忙しい、夜返す”だけ送ってほしい』と伝える。『冷たい』と人格評価しない。 事実として【観測事実】がありました。私はそれを【解釈】と受け取り、【感情】を感じました。次から【具体的な要求】をしてもらえると助かります。 誤解防止">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">03</div>
+          <div>
+            <div class="category">会話前の設計</div>
+            <h3>FIER：事実・解釈・感情・要求</h3>
+            <span class="tag">誤解防止</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>対人摩擦の多くは、事実ではなく解釈に反応して発生する。FIERは、観測事実、自分の解釈、感情、要求を分けて話すことで、責めずに本音を伝える型である。</p>
+      <h4>構造</h4>
+      <ul><li>Fact：相手も確認できる事実だけを書く。</li><li>Interpretation：自分がどう意味づけしたかを『仮説』として扱う。</li><li>Emotion：怒りの下にある不安、寂しさ、焦り、悲しさを言語化する。</li><li>Request：相手が実行できる具体行動で依頼する。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>恋人の返信が遅い場合、『朝送ったメッセージに夜まで返信がなかった。私は優先度が低いのかなと解釈して不安になった。忙しい日は“今忙しい、夜返す”だけ送ってほしい』と伝える。『冷たい』と人格評価しない。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-03">事実として【観測事実】がありました。私はそれを【解釈】と受け取り、【感情】を感じました。次から【具体的な要求】をしてもらえると助かります。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-03')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">感情を言わずに要求だけ出すと支配的に聞こえる。解釈を事実のように言うと相手は防御する。</p>
+    </article>
+
+    <article class="card framework" id="fw-04" data-category="会話中の聴き方" data-text="nvc：観察・感情・ニーズ・依頼 非暴力コミュニケーション的な発想を、日常で使えるように簡略化したもの。相手を裁く代わりに、自分のニーズを言語化する。怒りを正当化するためではなく、行動改善につなげるための型である。 部下が会議に遅刻した場合、『会議開始5分後に入室しました。予定より議論時間が短くなり焦りました。全員の時間を大切にしたいです。次回から開始前に着席するか、遅れる場合は事前連絡してください』と言う。 【観察】がありました。私は【感情】を感じました。なぜなら【ニーズ】を大事にしたいからです。なので【具体的依頼】をお願いできますか。 衝突緩和">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">04</div>
+          <div>
+            <div class="category">会話中の聴き方</div>
+            <h3>NVC：観察・感情・ニーズ・依頼</h3>
+            <span class="tag">衝突緩和</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>非暴力コミュニケーション的な発想を、日常で使えるように簡略化したもの。相手を裁く代わりに、自分のニーズを言語化する。怒りを正当化するためではなく、行動改善につなげるための型である。</p>
+      <h4>構造</h4>
+      <ul><li>観察：評価語を抜いた出来事。</li><li>感情：自分の感情。怒りだけでなく不安、困惑、寂しさ、残念さを探す。</li><li>ニーズ：大事にしたい価値。安心、尊重、効率、予測可能性、公平性など。</li><li>依頼：相手がYES/NOで答えられる具体行動。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>部下が会議に遅刻した場合、『会議開始5分後に入室しました。予定より議論時間が短くなり焦りました。全員の時間を大切にしたいです。次回から開始前に着席するか、遅れる場合は事前連絡してください』と言う。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-04">【観察】がありました。私は【感情】を感じました。なぜなら【ニーズ】を大事にしたいからです。なので【具体的依頼】をお願いできますか。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-04')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">『観察』のつもりで『だらしない』『失礼』など評価語を入れると、NVCではなく攻撃になる。</p>
+    </article>
+
+    <article class="card framework" id="fw-05" data-category="会話中の聴き方" data-text="oars：開く質問・承認・反射・要約 相手を説得する前に、相手の頭の中を整理する技術。開く質問で話を広げ、承認で安全性を作り、反射で理解を示し、要約で論点を固定する。話し上手より聞き上手に見える実用型。 部下がミスで落ち込む。『どこが一番難しかった？』『初回でここまでやったのは大きい』『手順が曖昧で不安だったんだね』『つまり原因は手順不明確さ。次はチェックリストを作ろう』と進める。 何が一番【気になる/難しい/引っかかる】？ そこまで考えたのは大事だと思います。つまり【相手の意図の要約】ということですね。整理すると【要約】です。 傾聴">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">05</div>
+          <div>
+            <div class="category">会話中の聴き方</div>
+            <h3>OARS：開く質問・承認・反射・要約</h3>
+            <span class="tag">傾聴</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>相手を説得する前に、相手の頭の中を整理する技術。開く質問で話を広げ、承認で安全性を作り、反射で理解を示し、要約で論点を固定する。話し上手より聞き上手に見える実用型。</p>
+      <h4>構造</h4>
+      <ul><li>Open Question：『何が一番気になる？』『どこが難しい？』など答えを限定しない質問。</li><li>Affirmation：努力、意図、価値観を認める。</li><li>Reflection：相手の言葉を意味ごと返す。</li><li>Summary：合意点、論点、次の確認事項をまとめる。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>部下がミスで落ち込む。『どこが一番難しかった？』『初回でここまでやったのは大きい』『手順が曖昧で不安だったんだね』『つまり原因は手順不明確さ。次はチェックリストを作ろう』と進める。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-05">何が一番【気になる/難しい/引っかかる】？ そこまで考えたのは大事だと思います。つまり【相手の意図の要約】ということですね。整理すると【要約】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-05')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">承認が薄いと尋問に見える。反射せず質問を連発すると、相手は詰められていると感じる。</p>
+    </article>
+
+    <article class="card framework" id="fw-06" data-category="会話中の聴き方" data-text="ミラーリング＆ラベリング 相手のキーワードを短く反復し、感情や懸念を仮説として名付ける。相手は『理解された』と感じ、自分の本音をさらに話しやすくなる。交渉、クレーム対応、恋人とのすれ違いに強い。 相手が『この仕様変更、今やるのは無理』と言ったら、『今やるのは無理？』と返す。相手が『試験が崩れる』と言ったら、『品質リスクが読めないのが怖い感じですか？』とラベルする。 【相手のキーワード】ですか。……つまり【推測される感情/懸念】が強い感じでしょうか。違っていたら修正してください。 感情把握">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">06</div>
+          <div>
+            <div class="category">会話中の聴き方</div>
+            <h3>ミラーリング＆ラベリング</h3>
+            <span class="tag">感情把握</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>相手のキーワードを短く反復し、感情や懸念を仮説として名付ける。相手は『理解された』と感じ、自分の本音をさらに話しやすくなる。交渉、クレーム対応、恋人とのすれ違いに強い。</p>
+      <h4>構造</h4>
+      <ul><li>ミラー：相手の最後の重要語を2〜4語で返す。</li><li>沈黙：相手が続きを話す余白を作る。</li><li>ラベル：『〜が不安な感じですか？』『〜に引っかかっている？』と仮説で置く。</li><li>確認：合っているかを相手に修正してもらう。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>相手が『この仕様変更、今やるのは無理』と言ったら、『今やるのは無理？』と返す。相手が『試験が崩れる』と言ったら、『品質リスクが読めないのが怖い感じですか？』とラベルする。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-06">【相手のキーワード】ですか。……つまり【推測される感情/懸念】が強い感じでしょうか。違っていたら修正してください。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-06')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">ラベルを断定形にすると逆効果。『あなたは怖がっている』ではなく『怖い感じですか？』と仮説で出す。</p>
+    </article>
+
+    <article class="card framework" id="fw-07" data-category="会話中の聴き方" data-text="質問ファネル：why・how・whatの三段深掘り 相手の発言を、価値観、方法、事実へ段階的に変換する質問術。whyで意味を取り、howで可能性を広げ、whatで行動や情報に落とす。抽象論を実行可能な会話に変える。 相手が『もっと自由に働きたい』と言ったら、why『自由が必要なのはなぜ？』、how『どういう働き方なら成果も出せる？』、what『来月から何を試す？』と進める。 なぜ【主張】が重要ですか。では、どうすれば【目的】を満たせそうですか。具体的には、何をいつから試しますか。 質問設計">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">07</div>
+          <div>
+            <div class="category">会話中の聴き方</div>
+            <h3>質問ファネル：Why・How・Whatの三段深掘り</h3>
+            <span class="tag">質問設計</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>相手の発言を、価値観、方法、事実へ段階的に変換する質問術。Whyで意味を取り、Howで可能性を広げ、Whatで行動や情報に落とす。抽象論を実行可能な会話に変える。</p>
+      <h4>構造</h4>
+      <ul><li>Why：なぜそれが重要なのか。価値観、恐れ、目的を探る。</li><li>How：どうすれば実現できるか。選択肢を広げる。</li><li>What：何をするか。事実、期限、担当、基準に落とす。</li><li>Close：最後に合意事項を確認する。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>相手が『もっと自由に働きたい』と言ったら、Why『自由が必要なのはなぜ？』、How『どういう働き方なら成果も出せる？』、What『来月から何を試す？』と進める。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-07">なぜ【主張】が重要ですか。では、どうすれば【目的】を満たせそうですか。具体的には、何をいつから試しますか。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-07')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">Whyばかり聞くと詰問に聞こえる。『なぜ？』ではなく『背景を知りたい』を添えるとよい。</p>
+    </article>
+
+    <article class="card framework" id="fw-08" data-category="会話中の聴き方" data-text="スチールマン：相手の主張を最強化してから返す 反論する前に、相手の主張を相手以上にうまく要約する。相手は防御を下げ、議論が勝敗から共同探索へ変わる。賢く見えるだけでなく、実際に合意形成が速くなる。 相手が『在宅勤務を増やしたい』と言う。『集中時間が増え、通勤負担が減り、成果を出しやすい環境を作りたいということですね』と要約。合っていれば『成果を上げたい点は同じです。相違は頻度なので、週2回で試験運用しませんか』と進める。 あなたの主張は、単に【表面的要求】ではなく、【価値/利点/懸念】を守りたいということだと理解しました。この理解で合っていますか。私も【合意点】には賛成です。相違点は【一点】です。 議論">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">08</div>
+          <div>
+            <div class="category">会話中の聴き方</div>
+            <h3>スチールマン：相手の主張を最強化してから返す</h3>
+            <span class="tag">議論</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>反論する前に、相手の主張を相手以上にうまく要約する。相手は防御を下げ、議論が勝敗から共同探索へ変わる。賢く見えるだけでなく、実際に合意形成が速くなる。</p>
+      <h4>構造</h4>
+      <ul><li>相手の主張を一度止めずに聞く。</li><li>相手の意図、利点、恐れを含めて最強版に要約する。</li><li>『この理解で合っていますか』と確認する。</li><li>合意点を明示してから相違点を1つだけ扱う。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>相手が『在宅勤務を増やしたい』と言う。『集中時間が増え、通勤負担が減り、成果を出しやすい環境を作りたいということですね』と要約。合っていれば『成果を上げたい点は同じです。相違は頻度なので、週2回で試験運用しませんか』と進める。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-08">あなたの主張は、単に【表面的要求】ではなく、【価値/利点/懸念】を守りたいということだと理解しました。この理解で合っていますか。私も【合意点】には賛成です。相違点は【一点】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-08')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">表面的なオウム返しだけだと薄い。相手の主張の“合理性”まで言語化することが重要。</p>
+    </article>
+
+    <article class="card framework" id="fw-09" data-category="衝突・交渉" data-text="立場と利害の分離 『何を要求しているか』と『なぜそれを求めるか』を分ける。立場は衝突するが、利害は設計できる。交渉や家庭内の揉めごとで最重要の発想である。 上司が『今週中に完成させて』と言う。利害を聞くと『来週顧客デモがある』と分かる。なら完成版ではなく、デモ用コア機能だけ先行、リスク説明付き、残りは翌週という別案が作れる。 【要求】が必要な背景を確認したいです。守りたいものは【納期/品質/予算/安心/面子】のどれに近いですか。それなら【代替案a/b/c】で目的を満たせるかもしれません。 交渉">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">09</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>立場と利害の分離</h3>
+            <span class="tag">交渉</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>『何を要求しているか』と『なぜそれを求めるか』を分ける。立場は衝突するが、利害は設計できる。交渉や家庭内の揉めごとで最重要の発想である。</p>
+      <h4>構造</h4>
+      <ul><li>Position：相手の表面的な要求。例：今週中にやって、値下げして、在宅したい。</li><li>Interest：その裏の目的、恐れ、制約。例：顧客デモ、予算不足、集中時間。</li><li>Options：利害を満たす別案を複数出す。</li><li>Criteria：公平な判断基準を置く。納期、品質、費用、リスクなど。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>上司が『今週中に完成させて』と言う。利害を聞くと『来週顧客デモがある』と分かる。なら完成版ではなく、デモ用コア機能だけ先行、リスク説明付き、残りは翌週という別案が作れる。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-09">【要求】が必要な背景を確認したいです。守りたいものは【納期/品質/予算/安心/面子】のどれに近いですか。それなら【代替案A/B/C】で目的を満たせるかもしれません。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-09')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">立場に立場で返すと衝突になる。『無理です』ではなく『目的は何ですか』と聞く。</p>
+    </article>
+
+    <article class="card framework" id="fw-10" data-category="衝突・交渉" data-text="三案提示：a/b/cオプション先出し 一案だけ出すと、相手はyes/noで評価する。三案出すと、相手は比較・編集モードに入る。対立を減らし、主導権を持って柔らかく交渉できる。 急ぎの資料依頼に対し、a案『明日朝に完成版。ただし既存タスクを止める必要あり』、b案『明日朝に骨子、明後日完成』、c案『既存資料の流用で今日中に簡易版』と提示する。 選択肢を3つ出します。aは【相手希望最大】、bは【現実的折衷】、cは【最低限代替】です。判断軸は【納期/品質/工数】です。私はb案が最もリスクが低いと考えます。 提案">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">10</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>三案提示：A/B/Cオプション先出し</h3>
+            <span class="tag">提案</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>一案だけ出すと、相手はYES/NOで評価する。三案出すと、相手は比較・編集モードに入る。対立を減らし、主導権を持って柔らかく交渉できる。</p>
+      <h4>構造</h4>
+      <ul><li>A案：相手の希望を最大限満たすが、コストや条件も明示。</li><li>B案：現実的な折衷案。多くの場合の本命。</li><li>C案：自分の負荷を下げる代替案。最低限の目的を満たす。</li><li>選択基準：どの案を選ぶべきかの判断軸を置く。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>急ぎの資料依頼に対し、A案『明日朝に完成版。ただし既存タスクを止める必要あり』、B案『明日朝に骨子、明後日完成』、C案『既存資料の流用で今日中に簡易版』と提示する。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-10">選択肢を3つ出します。Aは【相手希望最大】、Bは【現実的折衷】、Cは【最低限代替】です。判断軸は【納期/品質/工数】です。私はB案が最もリスクが低いと考えます。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-10')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">三案と言いながら実質一案だけに誘導すると不信感が出る。各案のメリット・デメリットを正直に出す。</p>
+    </article>
+
+    <article class="card framework" id="fw-11" data-category="衝突・交渉" data-text="batna/watna/mlatna：交渉地盤の確認 交渉前に代替案を持つことで、心理的に安定し、譲歩ラインを誤らない。batnaは最良代替案、watnaは最悪代替案、mlatnaは最もあり得る代替案。相手に依存しすぎないための防御思考である。 年収交渉なら、batnaは現職残留＋半年後再挑戦、watnaは内定辞退で転職活動継続、mlatnaは少額アップ。最低ラインを決めておけば、雰囲気に流されて不利な条件を飲みにくい。 合意できない場合の最良代替案は【batna】です。最悪は【watna】です。現実的には【mlatna】です。したがって最低ラインは【条件】です。 交渉準備">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">11</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>BATNA/WATNA/MLATNA：交渉地盤の確認</h3>
+            <span class="tag">交渉準備</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>交渉前に代替案を持つことで、心理的に安定し、譲歩ラインを誤らない。BATNAは最良代替案、WATNAは最悪代替案、MLATNAは最もあり得る代替案。相手に依存しすぎないための防御思考である。</p>
+      <h4>構造</h4>
+      <ul><li>BATNA：合意できない場合の最良の別ルート。</li><li>WATNA：最悪の場合に何が起こるか。感情で過大評価せず現実的に書く。</li><li>MLATNA：最も可能性が高い代替シナリオ。</li><li>Reservation Point：これ以下なら合意しない最低ライン。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>年収交渉なら、BATNAは現職残留＋半年後再挑戦、WATNAは内定辞退で転職活動継続、MLATNAは少額アップ。最低ラインを決めておけば、雰囲気に流されて不利な条件を飲みにくい。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-11">合意できない場合の最良代替案は【BATNA】です。最悪は【WATNA】です。現実的には【MLATNA】です。したがって最低ラインは【条件】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-11')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">BATNAがないのに強気で交渉するとただの賭けになる。代替案を作ってから交渉する。</p>
+    </article>
+
+    <article class="card framework" id="fw-12" data-category="衝突・交渉" data-text="desc：描写・表現・指定・結果 断る、境界線を引く、改善を求める場面で使う強力な型。曖昧な優しさではなく、冷静で具体的な主張を可能にする。 急な残業依頼が続く場合、『今週は当日夕方の依頼が3回ありました。予定が崩れて品質にも影響します。今後は前日までに相談してください。緊急なら理由と優先度を添えてください。当日夕方の新規依頼は原則翌日に回します』。 【状況】がありました。その結果、私は【影響/感情】があります。今後は【具体行動】をお願いします。そうすれば【よい結果】になります。難しい場合は【現実的結果】になります。 アサーション">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">12</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>DESC：描写・表現・指定・結果</h3>
+            <span class="tag">アサーション</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>断る、境界線を引く、改善を求める場面で使う強力な型。曖昧な優しさではなく、冷静で具体的な主張を可能にする。</p>
+      <h4>構造</h4>
+      <ul><li>Describe：評価せず状況を描写する。</li><li>Express：自分への影響や感情を述べる。</li><li>Specify：してほしい行動を具体的に指定する。</li><li>Consequence：守られた場合・守られない場合の結果を現実的に示す。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>急な残業依頼が続く場合、『今週は当日夕方の依頼が3回ありました。予定が崩れて品質にも影響します。今後は前日までに相談してください。緊急なら理由と優先度を添えてください。当日夕方の新規依頼は原則翌日に回します』。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-12">【状況】がありました。その結果、私は【影響/感情】があります。今後は【具体行動】をお願いします。そうすれば【よい結果】になります。難しい場合は【現実的結果】になります。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-12')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">結果を脅しにしない。『守らないなら許さない』ではなく『その場合は翌営業日に回す』のように行動で示す。</p>
+    </article>
+
+    <article class="card framework" id="fw-13" data-category="衝突・交渉" data-text="感情温度計：0〜10で測って会話を制御する 感情が7を超えると、論理的な会話は難しくなる。会話を続けるべきか、一時停止すべきかを数値で判断する。怒り・不安・恥・焦りを扱うための現実的な安全装置。 議論が荒れてきたら、『今、自分の温度が7くらいです。このまま続けると雑な言い方になります。10分休憩して、論点を1つに絞って再開したいです』と言う。 今の私の感情温度は【数字】くらいです。感情は【怒り/不安/焦り】です。このまま続けると【悪い結果】になりそうなので、【休憩/延期/論点整理】にしたいです。 感情制御">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">13</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>感情温度計：0〜10で測って会話を制御する</h3>
+            <span class="tag">感情制御</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>感情が7を超えると、論理的な会話は難しくなる。会話を続けるべきか、一時停止すべきかを数値で判断する。怒り・不安・恥・焦りを扱うための現実的な安全装置。</p>
+      <h4>構造</h4>
+      <ul><li>測定：今の怒り、不安、焦りを0〜10で数値化する。</li><li>名付け：感情名を言う。怒りの下にある感情も探す。</li><li>選択：続行、休憩、延期、第三者同席のどれかを選ぶ。</li><li>再開条件：何分後、何を話すかを決める。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>議論が荒れてきたら、『今、自分の温度が7くらいです。このまま続けると雑な言い方になります。10分休憩して、論点を1つに絞って再開したいです』と言う。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-13">今の私の感情温度は【数字】くらいです。感情は【怒り/不安/焦り】です。このまま続けると【悪い結果】になりそうなので、【休憩/延期/論点整理】にしたいです。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-13')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">温度計を相手への診断に使うと逆効果。『あなたは感情的』ではなく『私は今7です』と自分に使う。</p>
+    </article>
+
+    <article class="card framework" id="fw-14" data-category="衝突・交渉" data-text="謝罪の5要素：事実・影響・責任・再発防止・償い 謝罪は『ごめん』だけでは足りない。相手は、自分の受けた影響を理解しているか、責任を認めているか、再発しないかを見ている。5要素に分けると修復確率が上がる。 会議で相手の発言を遮ったなら、『昨日の会議であなたの説明途中に割り込みました。その結果、尊重されていないと感じさせたと思います。私の配慮不足です。次から反論はメモして最後にします。今、言い直したい点があれば聞かせてください』。 【具体的事実】をしました。その影響で【相手への影響】があったと思います。これは私の【責任】です。次から【再発防止】をします。回復のために【確認/償い】をさせてください。 関係修復">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">14</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>謝罪の5要素：事実・影響・責任・再発防止・償い</h3>
+            <span class="tag">関係修復</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>謝罪は『ごめん』だけでは足りない。相手は、自分の受けた影響を理解しているか、責任を認めているか、再発しないかを見ている。5要素に分けると修復確率が上がる。</p>
+      <h4>構造</h4>
+      <ul><li>事実認定：何をしたかを具体的に言う。</li><li>影響理解：相手にどんな負担や感情が生じたかを言う。</li><li>責任：自分の判断・配慮不足として認める。</li><li>再発防止：次にどう仕組みを変えるか。</li><li>償い/確認：回復のために何が必要かを聞く。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>会議で相手の発言を遮ったなら、『昨日の会議であなたの説明途中に割り込みました。その結果、尊重されていないと感じさせたと思います。私の配慮不足です。次から反論はメモして最後にします。今、言い直したい点があれば聞かせてください』。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-14">【具体的事実】をしました。その影響で【相手への影響】があったと思います。これは私の【責任】です。次から【再発防止】をします。回復のために【確認/償い】をさせてください。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-14')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">『でも』『ただ』『忙しかった』を入れると謝罪の価値が落ちる。説明が必要なら、謝罪後に別枠で短く扱う。</p>
+    </article>
+
+    <article class="card framework" id="fw-15" data-category="衝突・交渉" data-text="推論のはしご：事実から結論への飛躍を戻す 人は少ない事実から一気に結論を作る。返信が遅い→嫌われた、表情が硬い→怒っている、反論された→否定された、という飛躍を戻すための認知フレーム。 相手の返信が遅くて『嫌われた』と思った場合、事実は返信が遅いだけ。別解釈は忙しい、体調不良、通知漏れ。確認質問は『今忙しい？返信は急ぎではないけど状況だけ知りたい』となる。 事実は【事実】だけです。私はそれを【解釈】と意味づけました。ただし別仮説は【仮説1/2/3】です。確認するなら【質問】です。 認知整理">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">15</div>
+          <div>
+            <div class="category">衝突・交渉</div>
+            <h3>推論のはしご：事実から結論への飛躍を戻す</h3>
+            <span class="tag">認知整理</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>人は少ない事実から一気に結論を作る。返信が遅い→嫌われた、表情が硬い→怒っている、反論された→否定された、という飛躍を戻すための認知フレーム。</p>
+      <h4>構造</h4>
+      <ul><li>観測事実：実際に見た・聞いたこと。</li><li>選択：どの事実だけに注目したか。</li><li>意味づけ：何を意味すると解釈したか。</li><li>前提：自分の過去経験や恐れ。</li><li>結論/行動：その結果どう動いたか。</li><li>検証：別解釈や確認質問を作る。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>相手の返信が遅くて『嫌われた』と思った場合、事実は返信が遅いだけ。別解釈は忙しい、体調不良、通知漏れ。確認質問は『今忙しい？返信は急ぎではないけど状況だけ知りたい』となる。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-15">事実は【事実】だけです。私はそれを【解釈】と意味づけました。ただし別仮説は【仮説1/2/3】です。確認するなら【質問】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-15')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">自分の解釈を事実として扱うと関係が壊れる。特に疲労時、嫉妬時、焦り時は推論が荒くなる。</p>
+    </article>
+
+    <article class="card framework" id="fw-16" data-category="信頼形成" data-text="信頼の方程式：信用×実績×親密さ÷自己都合 信頼は人格の良さだけではなく、履歴で積み上がる。信用、実績、親密さを増やし、自己都合を下げることで関係は強くなる。職場でも恋愛でも友人関係でも使える。 一度失った信頼を戻したいなら、大きな弁明ではなく小さな約束を守る。『明日12時までに返す』と言って守る。『遅れるなら事前に連絡する』と言って守る。信頼は言葉より履歴で回復する。 信頼を増やすために、今週は【小さな約束】を必ず守ります。相手の不安を減らすために【報告/共有】をします。自己都合に見える行動は【控える行動】です。 信頼構築">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">16</div>
+          <div>
+            <div class="category">信頼形成</div>
+            <h3>信頼の方程式：信用×実績×親密さ÷自己都合</h3>
+            <span class="tag">信頼構築</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>信頼は人格の良さだけではなく、履歴で積み上がる。信用、実績、親密さを増やし、自己都合を下げることで関係は強くなる。職場でも恋愛でも友人関係でも使える。</p>
+      <h4>構造</h4>
+      <ul><li>信用：言ったことを守る。嘘や曖昧な約束を減らす。</li><li>実績：結果を出す。小さな成功を継続する。</li><li>親密さ：相手が安心して話せる雰囲気を作る。</li><li>自己都合：自分の利益や正しさだけを押しつけない。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>一度失った信頼を戻したいなら、大きな弁明ではなく小さな約束を守る。『明日12時までに返す』と言って守る。『遅れるなら事前に連絡する』と言って守る。信頼は言葉より履歴で回復する。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-16">信頼を増やすために、今週は【小さな約束】を必ず守ります。相手の不安を減らすために【報告/共有】をします。自己都合に見える行動は【控える行動】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-16')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">一発逆転を狙うと不自然になる。信頼は派手な行動より、予測可能性で増える。</p>
+    </article>
+
+    <article class="card framework" id="fw-17" data-category="信頼形成" data-text="期待値の明文化：役割・期限・品質・連絡 揉めごとの多くは、能力不足ではなく期待値のズレから起きる。役割、期限、品質、連絡ルールを明文化するだけで、多くの対人トラブルは未然に防げる。 『資料作って』では事故る。『あなたがドラフト作成、私がレビュー。木曜12時に初版。a4一枚、結論先頭、根拠3点。詰まったらslackで当日中に相談』と決めると、ほとんどのズレが消える。 役割は【役割分担】、期限は【日時】、品質基準は【合格基準】、連絡ルールは【チャネル/頻度/遅延時対応】で進めましょう。 合意形成">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">17</div>
+          <div>
+            <div class="category">信頼形成</div>
+            <h3>期待値の明文化：役割・期限・品質・連絡</h3>
+            <span class="tag">合意形成</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>揉めごとの多くは、能力不足ではなく期待値のズレから起きる。役割、期限、品質、連絡ルールを明文化するだけで、多くの対人トラブルは未然に防げる。</p>
+      <h4>構造</h4>
+      <ul><li>役割：誰が決める、誰が作る、誰が確認するか。</li><li>期限：最終期限と中間確認。</li><li>品質：完成の基準、粒度、NG条件。</li><li>連絡：チャネル、頻度、遅延時の連絡ルール。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>『資料作って』では事故る。『あなたがドラフト作成、私がレビュー。木曜12時に初版。A4一枚、結論先頭、根拠3点。詰まったらSlackで当日中に相談』と決めると、ほとんどのズレが消える。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-17">役割は【役割分担】、期限は【日時】、品質基準は【合格基準】、連絡ルールは【チャネル/頻度/遅延時対応】で進めましょう。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-17')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">口頭合意だけだと人は都合よく忘れる。重要な合意は短く文字に残す。</p>
+    </article>
+
+    <article class="card framework" id="fw-18" data-category="信頼形成" data-text="境界線ワーク：ok・ng・条件・例外・結果 優しさを継続可能にするためのフレーム。何でも受け入れることは優しさではなく、後で爆発する負債になる。自分ができること、できないこと、条件、例外、結果を言語化する。 同僚から急な依頼が多い場合、okは前日までの相談、ngは当日18時以降の新規依頼、条件は緊急理由と優先順位の明示、例外は顧客障害、結果は翌営業日に回すこと。これを淡々と伝える。 【ok】は対応できます。【ng】は対応できません。ただし【条件】なら可能です。【例外】の場合は優先します。守れない場合は【結果】にします。 境界線">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">18</div>
+          <div>
+            <div class="category">信頼形成</div>
+            <h3>境界線ワーク：OK・NG・条件・例外・結果</h3>
+            <span class="tag">境界線</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>優しさを継続可能にするためのフレーム。何でも受け入れることは優しさではなく、後で爆発する負債になる。自分ができること、できないこと、条件、例外、結果を言語化する。</p>
+      <h4>構造</h4>
+      <ul><li>OK：普通にできること。</li><li>NG：受け入れないこと。</li><li>条件：条件付きで可能なこと。</li><li>例外：特別対応する場面。</li><li>結果：境界線が守られない場合の自分の行動。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>同僚から急な依頼が多い場合、OKは前日までの相談、NGは当日18時以降の新規依頼、条件は緊急理由と優先順位の明示、例外は顧客障害、結果は翌営業日に回すこと。これを淡々と伝える。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-18">【OK】は対応できます。【NG】は対応できません。ただし【条件】なら可能です。【例外】の場合は優先します。守れない場合は【結果】にします。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-18')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">境界線を怒りながら出すと攻撃になる。冷静なうちに先に言語化しておく。</p>
+    </article>
+
+    <article class="card framework" id="fw-19" data-category="信頼形成" data-text="ジョハリの窓：公開・盲点・秘密・未知 関係の深さは、公開領域の広さで決まる。自分も相手も知っている情報が増えると、誤解が減り協力しやすくなる。自己開示とフィードバックを安全に増やすための地図。 チームで質問しにくい雰囲気があるなら、リーダーが『自分もここは前回ミスしたので、チェックリストを作った』と弱みを小出しに開示する。すると他者も質問しやすくなり、公開領域が増える。 私の前提として【自己開示】があります。逆に、私に見えていない盲点があれば【聞きたい観点】で教えてください。お互いに見えている情報を増やしたいです。 自己開示">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">19</div>
+          <div>
+            <div class="category">信頼形成</div>
+            <h3>ジョハリの窓：公開・盲点・秘密・未知</h3>
+            <span class="tag">自己開示</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>関係の深さは、公開領域の広さで決まる。自分も相手も知っている情報が増えると、誤解が減り協力しやすくなる。自己開示とフィードバックを安全に増やすための地図。</p>
+      <h4>構造</h4>
+      <ul><li>公開：自分も相手も知っている。ここを広げる。</li><li>盲点：相手は知っているが自分は知らない。フィードバックで減らす。</li><li>秘密：自分は知っているが相手は知らない。必要な範囲で開示する。</li><li>未知：両者が知らない。共同作業や新経験で発見する。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>チームで質問しにくい雰囲気があるなら、リーダーが『自分もここは前回ミスしたので、チェックリストを作った』と弱みを小出しに開示する。すると他者も質問しやすくなり、公開領域が増える。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-19">私の前提として【自己開示】があります。逆に、私に見えていない盲点があれば【聞きたい観点】で教えてください。お互いに見えている情報を増やしたいです。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-19')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">自己開示しすぎると相手に負荷をかける。目的に関係する範囲で、少しずつ開示する。</p>
+    </article>
+
+    <article class="card framework" id="fw-20" data-category="信頼形成" data-text="関係口座：入金・出金・残高管理 人間関係を信頼残高として見る。感謝、約束遵守、助ける、尊重は入金。約束破り、軽視、支配、雑な連絡は出金。重要な依頼や批判は残高があると通りやすい。 上司に厳しい提案を通したいなら、その前に普段から報連相を早くする、小さな成果を出す、相手の負担を減らす。関係口座に残高があれば、同じ正論でも受け取られ方が違う。 この相手との最近の入金は【入金行動】、出金は【出金行動】です。重要な話をする前に、まず【追加の入金行動】をします。 関係維持">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">20</div>
+          <div>
+            <div class="category">信頼形成</div>
+            <h3>関係口座：入金・出金・残高管理</h3>
+            <span class="tag">関係維持</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>人間関係を信頼残高として見る。感謝、約束遵守、助ける、尊重は入金。約束破り、軽視、支配、雑な連絡は出金。重要な依頼や批判は残高があると通りやすい。</p>
+      <h4>構造</h4>
+      <ul><li>入金：感謝、承認、助ける、丁寧な返信、相手の重要事項を覚える。</li><li>出金：遅刻、約束破り、否定、無視、相手の面子を潰す。</li><li>残高確認：最近の入出金を振り返る。</li><li>投資：関係を良くする小さな行動を先に打つ。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>上司に厳しい提案を通したいなら、その前に普段から報連相を早くする、小さな成果を出す、相手の負担を減らす。関係口座に残高があれば、同じ正論でも受け取られ方が違う。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-20">この相手との最近の入金は【入金行動】、出金は【出金行動】です。重要な話をする前に、まず【追加の入金行動】をします。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-20')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">入金を操作的にやると見抜かれる。あくまで相手を尊重する習慣として積み上げる。</p>
+    </article>
+
+    <article class="card framework" id="fw-21" data-category="組織・チーム" data-text="daci：推進・承認・協力・共有 チームの摩擦は『誰が決めるのか』が曖昧なときに増える。daciは意思決定の役割を分け、会議の迷走を防ぐ。大企業やプロジェクト運営で特に有効。 新機能追加なら、driverは設計担当、approverはpmまたは上位責任者、contributorはqa・法規・製造、informedは営業やサービス。これを先に決めると、『全員が口を出すが誰も決めない』状態を避けられる。 この件のdriverは【推進者】、approverは【承認者】、contributorは【協力者】、informedは【共有先】で進めます。決定権は【承認者】にあります。 意思決定">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">21</div>
+          <div>
+            <div class="category">組織・チーム</div>
+            <h3>DACI：推進・承認・協力・共有</h3>
+            <span class="tag">意思決定</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>チームの摩擦は『誰が決めるのか』が曖昧なときに増える。DACIは意思決定の役割を分け、会議の迷走を防ぐ。大企業やプロジェクト運営で特に有効。</p>
+      <h4>構造</h4>
+      <ul><li>Driver：推進者。論点整理、案作成、進行を担う。</li><li>Approver：承認者。最終決定権を持つ。</li><li>Contributor：協力者。専門意見や作業を提供する。</li><li>Informed：共有先。決定を知っておく人。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>新機能追加なら、Driverは設計担当、ApproverはPMまたは上位責任者、ContributorはQA・法規・製造、Informedは営業やサービス。これを先に決めると、『全員が口を出すが誰も決めない』状態を避けられる。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-21">この件のDriverは【推進者】、Approverは【承認者】、Contributorは【協力者】、Informedは【共有先】で進めます。決定権は【承認者】にあります。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-21')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">ContributorがApproverのように振る舞うと混乱する。役割と発言権を分ける。</p>
+    </article>
+
+    <article class="card framework" id="fw-22" data-category="組織・チーム" data-text="raci：実行・責任・相談・報告 仕事上のコミュニケーション事故を減らす責任分担フレーム。誰が作業し、誰が責任を持ち、誰に相談し、誰へ報告するかを明確にする。 設計変更なら、responsibleは設計者、accountableは設計リーダー、consultedは品質・製造・サービス、informedは営業やプロジェクト関係者。これを表にするだけで、後出しクレームが減る。 このタスクのrは【実行者】、aは【責任者】、cは【相談先】、iは【報告先】です。cには【時点】で相談し、iには【時点】で共有します。 役割分担">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">22</div>
+          <div>
+            <div class="category">組織・チーム</div>
+            <h3>RACI：実行・責任・相談・報告</h3>
+            <span class="tag">役割分担</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>仕事上のコミュニケーション事故を減らす責任分担フレーム。誰が作業し、誰が責任を持ち、誰に相談し、誰へ報告するかを明確にする。</p>
+      <h4>構造</h4>
+      <ul><li>Responsible：実行担当。実際に手を動かす人。</li><li>Accountable：説明責任者。最終責任を持つ人。</li><li>Consulted：相談先。事前に意見を聞く人。</li><li>Informed：報告先。結果を共有する人。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>設計変更なら、Responsibleは設計者、Accountableは設計リーダー、Consultedは品質・製造・サービス、Informedは営業やプロジェクト関係者。これを表にするだけで、後出しクレームが減る。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-22">このタスクのRは【実行者】、Aは【責任者】、Cは【相談先】、Iは【報告先】です。Cには【時点】で相談し、Iには【時点】で共有します。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-22')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">Aが複数いると責任がぼやける。Accountableは原則1人にする。</p>
+    </article>
+
+    <article class="card framework" id="fw-23" data-category="組織・チーム" data-text="会議os：目的・論点・制約・決定・宿題 会議を雑談と報告の場から、意思決定と前進の場に変える型。目的、論点、制約、決定、宿題を明確にすれば、会議後の認識ズレが大幅に減る。 『仕様を相談する会議』ではなく、『a案/b案のどちらを採用するか決める。制約は納期2週間、試験工数40時間。決定事項はb案。宿題は田中がリスク表を水曜までに更新』のように残す。 目的は【目的】です。論点は【問い】です。制約は【制約】です。今日の決定は【決定】です。宿題は【担当者】【内容】【期限】です。 会議運営">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">23</div>
+          <div>
+            <div class="category">組織・チーム</div>
+            <h3>会議OS：目的・論点・制約・決定・宿題</h3>
+            <span class="tag">会議運営</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>会議を雑談と報告の場から、意思決定と前進の場に変える型。目的、論点、制約、決定、宿題を明確にすれば、会議後の認識ズレが大幅に減る。</p>
+      <h4>構造</h4>
+      <ul><li>目的：この会議で何を達成するか。</li><li>論点：決めるべき問い。</li><li>制約：時間、予算、品質、規制、リソース。</li><li>決定：何を決めたか。未決なら理由。</li><li>宿題：誰が何をいつまでにするか。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>『仕様を相談する会議』ではなく、『A案/B案のどちらを採用するか決める。制約は納期2週間、試験工数40時間。決定事項はB案。宿題は田中がリスク表を水曜までに更新』のように残す。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-23">目的は【目的】です。論点は【問い】です。制約は【制約】です。今日の決定は【決定】です。宿題は【担当者】【内容】【期限】です。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-23')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">会議の終わりに決定と宿題を読み上げないと、各自が別の理解で帰る。最後の3分が重要。</p>
+    </article>
+
+    <article class="card framework" id="fw-24" data-category="統合ワークフロー" data-text="対人問題解決ループ：観察・整理・仮説・介入・検証 24個のフレームを現場で回すための統合ワークフロー。問題が起きたら、感情で反応せず、観察し、整理し、仮説を立て、最小介入を行い、結果を検証する。人間関係を実験的に改善するための上位フレーム。 同僚が冷たいと感じたとき、即座に『嫌われた』と判断しない。観察は返答が短い。整理すると自分の期待値と相手の忙しさが不明。仮説は忙しい、怒っている、疲れている。介入は『今忙しい？昨日の件で気になる点があれば聞きたい』。検証して必要なら謝罪や期待値調整に進む。 観察事実は【事実】です。ズレている可能性があるのは【目的/関係/期待値/利害/感情】です。仮説は【仮説1/2/3】です。最初の介入は【小さな一手】にします。反応を見て【次の一手】を選びます。 総合運用">
+      <div class="framework-head">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="num">24</div>
+          <div>
+            <div class="category">統合ワークフロー</div>
+            <h3>対人問題解決ループ：観察・整理・仮説・介入・検証</h3>
+            <span class="tag">総合運用</span>
+          </div>
+        </div>
+        <a class="mini" href="#frameworks">一覧へ</a>
+      </div>
+      <h4>概要</h4>
+      <p>24個のフレームを現場で回すための統合ワークフロー。問題が起きたら、感情で反応せず、観察し、整理し、仮説を立て、最小介入を行い、結果を検証する。人間関係を実験的に改善するための上位フレーム。</p>
+      <h4>構造</h4>
+      <ul><li>観察：何が起きたか。事実、発言、行動、タイミングを書く。</li><li>整理：目的、関係、内容、感情、利害、期待値のどこがズレたか分類する。</li><li>仮説：相手の立場、利害、恐れ、制約を複数考える。</li><li>介入：質問、要約、提案、境界線、謝罪など最小の一手を選ぶ。</li><li>検証：反応を見て次の一手を修正する。</li></ul>
+      <h4>具体例・使い方</h4>
+      <p>同僚が冷たいと感じたとき、即座に『嫌われた』と判断しない。観察は返答が短い。整理すると自分の期待値と相手の忙しさが不明。仮説は忙しい、怒っている、疲れている。介入は『今忙しい？昨日の件で気になる点があれば聞きたい』。検証して必要なら謝罪や期待値調整に進む。</p>
+      <h4>そのまま使えるテンプレ</h4>
+      <div class="template"><code id="tpl-24">観察事実は【事実】です。ズレている可能性があるのは【目的/関係/期待値/利害/感情】です。仮説は【仮説1/2/3】です。最初の介入は【小さな一手】にします。反応を見て【次の一手】を選びます。</code><div style="margin-top:10px"><button class="copy" onclick="copyText('tpl-24')">テンプレをコピー</button></div></div>
+      <h4>注意点</h4>
+      <p class="muted">一発で解決しようとしない。対人問題は制御対象ではなく、相互作用システムである。小さく試して更新する。</p>
+    </article>
+
+  </section>
+
+  <section class="wrap card" style="margin-top:18px">
+    <h2 style="margin-top:0">統合テンプレート：難しい会話を始める文章</h2>
+    <p>実際の会話では、最初の30秒が重要です。以下を状況に合わせて置換してください。</p>
+    <div class="template"><code id="master-template">この話の目的は【目的】です。責めたいわけではなく、【守りたい価値：品質/信頼/安心/納期/公平性】を守るために話したいです。事実として【観測事実】があり、私は【解釈】と受け取り、【感情】を感じました。背景や認識が違っていたら知りたいです。そのうえで、今後は【具体的要求】にできると助かります。選択肢としては、A【相手希望最大】、B【現実的折衷】、C【最低限代替】があります。私は【推奨案】がよいと考えています。どう見えますか？</code><div style="margin-top:10px"><button class="copy" onclick="copyText('master-template')">統合テンプレをコピー</button></div></div>
+  </section>
+
+  <section class="wrap card" style="margin-top:18px">
+    <h2 style="margin-top:0">運用上の結論</h2>
+    <p>人間関係の本質は、話術ではなく、<strong>目的設計・期待値調整・感情制御・信頼履歴</strong>です。つまり、うまく話すよりも、会話の前に何を達成するかを決め、相手の状態を読み、事実と解釈を分け、必要なら謝罪や境界線を構造化し、その後に小さな約束を守り続けることが重要です。</p>
+    <p>最初に覚えるなら、<strong>PRC、FIER、OARS、立場と利害、DESC、感情温度計、期待値の明文化</strong>の7つで十分です。この7つだけでも、職場・恋愛・友人・家族・コミュニティ運営のかなりの問題に対応できます。</p>
+    <p class="print-note">印刷時メモ：このHTMLはブラウザの印刷機能からPDFとして保存できます。</p>
+  </section>
+
+  <div class="wrap footer">© Personal communication framework workbook. Single-file HTML for practical use.</div>
+</main>
+<script>
+  const search = document.getElementById('search');
+  const category = document.getElementById('category');
+  const cards = [...document.querySelectorAll('.framework')];
+  function filterCards(){
+    const q = search.value.trim().toLowerCase();
+    const c = category.value;
+    cards.forEach(card => {
+      const okQ = !q || card.dataset.text.includes(q);
+      const okC = c === 'all' || card.dataset.category === c;
+      card.style.display = (okQ && okC) ? '' : 'none';
+    });
+  }
+  search.addEventListener('input', filterCards);
+  category.addEventListener('change', filterCards);
+  function copyText(id){
+    const el = document.getElementById(id);
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(()=>{
+      const old = event.target.innerText;
+      event.target.innerText = 'コピー済み';
+      setTimeout(()=>event.target.innerText = old, 900);
+    }).catch(()=>{
+      alert('コピーできませんでした。テキストを選択してコピーしてください。');
+    });
+  }
+  document.querySelectorAll('.persist').forEach(box=>{
+    const key = 'comm-fw-' + box.dataset.key;
+    box.checked = localStorage.getItem(key) === '1';
+    box.addEventListener('change', ()=>localStorage.setItem(key, box.checked ? '1':'0'));
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>天才っぽく見せるアピール用フレームワーク24</title>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --paper: #fffdf8;
+  --ink: #171717;
+  --muted: #67615a;
+  --line: #ded6ca;
+  --accent: #111827;
+  --soft: #ece6dc;
+  --mark: #fff1b8;
+  --shadow: 0 18px 50px rgba(34, 27, 12, .10);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  background: radial-gradient(circle at 10% 0%, #fff8dd 0, transparent 28%), linear-gradient(180deg, #f8f5ef, var(--bg));
+  color: var(--ink);
+  line-height: 1.75;
+}
+.hero {
+  padding: 56px 20px 32px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.kicker {
+  letter-spacing: .12em;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 13px;
+}
+h1 {
+  font-size: clamp(32px, 6vw, 62px);
+  line-height: 1.08;
+  margin: 10px 0 18px;
+  letter-spacing: -.04em;
+}
+.hero p.lead {
+  max-width: 820px;
+  font-size: 18px;
+  color: #34312d;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr .9fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+.panel {
+  background: rgba(255,255,255,.72);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+.panel h2 { margin: 0 0 10px; font-size: 22px; }
+.panel ul { margin: 0; padding-left: 1.2em; }
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(246, 243, 238, .88);
+  backdrop-filter: blur(12px);
+}
+.toolbar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: 1fr 220px auto auto;
+  gap: 10px;
+}
+input, select, button {
+  font: inherit;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 10px 12px;
+}
+button { cursor: pointer; font-weight: 700; }
+button:hover { transform: translateY(-1px); }
+.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+main { max-width: 1120px; margin: 0 auto; padding: 28px 20px 80px; }
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+  margin: 28px 0 16px;
+}
+.section-title h2 { font-size: 30px; margin: 0; letter-spacing: -.02em; }
+.count { color: var(--muted); font-weight: 700; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(34,27,12,.06);
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+}
+.num { color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .10em; margin: 0 0 4px; }
+.card h3 { font-size: 23px; margin: 0 0 8px; line-height: 1.25; }
+.catch { margin: 0 0 10px; color: #27231f; font-weight: 700; }
+.tag, .chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: #4b463f;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 4px 6px 0;
+}
+.copy { font-size: 13px; white-space: nowrap; background: #fff; }
+details {
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+summary { font-weight: 800; cursor: pointer; }
+ol { padding-left: 1.25em; }
+.template {
+  background: #faf3d2;
+  border: 1px solid #ead98c;
+  border-radius: 18px;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.template p { margin: 6px 0 0; }
+.tip { color: #3b3732; border-left: 4px solid var(--accent); padding-left: 12px; }
+.combos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.combo {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+}
+.combo h3 { margin: 0 0 8px; font-size: 17px; }
+.script-box {
+  background: #171717;
+  color: #fff;
+  border-radius: 24px;
+  padding: 22px;
+  overflow-x: auto;
+}
+.script-box code { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.footer-note { color: var(--muted); font-size: 14px; margin-top: 40px; }
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #111827;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: .22s ease;
+  z-index: 50;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  .hero-grid, .cards, .combos { grid-template-columns: 1fr; }
+  .toolbar-inner { grid-template-columns: 1fr; }
+  .card-head { flex-direction: column; }
+}
+@media print {
+  .toolbar, .copy, .primary, .toast { display: none !important; }
+  body { background: white; }
+  .hero { padding-top: 20px; }
+  .card, .panel, .combo { box-shadow: none; break-inside: avoid; }
+  details { display: block; }
+}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="kicker">PRACTICAL CHEAT SHEET / NO SEARCH / THOUGHT TOOLKIT</div>
+    <h1>天才っぽく見せる<br>アピール用フレームワーク24</h1>
+    <p class="lead">嘘や経歴詐称ではなく、同じ内容をより知的に見せるための<strong>発言・整理・資料化の型</strong>。会議前に開き、必要なテンプレをコピーして使う想定で作成。</p>
+    <div class="hero-grid">
+      <section class="panel">
+        <h2>最短で効く使い方</h2>
+        <ul>
+          <li><strong>冒頭:</strong> スコープ宣言で場を握る。</li>
+          <li><strong>発言:</strong> 結論・根拠・前提・次アクションで短く言う。</li>
+          <li><strong>混乱時:</strong> 論点現在地リセットで会議を戻す。</li>
+          <li><strong>未確定時:</strong> VOIで「何を測れば決まるか」を示す。</li>
+          <li><strong>会議後:</strong> 一枚サマリーで知的印象を固定化する。</li>
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>基本思想</h2>
+        <p>“天才っぽさ”は、派手な専門用語よりも、<strong>範囲設定・構造化・先読み・数字・次アクション</strong>の組み合わせで出る。表層的に見えて、実務でも使える型だけを残した。</p>
+      </section>
+    </div>
+  </header>
+
+  <nav class="toolbar">
+    <div class="toolbar-inner">
+      <input id="search" placeholder="検索：例）上司報告、レビュー、反論、数字、会議" />
+      <select id="tagFilter">
+        <option value="all">すべての場面</option>
+        <option value="会議">会議</option>
+        <option value="上司報告">上司報告</option>
+        <option value="設計レビュー">設計レビュー</option>
+        <option value="技術議論">技術議論</option>
+        <option value="プレゼン">プレゼン</option>
+        <option value="雑談">雑談</option>
+        <option value="意思決定">意思決定</option>
+        <option value="交渉">交渉</option>
+        <option value="プロジェクト">プロジェクト</option>
+      </select>
+      <button id="expandAll">全て開く/閉じる</button>
+      <button class="primary" onclick="window.print()">印刷/PDF保存</button>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="section-title">
+        <h2>実戦コンボ</h2>
+        <span class="count">場面別の組み合わせ</span>
+      </div>
+      <div class="combos">
+      <div class="combo">
+        <h3>上司報告30秒</h3>
+        <div><span class="chip">#2</span> <span class="chip">#6</span> <span class="chip">#7</span> <span class="chip">#18</span></div>
+        <p>結論を先に出し、事実と仮説を分け、想定反論を潰し、未確定事項はVOIで処理する。</p>
+      </div>
+    
+      <div class="combo">
+        <h3>設計レビュー</h3>
+        <div><span class="chip">#1</span> <span class="chip">#3</span> <span class="chip">#9</span> <span class="chip">#11</span> <span class="chip">#15</span> <span class="chip">#16</span></div>
+        <p>範囲を決め、曖昧語を定義し、境界条件と因果を示し、副作用と失敗要因を先に扱う。</p>
+      </div>
+    
+      <div class="combo">
+        <h3>会議で存在感を出す</h3>
+        <div><span class="chip">#1</span> <span class="chip">#4</span> <span class="chip">#5</span> <span class="chip">#19</span> <span class="chip">#22</span> <span class="chip">#23</span></div>
+        <p>スコープを取り、3分割と2軸で整理し、脱線時に現在地を戻し、質問で場を動かす。</p>
+      </div>
+    
+      <div class="combo">
+        <h3>企画提案</h3>
+        <div><span class="chip">#5</span> <span class="chip">#12</span> <span class="chip">#13</span> <span class="chip">#15</span> <span class="chip">#20</span> <span class="chip">#24</span></div>
+        <p>二軸で見せ、概算数字を出し、目的関数で選び、副作用を添え、1枚で固定化する。</p>
+      </div>
+    
+      <div class="combo">
+        <h3>雑談で賢く見せる</h3>
+        <div><span class="chip">#4</span> <span class="chip">#10</span> <span class="chip">#12</span> <span class="chip">#21</span> <span class="chip">#22</span> <span class="chip">#23</span></div>
+        <p>3点整理、ネーミング、概算、二重翻訳、良い質問、2秒沈黙で印象を作る。</p>
+      </div>
+    </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>60秒スクリプト</h2>
+        <span class="count">そのまま読める</span>
+      </div>
+      <div class="script-box"><code>今日はまずスコープを合わせたいです。
+今日決めるのは【決めること】で、【決めないこと】は次回に回します。
+結論から言うと、現時点では【結論】が妥当です。
+理由は3つあり、【理由1】、【理由2】、【理由3】です。
+ただし前提は【成立条件】です。
+想定される懸念は【懸念1】と【懸念2】ですが、【対応策】で処理できます。
+未確定なのは【不確実性】なので、【確認方法】で潰します。
+結果が【条件A】なら【判断A】、【条件B】なら【判断B】にします。</code></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>24フレームワーク</h2>
+        <span id="visibleCount" class="count">24件表示</span>
+      </div>
+      <div id="cards" class="cards">
+    <article class="card" data-tags="会議 上司報告 意思決定" data-search="スコープ宣言フレーム 最初に“何を決める場か”を支配する。 議論が散らかる前に、今日扱う範囲と扱わない範囲を宣言する型です。これだけで、場の主導権を握っているように見えます。実際にも、会議の生産性は上がります。天才っぽく見える理由は、普通の人が答えから入るのに対し、賢く見える人は“場のルール”から設計するからです。 設計レビューで『今日は方式選定だけ決めます。コスト最適化と細部寸法は次回に回します。判断基準は、量産リスク、保守性、検証期間の3つです。この前提でa/b/cを比較します』と言う。会議 上司報告 意思決定">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 01</p>
+          <h3>スコープ宣言フレーム</h3>
+          <p class="catch">最初に“何を決める場か”を支配する。</p>
+        </div>
+        <button class="copy" data-copy="今日は【決めること】だけを決めます。【決めないこと】は次回に回します。判断基準は【基準1】【基準2】【基準3】です。この前提で進めます。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">上司報告</span> <span class="tag">意思決定</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>議論が散らかる前に、今日扱う範囲と扱わない範囲を宣言する型です。これだけで、場の主導権を握っているように見えます。実際にも、会議の生産性は上がります。天才っぽく見える理由は、普通の人が答えから入るのに対し、賢く見える人は“場のルール”から設計するからです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>今日決めることを1文で言う</li><li>今日は決めないことを明確にする</li><li>判断基準を2〜3個に絞る</li><li>最後に『この前提で進めます』と宣言する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>設計レビューで『今日は方式選定だけ決めます。コスト最適化と細部寸法は次回に回します。判断基準は、量産リスク、保守性、検証期間の3つです。この前提でA/B/Cを比較します』と言う。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>今日は【決めること】だけを決めます。【決めないこと】は次回に回します。判断基準は【基準1】【基準2】【基準3】です。この前提で進めます。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 会議冒頭30秒で使う。長く説明せず、紙やホワイトボードに3行で書くと強い。</p>
+    </article>
+    
+    <article class="card" data-tags="上司報告 会議 意思決定" data-search="結論・根拠・前提・次アクション 一発で“仕事ができる頭の良い人”に見せる基本型。 報告や発言を、結論、根拠、前提、次アクションの順で出す型です。内容が普通でも、この順番にするだけで知的に見えます。上司や関係者が欲しいのは長い説明ではなく、判断できる形の情報だからです。 『結論はa案です。理由は、部品点数が少ない、検証期間が短い、既存治具を流用できるからです。前提は加工精度±0.05mmが守れることです。次は治具なし組立の再現性試験を回します』。上司報告 会議 意思決定">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 02</p>
+          <h3>結論・根拠・前提・次アクション</h3>
+          <p class="catch">一発で“仕事ができる頭の良い人”に見せる基本型。</p>
+        </div>
+        <button class="copy" data-copy="結論は【A案/方針】です。理由は【根拠1】【根拠2】【根拠3】です。前提は【成立条件】です。次に【具体アクション】を行います。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">上司報告</span> <span class="tag">会議</span> <span class="tag">意思決定</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>報告や発言を、結論、根拠、前提、次アクションの順で出す型です。内容が普通でも、この順番にするだけで知的に見えます。上司や関係者が欲しいのは長い説明ではなく、判断できる形の情報だからです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>結論を1文で言う</li><li>根拠を3点以内で言う</li><li>成立条件や前提を添える</li><li>次に何をするかを宣言する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『結論はA案です。理由は、部品点数が少ない、検証期間が短い、既存治具を流用できるからです。前提は加工精度±0.05mmが守れることです。次は治具なし組立の再現性試験を回します』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>結論は【A案/方針】です。理由は【根拠1】【根拠2】【根拠3】です。前提は【成立条件】です。次に【具体アクション】を行います。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “私はこう思います”ではなく“結論は”から入る。自信が強く見える。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 設計レビュー 交渉" data-search="定義マウント・フレーム 曖昧語を定義するだけで格上に見える。 『良い』『早い』『安い』『高品質』『最適』のような曖昧語を、指標や条件に変換する型です。少し表層的ですが非常に効きます。相手は感覚で話していることが多く、定義を求めるだけで議論の支配権がこちらに移ります。 『早くしたい』と言われたら、『ここで言う早いは、タクトタイムですか、開発リードタイムですか、それともユーザー体感時間ですか？最適化対象が違うので、先に定義したいです』と言う。会議 設計レビュー 交渉">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 03</p>
+          <h3>定義マウント・フレーム</h3>
+          <p class="catch">曖昧語を定義するだけで格上に見える。</p>
+        </div>
+        <button class="copy" data-copy="【曖昧語】という言葉を先に定義したいです。これは【候補1】ですか、【候補2】ですか、【候補3】ですか？最適化対象が変わるので、ここを合わせてから進めます。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">設計レビュー</span> <span class="tag">交渉</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>『良い』『早い』『安い』『高品質』『最適』のような曖昧語を、指標や条件に変換する型です。少し表層的ですが非常に効きます。相手は感覚で話していることが多く、定義を求めるだけで議論の支配権がこちらに移ります。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>曖昧語を拾う</li><li>複数の意味候補を出す</li><li>指標・単位・期限に落とす</li><li>合意してから本論へ戻す</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『早くしたい』と言われたら、『ここで言う早いは、タクトタイムですか、開発リードタイムですか、それともユーザー体感時間ですか？最適化対象が違うので、先に定義したいです』と言う。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>【曖昧語】という言葉を先に定義したいです。これは【候補1】ですか、【候補2】ですか、【候補3】ですか？最適化対象が変わるので、ここを合わせてから進めます。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> やりすぎると面倒な人になる。重要語だけ1〜2個に絞る。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 雑談 プレゼン" data-search="三分割トリニティ 何でも3つに分けると、説明が急に賢く見える。 複雑な話題を3つの論点に分解する型です。人は3点構成を理解しやすく、発言者を整理能力の高い人として認識します。完璧なmeceでなくても構いません。重要なのは、雑然とした話を“3つの箱”に入れることです。 『この問題は3つに分けられます。1つ目は機構リスク、2つ目は制御リスク、3つ目は運用リスクです。今すぐ潰すべきなのは機構リスクです。なぜなら後工程で取り返しにくいからです』。会議 雑談 プレゼン">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 04</p>
+          <h3>三分割トリニティ</h3>
+          <p class="catch">何でも3つに分けると、説明が急に賢く見える。</p>
+        </div>
+        <button class="copy" data-copy="論点は3つです。第一に【論点1】、第二に【論点2】、第三に【論点3】です。優先順位としては【最重要論点】から扱うべきです。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">雑談</span> <span class="tag">プレゼン</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>複雑な話題を3つの論点に分解する型です。人は3点構成を理解しやすく、発言者を整理能力の高い人として認識します。完璧なMECEでなくても構いません。重要なのは、雑然とした話を“3つの箱”に入れることです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>論点は3つです、と宣言する</li><li>重要度順に並べる</li><li>各論点を1文で説明する</li><li>最後に優先順位を付ける</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『この問題は3つに分けられます。1つ目は機構リスク、2つ目は制御リスク、3つ目は運用リスクです。今すぐ潰すべきなのは機構リスクです。なぜなら後工程で取り返しにくいからです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>論点は3つです。第一に【論点1】、第二に【論点2】、第三に【論点3】です。優先順位としては【最重要論点】から扱うべきです。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 2つだと浅く、4つ以上だと重い。迷ったら3つ。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 プレゼン 意思決定" data-search="二軸マトリクス演出 ホワイトボードに2軸を描くだけで“戦略家”に見える。 複数案を、リスク×効果、コスト×インパクト、緊急度×重要度などの2軸で整理する型です。図示効果が高く、見た目の知性を作りやすいフレームです。ポイントは、軸選びを先に宣言することです。 『今回はコスト×量産リスクで見ます。a案は低コスト高リスク、b案は中コスト低リスク、c案は高コスト低リスク。量産前なので、低リスク側に寄せるべきです』。会議 プレゼン 意思決定">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 05</p>
+          <h3>二軸マトリクス演出</h3>
+          <p class="catch">ホワイトボードに2軸を描くだけで“戦略家”に見える。</p>
+        </div>
+        <button class="copy" data-copy="この議論は【軸1】×【軸2】で整理すると見えます。【案A】は【象限】、【案B】は【象限】です。今回狙うべきは【狙う象限】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">プレゼン</span> <span class="tag">意思決定</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>複数案を、リスク×効果、コスト×インパクト、緊急度×重要度などの2軸で整理する型です。図示効果が高く、見た目の知性を作りやすいフレームです。ポイントは、軸選びを先に宣言することです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>比較軸を2つ選ぶ</li><li>4象限を作る</li><li>各案を置く</li><li>狙う象限と避ける象限を宣言する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『今回はコスト×量産リスクで見ます。A案は低コスト高リスク、B案は中コスト低リスク、C案は高コスト低リスク。量産前なので、低リスク側に寄せるべきです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>この議論は【軸1】×【軸2】で整理すると見えます。【案A】は【象限】、【案B】は【象限】です。今回狙うべきは【狙う象限】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 軸の名前を“それっぽく”するだけで印象が変わる。例：短期効率×長期拡張性。</p>
+    </article>
+    
+    <article class="card" data-tags="上司報告 設計レビュー 会議" data-search="fact・story・move 事実・解釈・行動を分けるだけで論理的に見える。 観測事実、そこからの解釈、次の行動を分けて話す型です。議論が荒れる原因の多くは、事実と解釈が混ざることです。これを分けるだけで、冷静で頭の良い人に見えます。 『factとして、停止ログは夜間に集中しています。storyとしては、保守バッチと処理負荷が競合している可能性があります。moveとして、保守時間をずらして再現試験します。確度はまだ中程度です』。上司報告 設計レビュー 会議">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 06</p>
+          <h3>FACT・STORY・MOVE</h3>
+          <p class="catch">事実・解釈・行動を分けるだけで論理的に見える。</p>
+        </div>
+        <button class="copy" data-copy="FACTは【観測事実】です。STORYとしては【解釈/仮説】が考えられます。MOVEとして【次アクション】を行います。現時点の確度は【高/中/低】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">上司報告</span> <span class="tag">設計レビュー</span> <span class="tag">会議</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>観測事実、そこからの解釈、次の行動を分けて話す型です。議論が荒れる原因の多くは、事実と解釈が混ざることです。これを分けるだけで、冷静で頭の良い人に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>FACT：確認できた事実のみ言う</li><li>STORY：そこからの仮説を言う</li><li>MOVE：次に取る行動を言う</li><li>確度を一言添える</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『FACTとして、停止ログは夜間に集中しています。STORYとしては、保守バッチと処理負荷が競合している可能性があります。MOVEとして、保守時間をずらして再現試験します。確度はまだ中程度です』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>FACTは【観測事実】です。STORYとしては【解釈/仮説】が考えられます。MOVEとして【次アクション】を行います。現時点の確度は【高/中/低】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “確度は中”を添えると、逆に知的に見える。断言より強い。</p>
+    </article>
+    
+    <article class="card" data-tags="プレゼン 上司報告 交渉" data-search="先回り反論潰し 相手が聞く前に答えると、準備された知性に見える。 提案後に出そうな反論を、先に自分で提示して潰す型です。人は“この人は考え尽くしている”と感じます。表層的な演出としても実務上の防御としても強いです。 『a案を推します。懸念はコスト、納期、保守性の3つだと思います。コストは+3%ですが不良率低下で相殺可能。納期は既存治具流用で影響小。保守性は交換部品を共通化します。残リスクは温度依存です』。プレゼン 上司報告 交渉">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 07</p>
+          <h3>先回り反論潰し</h3>
+          <p class="catch">相手が聞く前に答えると、準備された知性に見える。</p>
+        </div>
+        <button class="copy" data-copy="結論は【提案】です。想定される懸念は【懸念1】【懸念2】【懸念3】です。それぞれ【回答1】【回答2】【回答3】で対応します。残るリスクは【残リスク】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">プレゼン</span> <span class="tag">上司報告</span> <span class="tag">交渉</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>提案後に出そうな反論を、先に自分で提示して潰す型です。人は“この人は考え尽くしている”と感じます。表層的な演出としても実務上の防御としても強いです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>結論を言う</li><li>想定反論を3つ出す</li><li>それぞれに短く答える</li><li>残リスクを認める</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『A案を推します。懸念はコスト、納期、保守性の3つだと思います。コストは+3%ですが不良率低下で相殺可能。納期は既存治具流用で影響小。保守性は交換部品を共通化します。残リスクは温度依存です』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>結論は【提案】です。想定される懸念は【懸念1】【懸念2】【懸念3】です。それぞれ【回答1】【回答2】【回答3】で対応します。残るリスクは【残リスク】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 全部潰し切ろうとしない。最後に1個だけ残リスクを認めると信頼される。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 交渉 レビュー" data-search="スティールマン返し 相手の意見を最強化してから刺す。 相手案の良いところを、相手以上に上手く言語化してから弱点を指摘する型です。これにより、反対しても敵対的に見えません。むしろ、視野が広く知的な人に見えます。 『b案の強みは、供給が安定していることと、現場教育が簡単なことです。成立条件は温度依存が小さいことです。弱点はそこだけなので、温度試験で問題なければb案採用で良いと思います』。会議 交渉 レビュー">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 08</p>
+          <h3>スティールマン返し</h3>
+          <p class="catch">相手の意見を最強化してから刺す。</p>
+        </div>
+        <button class="copy" data-copy="【相手案】の強みは【強み1】と【強み2】です。成立条件は【条件】です。弱点は【弱点】なので、【検証】で問題なければ採用で良いと思います。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">交渉</span> <span class="tag">レビュー</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>相手案の良いところを、相手以上に上手く言語化してから弱点を指摘する型です。これにより、反対しても敵対的に見えません。むしろ、視野が広く知的な人に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>相手案の強みを2点言う</li><li>その案が成立する条件を言う</li><li>弱点を1点だけ示す</li><li>検証条件を提案する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『B案の強みは、供給が安定していることと、現場教育が簡単なことです。成立条件は温度依存が小さいことです。弱点はそこだけなので、温度試験で問題なければB案採用で良いと思います』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>【相手案】の強みは【強み1】と【強み2】です。成立条件は【条件】です。弱点は【弱点】なので、【検証】で問題なければ採用で良いと思います。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 反論前に相手案を褒める。ただし褒めすぎず、構造的に評価する。</p>
+    </article>
+    
+    <article class="card" data-tags="設計レビュー 上司報告 技術議論" data-search="前提・境界条件添え 断言に条件を添えると“分かっている人”に見える。 主張に対して、成立する前提と崩れる境界条件を添える型です。技術者・企画者としての信頼感が上がります。表層的に見れば“慎重で賢い人”の演出ですが、実際にも重要な思考習慣です。 『この制御で安定すると思います。前提はセンサ遅延が50ms以下であることです。100msを超えるならゲイン設計を変える必要があります。その場合は応答性より安定性を優先します』。設計レビュー 上司報告 技術議論">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 09</p>
+          <h3>前提・境界条件添え</h3>
+          <p class="catch">断言に条件を添えると“分かっている人”に見える。</p>
+        </div>
+        <button class="copy" data-copy="【主張】です。前提は【成立条件】です。ただし【境界条件】を超えると崩れます。その場合は【代替策】に切り替えます。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">設計レビュー</span> <span class="tag">上司報告</span> <span class="tag">技術議論</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>主張に対して、成立する前提と崩れる境界条件を添える型です。技術者・企画者としての信頼感が上がります。表層的に見れば“慎重で賢い人”の演出ですが、実際にも重要な思考習慣です。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>主張を言う</li><li>成立前提を言う</li><li>崩れる条件を言う</li><li>崩れた場合の代替策を言う</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『この制御で安定すると思います。前提はセンサ遅延が50ms以下であることです。100msを超えるならゲイン設計を変える必要があります。その場合は応答性より安定性を優先します』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>【主張】です。前提は【成立条件】です。ただし【境界条件】を超えると崩れます。その場合は【代替策】に切り替えます。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 境界条件を言えると専門家感が出る。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 雑談 プレゼン" data-search="仮説ネーミング 現象に名前を付けると、理解している人に見える。 複雑な現象に短い名前を付ける型です。名前が付いた瞬間、人はその現象を“把握されたもの”として扱います。乱用すると痛いですが、適切に使うと強い印象を残せます。 『これは“調整地獄症候群”です。調整点が複数あり、1つ直すと別のズレが出る状態です。対策は調整点を1つに寄せるか、自己位置決め構造にすることです』。会議 雑談 プレゼン">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 10</p>
+          <h3>仮説ネーミング</h3>
+          <p class="catch">現象に名前を付けると、理解している人に見える。</p>
+        </div>
+        <button class="copy" data-copy="これは【ネーミング】です。つまり【短い定義】の状態です。対策方向は【対策方向】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">雑談</span> <span class="tag">プレゼン</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>複雑な現象に短い名前を付ける型です。名前が付いた瞬間、人はその現象を“把握されたもの”として扱います。乱用すると痛いですが、適切に使うと強い印象を残せます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>現象を観察する</li><li>一言で名前を付ける</li><li>定義を短く説明する</li><li>対策方向を示す</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『これは“調整地獄症候群”です。調整点が複数あり、1つ直すと別のズレが出る状態です。対策は調整点を1つに寄せるか、自己位置決め構造にすることです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>これは【ネーミング】です。つまり【短い定義】の状態です。対策方向は【対策方向】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 名前は少しキャッチーに。ただし社内文書では落ち着いた言い方に変える。</p>
+    </article>
+    
+    <article class="card" data-tags="技術議論 設計レビュー プレゼン" data-search="因果チェーン化 a→b→cで説明すると一気に賢く見える。 現象を、原因から結果までの因果連鎖として説明する型です。人間は因果が見えると納得します。内容が完全でなくても、途中メカニズムを入れるだけで専門性が増して見えます。 『温度低下→粘度上昇→吸引損失増加→吐出不足、という流れで起きている可能性があります。断つなら、温調、流路抵抗低減、吸引条件変更のどれかです』。技術議論 設計レビュー プレゼン">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 11</p>
+          <h3>因果チェーン化</h3>
+          <p class="catch">A→B→Cで説明すると一気に賢く見える。</p>
+        </div>
+        <button class="copy" data-copy="【原因】→【途中状態1】→【途中状態2】→【結果】という流れです。介入点は【介入点1】【介入点2】【介入点3】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">技術議論</span> <span class="tag">設計レビュー</span> <span class="tag">プレゼン</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>現象を、原因から結果までの因果連鎖として説明する型です。人間は因果が見えると納得します。内容が完全でなくても、途中メカニズムを入れるだけで専門性が増して見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>入力または原因を置く</li><li>途中メカニズムを2〜3段置く</li><li>観測される結果に接続する</li><li>どこを断てば良いか示す</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『温度低下→粘度上昇→吸引損失増加→吐出不足、という流れで起きている可能性があります。断つなら、温調、流路抵抗低減、吸引条件変更のどれかです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>【原因】→【途中状態1】→【途中状態2】→【結果】という流れです。介入点は【介入点1】【介入点2】【介入点3】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 矢印を使う。紙に書くだけで説明力が上がる。</p>
+    </article>
+    
+    <article class="card" data-tags="上司報告 雑談 企画" data-search="フェルミ一撃 概算を1つ出すだけで“数字で考える人”に見える。 厳密なデータがなくても、ざっくりした桁の見積もりを出す型です。たくさん数字を出す必要はありません。むしろ、議論を動かす数字を1つだけ出すのが効果的です。 『この不具合の年間損失はざっくり数百万円規模です。台数×発生率×対応工数×人件費で見ると、支配的なのは対応工数です。なので、発生率よりも現場復旧時間を短くする方が効くかもしれません』。上司報告 雑談 企画">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 12</p>
+          <h3>フェルミ一撃</h3>
+          <p class="catch">概算を1つ出すだけで“数字で考える人”に見える。</p>
+        </div>
+        <button class="copy" data-copy="ざっくり【対象】は【概算値】規模です。分解すると【要素1】×【要素2】×【要素3】です。支配的なのは【支配要素】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">上司報告</span> <span class="tag">雑談</span> <span class="tag">企画</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>厳密なデータがなくても、ざっくりした桁の見積もりを出す型です。たくさん数字を出す必要はありません。むしろ、議論を動かす数字を1つだけ出すのが効果的です。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>知りたい量を1つ決める</li><li>掛け算・割り算で分解する</li><li>ざっくり数字を入れる</li><li>感度が高い要因を言う</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『この不具合の年間損失はざっくり数百万円規模です。台数×発生率×対応工数×人件費で見ると、支配的なのは対応工数です。なので、発生率よりも現場復旧時間を短くする方が効くかもしれません』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>ざっくり【対象】は【概算値】規模です。分解すると【要素1】×【要素2】×【要素3】です。支配的なのは【支配要素】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 桁が合えば十分。精度を聞かれたら“意思決定用の一次概算です”と言う。</p>
+    </article>
+    
+    <article class="card" data-tags="意思決定 会議 上司報告" data-search="目的関数トーク 好みではなく最適化で語る。 『私はaが好き』ではなく、『今回は何を最大化/最小化するか』で語る型です。知的に見えるだけでなく、感情的な対立を避けられます。経営・設計・企画のどれにも使えます。 『今回の目的関数は量産リスク最小化です。制約はコスト+5%以内、検証期間2週間以内。副目的は保守性です。この条件なら、a案よりb案の方が合理的です』。意思決定 会議 上司報告">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 13</p>
+          <h3>目的関数トーク</h3>
+          <p class="catch">好みではなく最適化で語る。</p>
+        </div>
+        <button class="copy" data-copy="今回の目的関数は【最大化/最小化したいもの】です。制約は【制約1】【制約2】です。副目的は【副目的】です。この条件なら【選択肢】が合理的です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">意思決定</span> <span class="tag">会議</span> <span class="tag">上司報告</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>『私はAが好き』ではなく、『今回は何を最大化/最小化するか』で語る型です。知的に見えるだけでなく、感情的な対立を避けられます。経営・設計・企画のどれにも使えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>主目的を言う</li><li>制約条件を言う</li><li>副目的を言う</li><li>その関数に沿って案を選ぶ</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『今回の目的関数は量産リスク最小化です。制約はコスト+5%以内、検証期間2週間以内。副目的は保守性です。この条件なら、A案よりB案の方が合理的です』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>今回の目的関数は【最大化/最小化したいもの】です。制約は【制約1】【制約2】です。副目的は【副目的】です。この条件なら【選択肢】が合理的です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “目的関数”という言葉は強い。ただし相手によっては“判断基準”に言い換える。</p>
+    </article>
+    
+    <article class="card" data-tags="技術議論 企画 設計レビュー" data-search="最小モデル提示 複雑な問題を小さなモデルにする人は賢く見える。 最初から複雑な分析をせず、少数の変数で説明する型です。『まずは一次モデルで当たりを付ける』と言えると、思考の粒度をコントロールできる人に見えます。 『まず熱問題は、発熱量、熱抵抗、外気温の3つで一次モデル化します。接触熱抵抗やファン特性は次段階で入れます。最初から全部caeに入れるより、支配項を先に見ます』。技術議論 企画 設計レビュー">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 14</p>
+          <h3>最小モデル提示</h3>
+          <p class="catch">複雑な問題を小さなモデルにする人は賢く見える。</p>
+        </div>
+        <button class="copy" data-copy="まずは【変数1】【変数2】【変数3】だけで最小モデルを作ります。ここでは【捨てる要素】は一旦無視します。外れたら【追加要素】を入れます。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">技術議論</span> <span class="tag">企画</span> <span class="tag">設計レビュー</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>最初から複雑な分析をせず、少数の変数で説明する型です。『まずは一次モデルで当たりを付ける』と言えると、思考の粒度をコントロールできる人に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>変数を2〜3個に絞る</li><li>単純な関係式や図にする</li><li>捨てた要素を明示する</li><li>必要なら後で追加する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『まず熱問題は、発熱量、熱抵抗、外気温の3つで一次モデル化します。接触熱抵抗やファン特性は次段階で入れます。最初から全部CAEに入れるより、支配項を先に見ます』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>まずは【変数1】【変数2】【変数3】だけで最小モデルを作ります。ここでは【捨てる要素】は一旦無視します。外れたら【追加要素】を入れます。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “最初から複雑にしない”はかなり知的に見える。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 企画 意思決定" data-search="二次効果先読み 副作用を言える人は“先が見えている人”に見える。 施策の直接効果だけでなく、その後に起こる副作用や連鎖を言う型です。一次効果だけ語る人が多いので、二次効果を出すだけで一段上に見えます。 『自動化すると工数は減ります。ただ二次効果として、例外処理がブラックボックス化し、停止時の復旧が遅くなる可能性があります。なので例外率と復旧時間をkpiに入れるべきです』。会議 企画 意思決定">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 15</p>
+          <h3>二次効果先読み</h3>
+          <p class="catch">副作用を言える人は“先が見えている人”に見える。</p>
+        </div>
+        <button class="copy" data-copy="【施策】の一次効果は【直接効果】です。ただし二次効果として【副作用】が起きる可能性があります。先に【予防策】を入れるべきです。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">企画</span> <span class="tag">意思決定</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>施策の直接効果だけでなく、その後に起こる副作用や連鎖を言う型です。一次効果だけ語る人が多いので、二次効果を出すだけで一段上に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>施策を言う</li><li>一次効果を言う</li><li>二次効果・副作用を言う</li><li>予防策を言う</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『自動化すると工数は減ります。ただ二次効果として、例外処理がブラックボックス化し、停止時の復旧が遅くなる可能性があります。なので例外率と復旧時間をKPIに入れるべきです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>【施策】の一次効果は【直接効果】です。ただし二次効果として【副作用】が起きる可能性があります。先に【予防策】を入れるべきです。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 反対だけに聞こえないよう、最後に予防策まで言う。</p>
+    </article>
+    
+    <article class="card" data-tags="プロジェクト 会議 上司報告" data-search="プレモータム逆算 失敗した未来から考えるとプロっぽく見える。 『もしこの計画が失敗するとしたら、なぜか』を先に考える型です。成功シナリオよりも、失敗シナリオを扱える人の方が知的で頼れる印象になります。 『この開発が3ヶ月後に遅延しているとしたら、理由は供給遅れ、検査条件未確定、現場教育不足の3つです。今週は供給と検査条件を先に潰すべきです』。プロジェクト 会議 上司報告">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 16</p>
+          <h3>プレモータム逆算</h3>
+          <p class="catch">失敗した未来から考えるとプロっぽく見える。</p>
+        </div>
+        <button class="copy" data-copy="もし【計画】が【時期】に失敗しているとしたら、理由は【理由1】【理由2】【理由3】です。まず【最優先リスク】から潰します。早期指標は【指標】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">プロジェクト</span> <span class="tag">会議</span> <span class="tag">上司報告</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>『もしこの計画が失敗するとしたら、なぜか』を先に考える型です。成功シナリオよりも、失敗シナリオを扱える人の方が知的で頼れる印象になります。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>未来で失敗したと仮定する</li><li>失敗理由を列挙する</li><li>上位3つを選ぶ</li><li>早期検知指標と対策を置く</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『この開発が3ヶ月後に遅延しているとしたら、理由は供給遅れ、検査条件未確定、現場教育不足の3つです。今週は供給と検査条件を先に潰すべきです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>もし【計画】が【時期】に失敗しているとしたら、理由は【理由1】【理由2】【理由3】です。まず【最優先リスク】から潰します。早期指標は【指標】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “縁起でもない”と言われても、“リスク管理として”と言えば通る。</p>
+    </article>
+    
+    <article class="card" data-tags="上司報告 プロジェクト 会議" data-search="リスク信号色分類 赤黄緑で分類するだけでマネジメント感が出る。 リスクを赤・黄・緑で分類し、赤だけに対策を集中する型です。非常に表層的ですが、実務では強力です。上司や関係者は詳細より、どこが危ないかをすぐ知りたいからです。 『赤は部品供給の単一ソース、黄は温度依存、緑はui文言です。赤は購買を巻き込んで代替ソース確認。黄は次回試験で監視。緑は後回しで良いです』。上司報告 プロジェクト 会議">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 17</p>
+          <h3>リスク信号色分類</h3>
+          <p class="catch">赤黄緑で分類するだけでマネジメント感が出る。</p>
+        </div>
+        <button class="copy" data-copy="リスクは赤【赤リスク】、黄【黄リスク】、緑【緑リスク】です。赤については【担当】が【期限】までに【対策】を行います。黄は【監視指標】で見ます。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">上司報告</span> <span class="tag">プロジェクト</span> <span class="tag">会議</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>リスクを赤・黄・緑で分類し、赤だけに対策を集中する型です。非常に表層的ですが、実務では強力です。上司や関係者は詳細より、どこが危ないかをすぐ知りたいからです。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>リスクを列挙する</li><li>影響度と発生確率で赤黄緑に分ける</li><li>赤にオーナーと期限を置く</li><li>黄色は監視指標を置く</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『赤は部品供給の単一ソース、黄は温度依存、緑はUI文言です。赤は購買を巻き込んで代替ソース確認。黄は次回試験で監視。緑は後回しで良いです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>リスクは赤【赤リスク】、黄【黄リスク】、緑【緑リスク】です。赤については【担当】が【期限】までに【対策】を行います。黄は【監視指標】で見ます。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 赤を多くしすぎない。赤は本当に危ないものだけ。</p>
+    </article>
+    
+    <article class="card" data-tags="意思決定 技術議論 上司報告" data-search="情報価値voiトーク 保留を“賢い保留”に変える。 すぐ決められない時に、『何を測れば決まるか』を明確にする型です。単なる判断保留は弱く見えますが、voi型の保留は知的に見えます。 『今はa/bを決めません。決め手は耐薬品性です。48時間の加速試験で判別できます。okならa、ngならbにします。つまり、意思決定に価値のある情報は耐薬品試験結果です』。意思決定 技術議論 上司報告">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 18</p>
+          <h3>情報価値VOIトーク</h3>
+          <p class="catch">保留を“賢い保留”に変える。</p>
+        </div>
+        <button class="copy" data-copy="今は【判断】を保留します。決め手は【不確実性】です。【確認方法】で潰せます。結果が【条件1】なら【判断1】、【条件2】なら【判断2】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">意思決定</span> <span class="tag">技術議論</span> <span class="tag">上司報告</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>すぐ決められない時に、『何を測れば決まるか』を明確にする型です。単なる判断保留は弱く見えますが、VOI型の保留は知的に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>今決めない理由を言う</li><li>決め手になる不確実性を言う</li><li>最短で潰す確認を提案する</li><li>結果ごとの分岐を先に決める</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『今はA/Bを決めません。決め手は耐薬品性です。48時間の加速試験で判別できます。OKならA、NGならBにします。つまり、意思決定に価値のある情報は耐薬品試験結果です』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>今は【判断】を保留します。決め手は【不確実性】です。【確認方法】で潰せます。結果が【条件1】なら【判断1】、【条件2】なら【判断2】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “何を測れば決まるか”を言うだけで、保留が戦略に見える。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 交渉 レビュー" data-search="論点現在地リセット 混乱した会議で現在地を示す人は強い。 議論が脱線した時に、今どの論点にいるのかを整理し直す型です。ファシリテーションの基本ですが、うまく使うと“全体を見ている人”に見えます。 『今は方式選定の話をしていますが、担当者の好みの話にずれています。まず方式を量産リスクと検証期間で決めて、その後に担当割りを考えましょう』。会議 交渉 レビュー">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 19</p>
+          <h3>論点現在地リセット</h3>
+          <p class="catch">混乱した会議で現在地を示す人は強い。</p>
+        </div>
+        <button class="copy" data-copy="今の論点は【本来の論点】です。いま【脱線内容】にずれています。まず【戻す判断】を決めてから、【後で扱う話】を扱いましょう。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">交渉</span> <span class="tag">レビュー</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>議論が脱線した時に、今どの論点にいるのかを整理し直す型です。ファシリテーションの基本ですが、うまく使うと“全体を見ている人”に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>今の論点を一言で言う</li><li>脱線している話を指摘する</li><li>戻るべき判断に戻す</li><li>次の一手を提案する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『今は方式選定の話をしていますが、担当者の好みの話にずれています。まず方式を量産リスクと検証期間で決めて、その後に担当割りを考えましょう』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>今の論点は【本来の論点】です。いま【脱線内容】にずれています。まず【戻す判断】を決めてから、【後で扱う話】を扱いましょう。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 指摘が強すぎると角が立つ。“一度整理すると”から入る。</p>
+    </article>
+    
+    <article class="card" data-tags="上司報告 プレゼン プロジェクト" data-search="一枚サマリー化 1ページでまとめられる人は、頭が良く見える。 目的、結論、根拠、リスク、次アクションを1枚にまとめる型です。口頭よりも、資料の形で知性を固定化できます。会議後にこの1枚を送ると、案件の中心人物に見えます。 打合せ後に『目的：方式選定。結論：b案。根拠：量産リスク低、既存治具流用、検証期間短。リスク：温度依存、供給、教育。次：温度試験、購買確認、手順書ドラフト』の1枚を送る。上司報告 プレゼン プロジェクト">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 20</p>
+          <h3>一枚サマリー化</h3>
+          <p class="catch">1ページでまとめられる人は、頭が良く見える。</p>
+        </div>
+        <button class="copy" data-copy="目的：【目的】
+結論：【結論】
+根拠：1.【根拠1】 2.【根拠2】 3.【根拠3】
+リスク：1.【リスク1】 2.【リスク2】 3.【リスク3】
+次アクション：1.【次1】 2.【次2】 3.【次3】">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">上司報告</span> <span class="tag">プレゼン</span> <span class="tag">プロジェクト</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>目的、結論、根拠、リスク、次アクションを1枚にまとめる型です。口頭よりも、資料の形で知性を固定化できます。会議後にこの1枚を送ると、案件の中心人物に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>目的を1行</li><li>結論を1行</li><li>根拠を3点</li><li>リスクを3点</li><li>次アクションを3点</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>打合せ後に『目的：方式選定。結論：B案。根拠：量産リスク低、既存治具流用、検証期間短。リスク：温度依存、供給、教育。次：温度試験、購買確認、手順書ドラフト』の1枚を送る。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>目的：【目的】
+結論：【結論】
+根拠：1.【根拠1】 2.【根拠2】 3.【根拠3】
+リスク：1.【リスク1】 2.【リスク2】 3.【リスク3】
+次アクション：1.【次1】 2.【次2】 3.【次3】</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 凝った資料にしない。1枚で十分。速さが価値。</p>
+    </article>
+    
+    <article class="card" data-tags="プレゼン 技術議論 雑談" data-search="専門語・平易語二重翻訳 専門家にも素人にも伝わる人は天才っぽい。 専門語で正確に説明した後、すぐに平易な言葉で言い換える型です。片方だけだと弱いです。専門語だけだと独りよがり、平易語だけだと浅く見えます。両方使えると格上に見えます。 『これは位相余裕が足りない状態です。平たく言うと、ブレーキとアクセルのタイミングがずれて揺れている状態です。センサ遅延が増えるとさらに悪化します』。プレゼン 技術議論 雑談">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 21</p>
+          <h3>専門語・平易語二重翻訳</h3>
+          <p class="catch">専門家にも素人にも伝わる人は天才っぽい。</p>
+        </div>
+        <button class="copy" data-copy="専門的には【専門語】です。平たく言うと【平易な説明】です。ただし【境界条件】ではこの説明は変わります。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">プレゼン</span> <span class="tag">技術議論</span> <span class="tag">雑談</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>専門語で正確に説明した後、すぐに平易な言葉で言い換える型です。片方だけだと弱いです。専門語だけだと独りよがり、平易語だけだと浅く見えます。両方使えると格上に見えます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>専門語で正確に言う</li><li>すぐに比喩や平易語で言い換える</li><li>境界条件を添える</li><li>相手の理解を確認する</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『これは位相余裕が足りない状態です。平たく言うと、ブレーキとアクセルのタイミングがずれて揺れている状態です。センサ遅延が増えるとさらに悪化します』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>専門的には【専門語】です。平たく言うと【平易な説明】です。ただし【境界条件】ではこの説明は変わります。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 比喩は短く。長い比喩は逆に幼稚に見える。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 雑談 交渉" data-search="質問主導プレゼンス 答えより質問で知性を見せる。 答えを出すより、場の質を上げる質問を投げる型です。特に情報が不足している場では強いです。質問は外しにくく、発言量が少なくても存在感を出せます。 『確認です。この案で最小化したいのはコストですか、納期ですか、量産リスクですか？また、この案が破綻するとしたらどの条件ですか？最後に、何が分かれば今日決められますか？』。会議 雑談 交渉">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 22</p>
+          <h3>質問主導プレゼンス</h3>
+          <p class="catch">答えより質問で知性を見せる。</p>
+        </div>
+        <button class="copy" data-copy="確認したいです。今回最小化/最大化したいのは【目的候補】ですか？制約は【制約候補】ですか？この案が破綻する条件は何ですか？何が分かれば今日決められますか？">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">雑談</span> <span class="tag">交渉</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>答えを出すより、場の質を上げる質問を投げる型です。特に情報が不足している場では強いです。質問は外しにくく、発言量が少なくても存在感を出せます。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>目的確認の質問</li><li>制約確認の質問</li><li>破綻条件の質問</li><li>意思決定条件の質問</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『確認です。この案で最小化したいのはコストですか、納期ですか、量産リスクですか？また、この案が破綻するとしたらどの条件ですか？最後に、何が分かれば今日決められますか？』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>確認したいです。今回最小化/最大化したいのは【目的候補】ですか？制約は【制約候補】ですか？この案が破綻する条件は何ですか？何が分かれば今日決められますか？</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 質問を連発しすぎない。最大3問で止める。</p>
+    </article>
+    
+    <article class="card" data-tags="雑談 会議 上司報告" data-search="2秒沈黙・構造宣言 即答しないことで“深く考えた感”を作る。 質問された直後に2秒だけ沈黙し、その後『論点は3つです』など構造から話す型です。表層的な演出ですが、効きます。即答は軽く見えることがあります。短い沈黙は、思考の深さを演出します。 相手：『これどう思う？』あなた：（2秒）『論点は3つあります。結論から言うとaが良いです。理由は、リスク、コスト、検証期間のバランスです』。雑談 会議 上司報告">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 23</p>
+          <h3>2秒沈黙・構造宣言</h3>
+          <p class="catch">即答しないことで“深く考えた感”を作る。</p>
+        </div>
+        <button class="copy" data-copy="……論点は【数】つあります。結論から言うと【結論】です。理由は【理由1】【理由2】【理由3】です。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">雑談</span> <span class="tag">会議</span> <span class="tag">上司報告</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>質問された直後に2秒だけ沈黙し、その後『論点は3つです』など構造から話す型です。表層的な演出ですが、効きます。即答は軽く見えることがあります。短い沈黙は、思考の深さを演出します。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>質問を受ける</li><li>2秒だけ黙る</li><li>構造宣言をする</li><li>結論から話す</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>相手：『これどう思う？』あなた：（2秒）『論点は3つあります。結論から言うとAが良いです。理由は、リスク、コスト、検証期間のバランスです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>……論点は【数】つあります。結論から言うと【結論】です。理由は【理由1】【理由2】【理由3】です。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> 5秒以上黙ると不自然。2秒で十分。</p>
+    </article>
+    
+    <article class="card" data-tags="会議 雑談 レビュー" data-search="自分原則ルール化 短い原則を持つ人は、判断軸があるように見える。 自分なりの判断原則を短い言葉で出す型です。引用の捏造は不要です。『私の原則は』と置くだけで、経験から学習している人に見えます。乱用すると偉そうなので、要所だけ使います。 『私の原則は“調整点は1つまで”です。調整点が増えると、品質が作業者依存になります。例外は安全上の冗長性が必要な時だけです。今回は例外ではないので、調整点を減らすべきです』。会議 雑談 レビュー">
+      <div class="card-head">
+        <div>
+          <p class="num">FRAME 24</p>
+          <h3>自分原則ルール化</h3>
+          <p class="catch">短い原則を持つ人は、判断軸があるように見える。</p>
+        </div>
+        <button class="copy" data-copy="私の原則は【原則】です。理由は【理由】です。例外は【例外条件】です。今回は【適用判断】なので、【具体行動】すべきです。">テンプレをコピー</button>
+      </div>
+      <div class="tags"><span class="tag">会議</span> <span class="tag">雑談</span> <span class="tag">レビュー</span></div>
+      <details open>
+        <summary>概要</summary>
+        <p>自分なりの判断原則を短い言葉で出す型です。引用の捏造は不要です。『私の原則は』と置くだけで、経験から学習している人に見えます。乱用すると偉そうなので、要所だけ使います。</p>
+      </details>
+      <details open>
+        <summary>構造</summary>
+        <ol><li>短い原則を言う</li><li>なぜその原則が有効か言う</li><li>例外条件を言う</li><li>今回への適用を言う</li></ol>
+      </details>
+      <details>
+        <summary>具体例・使い方</summary>
+        <p>『私の原則は“調整点は1つまで”です。調整点が増えると、品質が作業者依存になります。例外は安全上の冗長性が必要な時だけです。今回は例外ではないので、調整点を減らすべきです』。</p>
+      </details>
+      <div class="template">
+        <strong>発言テンプレ</strong>
+        <p>私の原則は【原則】です。理由は【理由】です。例外は【例外条件】です。今回は【適用判断】なので、【具体行動】すべきです。</p>
+      </div>
+      <p class="tip"><strong>コツ:</strong> “絶対”と言わない。例外条件を添えると大人に見える。</p>
+    </article>
+    </div>
+    </section>
+
+    <p class="footer-note">注意：これは“見せ方”の道具だが、嘘・捏造・経歴詐称には使わないこと。短期的な印象操作より、前提・境界条件・検証可能性を添える方が長期的に強い。</p>
+  </main>
+
+  <div id="toast" class="toast">コピーしました</div>
+
+<script>
+const search = document.getElementById('search');
+const tagFilter = document.getElementById('tagFilter');
+const cards = Array.from(document.querySelectorAll('.card'));
+const visibleCount = document.getElementById('visibleCount');
+const toast = document.getElementById('toast');
+let openState = true;
+function filterCards() {
+  const q = search.value.trim().toLowerCase();
+  const tag = tagFilter.value;
+  let count = 0;
+  cards.forEach(card => {
+    const okText = !q || card.dataset.search.includes(q);
+    const okTag = tag === 'all' || card.dataset.tags.includes(tag);
+    const show = okText && okTag;
+    card.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+  visibleCount.textContent = count + '件表示';
+}
+search.addEventListener('input', filterCards);
+tagFilter.addEventListener('change', filterCards);
+
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const text = btn.dataset.copy;
+    try { await navigator.clipboard.writeText(text); }
+    catch(e) {
+      const area = document.createElement('textarea');
+      area.value = text; document.body.appendChild(area); area.select(); document.execCommand('copy'); area.remove();
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1100);
+  });
+});
+
+document.getElementById('expandAll').addEventListener('click', () => {
+  openState = !openState;
+  document.querySelectorAll('details').forEach(d => d.open = openState);
+});
+</script>
+</body>
+</html>

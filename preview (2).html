@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>形勢逆転のための24思考フレームワーク 実戦プレイブック</title>
+  <style>
+    :root{
+      --bg:#0f172a;
+      --panel:#111827;
+      --card:#ffffff;
+      --muted:#64748b;
+      --ink:#0f172a;
+      --line:#e5e7eb;
+      --accent:#2563eb;
+      --accent2:#7c3aed;
+      --good:#059669;
+      --warn:#d97706;
+      --bad:#dc2626;
+      --soft:#f8fafc;
+      --soft2:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+      background:#f1f5f9;
+      color:var(--ink);
+      line-height:1.75;
+    }
+    header{
+      background:linear-gradient(135deg,#0f172a 0%,#1e293b 48%,#312e81 100%);
+      color:#fff;
+      padding:48px 20px 36px;
+    }
+    .wrap{max-width:1160px;margin:0 auto}
+    .eyebrow{
+      display:inline-block;
+      padding:4px 10px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      font-size:13px;
+      color:#dbeafe;
+      margin-bottom:12px;
+    }
+    h1{
+      font-size:clamp(28px,5vw,48px);
+      line-height:1.18;
+      margin:0 0 16px;
+      letter-spacing:-.03em;
+    }
+    .lead{
+      max-width:900px;
+      color:#dbeafe;
+      font-size:17px;
+      margin:0 0 24px;
+    }
+    .header-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-top:28px;
+    }
+    .metric{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:18px;
+      padding:14px;
+      min-height:100px;
+    }
+    .metric b{display:block;font-size:24px}
+    .metric span{font-size:13px;color:#cbd5e1}
+    main{padding:26px 20px 60px}
+    .toolbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(241,245,249,.95);
+      backdrop-filter:blur(10px);
+      padding:14px 0;
+      border-bottom:1px solid #dbe4ef;
+      margin-bottom:22px;
+    }
+    .tools{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr .7fr;
+      gap:10px;
+      align-items:center;
+    }
+    input,select,button,textarea{
+      font:inherit;
+      border:1px solid #cbd5e1;
+      border-radius:12px;
+      padding:10px 12px;
+      background:#fff;
+      color:#0f172a;
+    }
+    button{
+      background:#0f172a;
+      color:#fff;
+      cursor:pointer;
+      border-color:#0f172a;
+      transition:.15s ease;
+    }
+    button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.18)}
+    .ghost{
+      background:#fff;
+      color:#0f172a;
+      border-color:#cbd5e1;
+    }
+    .section{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:26px;
+      margin:0 0 22px;
+      box-shadow:0 10px 24px rgba(15,23,42,.05);
+    }
+    h2{
+      font-size:26px;
+      margin:0 0 12px;
+      letter-spacing:-.02em;
+      line-height:1.35;
+    }
+    h3{
+      font-size:20px;
+      margin:0 0 10px;
+      line-height:1.4;
+    }
+    h4{font-size:16px;margin:18px 0 8px}
+    .toc{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:8px;
+      margin-top:14px;
+    }
+    .toc a{
+      display:block;
+      text-decoration:none;
+      color:#1e293b;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:12px;
+      padding:9px 10px;
+      font-size:14px;
+    }
+    .toc a:hover{background:#eef2ff;border-color:#c7d2fe}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:12px;
+      border:1px solid #dbe4ef;
+      background:#f8fafc;
+      color:#334155;
+    }
+    .pill.attack{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+    .pill.defense{background:#ecfdf5;border-color:#bbf7d0;color:#065f46}
+    .pill.politics{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+    .pill.meeting{background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6}
+    .pill.negotiation{background:#fffbeb;border-color:#fde68a;color:#92400e}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 8px 20px rgba(15,23,42,.04);
+    }
+    .card h3{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .num{
+      flex:0 0 auto;
+      display:inline-grid;
+      place-items:center;
+      width:32px;height:32px;
+      border-radius:10px;
+      background:#0f172a;
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+    }
+    .summary{
+      font-weight:700;
+      color:#1e293b;
+      background:#f8fafc;
+      border-left:4px solid #2563eb;
+      padding:10px 12px;
+      border-radius:10px;
+      margin:12px 0;
+    }
+    .structure{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      padding:12px 14px;
+      margin:12px 0;
+    }
+    .structure ol{margin:8px 0 0 21px;padding:0}
+    .example{
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      border-radius:14px;
+      padding:12px 14px;
+      margin:12px 0;
+    }
+    .script{
+      background:#0f172a;
+      color:#e5e7eb;
+      border-radius:14px;
+      padding:13px 14px;
+      margin:12px 0;
+      font-size:14px;
+      white-space:pre-wrap;
+    }
+    .copybtn{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:10px;
+      font-size:12px;
+      background:#334155;
+      border:0;
+      margin-top:8px;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      font-size:14px;
+    }
+    th,td{
+      border:1px solid #e2e8f0;
+      padding:9px 10px;
+      vertical-align:top;
+    }
+    th{background:#f8fafc;text-align:left}
+    .note{
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      color:#1e3a8a;
+      border-radius:16px;
+      padding:14px 16px;
+      margin:14px 0;
+    }
+    .danger{
+      background:#fef2f2;
+      border:1px solid #fecaca;
+      color:#7f1d1d;
+      border-radius:16px;
+      padding:14px 16px;
+      margin:14px 0;
+    }
+    .workflow{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:10px;
+      counter-reset:step;
+    }
+    .step{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:16px;
+      padding:14px;
+      min-height:150px;
+      position:relative;
+    }
+    .step:before{
+      counter-increment:step;
+      content:counter(step);
+      display:inline-grid;
+      place-items:center;
+      width:28px;height:28px;
+      border-radius:9px;
+      background:#2563eb;
+      color:#fff;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+    .worksheet{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    textarea{
+      width:100%;
+      min-height:110px;
+      resize:vertical;
+    }
+    .output{
+      background:#0f172a;
+      color:#e5e7eb;
+      border-radius:16px;
+      padding:16px;
+      white-space:pre-wrap;
+      min-height:200px;
+    }
+    .small{font-size:13px;color:#64748b}
+    .hidden{display:none!important}
+    footer{
+      text-align:center;
+      color:#64748b;
+      font-size:13px;
+      padding:30px 20px 50px;
+    }
+    @media (max-width:900px){
+      .header-grid,.workflow,.tools,.worksheet,.grid,.toc{grid-template-columns:1fr}
+      .toolbar{position:static}
+    }
+    @media print{
+      body{background:#fff}
+      header{background:#fff;color:#000;border-bottom:2px solid #000;padding:20px}
+      .lead,.eyebrow,.toolbar,button,.copybtn,footer{display:none!important}
+      .section,.card{box-shadow:none;border:1px solid #999;break-inside:avoid}
+      main{padding:0}
+      .grid{grid-template-columns:1fr}
+      .script{background:#f3f4f6;color:#111827;border:1px solid #999}
+      a{color:#000;text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">実戦用・単体HTML版 / 社内政治・人間関係・口論の形勢逆転</div>
+    <h1>形勢逆転のための<br>24思考フレームワーク</h1>
+    <p class="lead">
+      不利な状況で感情的に殴り返すのではなく、勝利条件・評価軸・証拠・利害・場・時間・責任範囲を再設計し、
+      「結果として自分に有利な意思決定」を作るための実用プレイブックです。
+    </p>
+    <div class="header-grid">
+      <div class="metric"><b>24</b><span>実戦フレーム</span></div>
+      <div class="metric"><b>5分</b><span>即席作戦ワークフロー</span></div>
+      <div class="metric"><b>9</b><span>状況別フィルタ</span></div>
+      <div class="metric"><b>印刷可</b><span>PDF保存・配布にも対応</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap tools">
+    <input id="search" placeholder="検索：例）責任転嫁、会議、論破、上司、納期、証拠">
+    <select id="category">
+      <option value="all">すべてのカテゴリ</option>
+      <option value="defense">防御・守り</option>
+      <option value="attack">攻勢・反転</option>
+      <option value="politics">社内政治</option>
+      <option value="meeting">会議・議論</option>
+      <option value="negotiation">交渉</option>
+    </select>
+    <select id="scenario">
+      <option value="all">状況フィルタ</option>
+      <option value="責任転嫁">責任転嫁された</option>
+      <option value="口喧嘩">口喧嘩・詰められた</option>
+      <option value="会議">会議で不利</option>
+      <option value="納期">納期・工数で揉める</option>
+      <option value="上司">上司・権力者が相手</option>
+      <option value="協力拒否">相手が協力しない</option>
+      <option value="評価">評価・評判を守る</option>
+      <option value="提案">提案を通す</option>
+      <option value="炎上">炎上・感情対立</option>
+    </select>
+    <button onclick="window.print()">印刷 / PDF保存</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section class="section">
+  <h2>まず結論：勝つとは「相手を黙らせる」ではなく「意思決定条件を握る」こと</h2>
+  <p>
+    人間関係・社内政治・口喧嘩で本当に強い人は、声が大きい人でも、即興で言い返せる人でもありません。
+    本当に強いのは、<strong>何を勝利条件にするか、誰の前で戦うか、どの証拠を残すか、どのリスクを誰に選ばせるか</strong>を設計できる人です。
+  </p>
+  <div class="danger">
+    <strong>使用上の境界線：</strong>
+    嘘、捏造、脅迫、人格攻撃、ハラスメント、秘密の暴露、違法な録音・監視、報復は短期的に効いても中長期で自分の信用を破壊します。
+    このプレイブックは、相手を破壊するためではなく、<strong>不利な土俵から抜け、正当な優位を作る</strong>ために使ってください。
+  </div>
+  <h3>24フレームの全体マップ</h3>
+  <div class="toc" id="toc">
+    <a href="#f1">1. 勝利条件の再定義</a>
+    <a href="#f2">2. 盤面マッピング</a>
+    <a href="#f3">3. 三層の優位</a>
+    <a href="#f4">4. BATNA強化</a>
+    <a href="#f5">5. ZOPA設計</a>
+    <a href="#f6">6. アンカー先打ち</a>
+    <a href="#f7">7. 争点分解</a>
+    <a href="#f8">8. 価値交換</a>
+    <a href="#f9">9. 正当性の柱</a>
+    <a href="#f10">10. リスク反転</a>
+    <a href="#f11">11. プロセス合意</a>
+    <a href="#f12">12. 証拠の時系列</a>
+    <a href="#f13">13. 要約→同意→転換</a>
+    <a href="#f14">14. スティールマン反転</a>
+    <a href="#f15">15. ソクラテス質問</a>
+    <a href="#f16">16. 3文主張</a>
+    <a href="#f17">17. 面子保存の出口</a>
+    <a href="#f18">18. 境界線</a>
+    <a href="#f19">19. 観衆設計</a>
+    <a href="#f20">20. サラミ合意</a>
+    <a href="#f21">21. 反対意見先取り</a>
+    <a href="#f22">22. タイミング支配</a>
+    <a href="#f23">23. 責任分解</a>
+    <a href="#f24">24. エスカレーション・ラダー</a>
+  </div>
+</section>
+
+<section class="section">
+  <h2>5分で使う「形勢逆転ワークフロー」</h2>
+  <div class="workflow">
+    <div class="step"><strong>勝利条件</strong><br>今日、何が決まれば勝ちか。謝らせることではなく、次の意思決定・責任範囲・記録を狙う。</div>
+    <div class="step"><strong>盤面</strong><br>相手本人ではなく、決定者・影響者・観衆・記録を見る。誰の認識が変われば勝てるか。</div>
+    <div class="step"><strong>証拠</strong><br>事実・時系列・データ・前例・ルールを1枚にする。感情より検証可能性を優先する。</div>
+    <div class="step"><strong>選択肢化</strong><br>相手の要求をA/B/Cの選択肢に変える。各選択肢のリスクと責任を明示する。</div>
+    <div class="step"><strong>記録固定</strong><br>会議後に要約を送る。「本日の合意」「未決事項」「次アクション」を残す。</div>
+  </div>
+  <div class="note">
+    即効性が高い組み合わせは、<strong>7.争点分解 → 13.要約同意転換 → 10.リスク反転 → 12.時系列固定</strong>です。
+    口喧嘩にも社内政治にも使えます。
+  </div>
+</section>
+
+<section class="section">
+  <h2>即席作戦メモ生成</h2>
+  <p class="small">状況を入力して「作戦メモ生成」を押すと、会議・口論・交渉前に使う骨子を作れます。入力内容はこのブラウザ内だけで処理されます。</p>
+  <div class="worksheet">
+    <div>
+      <label>状況・相手の主張</label>
+      <textarea id="situation" placeholder="例：上司から、納期遅延は私の段取り不足だと詰められている。実際には仕様変更と承認遅れもある。"></textarea>
+      <label>自分が取りたい結果</label>
+      <textarea id="desired" placeholder="例：個人責任にされるのを避け、仕様変更・承認遅れも含めた再発防止の議論に変える。"></textarea>
+      <label>使える証拠・事実</label>
+      <textarea id="evidence" placeholder="例：仕様変更日、承認依頼メール、レビュー未実施、工数見積もり表"></textarea>
+      <button onclick="generateMemo()">作戦メモ生成</button>
+      <button class="ghost" onclick="copyMemo()">メモをコピー</button>
+    </div>
+    <div>
+      <div id="memo" class="output">ここに作戦メモが表示されます。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>24フレームワーク詳細</h2>
+  <p>
+    各カードは「概要」「構造」「具体例」「そのまま使えるセリフ」で構成しています。
+    検索・フィルタで状況に合うものだけを表示できます。
+  </p>
+  <div class="grid" id="cards">
+
+    <article class="card framework" id="f1" data-category="attack politics meeting negotiation" data-keywords="勝利条件 評価軸 土俵 不利 形勢逆転 口喧嘩 会議 上司 評価">
+      <h3><span class="num">1</span>勝利条件の再定義フレーム</h3>
+      <div class="pillrow"><span class="pill attack">攻勢・反転</span><span class="pill politics">社内政治</span><span class="pill meeting">会議</span></div>
+      <p class="summary">不利な勝負は、相手に都合のよい勝利条件で始まっている。まず「何をもって勝ちか」を作り替える。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>現在の土俵を特定する。例：速さ、謝罪、個人責任、印象。</li>
+          <li>自分が勝てる土俵を設定する。例：リスク、再発防止、品質、顧客影響。</li>
+          <li>新しい土俵を「組織の利益」に接続する。</li>
+          <li>相手に反論しづらい選択肢として提示する。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「遅い」と詰められたら、速さだけでなく「品質事故リスク」「検証省略の影響」「再発防止」に議論を移す。</div>
+      <div class="script">使うセリフ：
+「納期が重要なのは同意です。ただ、ここで決めるべきなのは“誰が悪いか”ではなく、“納期・品質・再発防止のどのリスクを取るか”です。選択肢はA/B/Cです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f2" data-category="politics attack defense" data-keywords="社内政治 ステークホルダー 影響者 決定者 上司 評価 観衆">
+      <h3><span class="num">2</span>盤面マッピング・フレーム</h3>
+      <div class="pillrow"><span class="pill politics">社内政治</span><span class="pill defense">防御</span></div>
+      <p class="summary">戦う相手本人だけを見るな。勝敗は決定者・影響者・観衆・記録の配置で決まる。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>決定者：最終的に判断する人。</li>
+          <li>影響者：決定者の認識を左右する人。</li>
+          <li>実務者：事実を持っている人。</li>
+          <li>観衆：あなたの評判を形成する人。</li>
+          <li>各人の利害・恐れ・欲しい成果を書く。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>直属上司が不利な評価をしているなら、上司を論破するより、部長が気にする「品質リスク」「顧客影響」「再発防止策」を先に整理する。</div>
+      <div class="script">使うセリフ：
+「この件は関係者ごとに論点が違います。実務論点、品質論点、決裁論点を分けて整理し、判断者が決めやすい形にします。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f3" data-category="attack politics meeting" data-keywords="事実 解釈 物語 評判 説得 会議 提案">
+      <h3><span class="num">3</span>三層の優位フレーム：事実・解釈・物語</h3>
+      <div class="pillrow"><span class="pill attack">攻勢・反転</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">人は事実だけでは動かない。事実、解釈、物語を揃えると、印象戦で逆転できる。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>事実：日付、数字、発言、成果物。</li>
+          <li>解釈：なぜ起きたか。どの構造が原因か。</li>
+          <li>物語：組織にとって何を守る話なのか。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>個人ミス扱いされたら、「仕様変更遅れ」「レビュー不在」「承認待ち」を事実として出し、「個人の注意不足ではなく、変更管理プロセスの穴」と解釈し、「顧客品質を守る改善」に物語化する。</div>
+      <div class="script">使うセリフ：
+「事実としてはA、B、Cです。解釈としては個人の注意不足ではなく、変更管理の抜けが再現性を持って起きています。したがって、論点は再発防止です。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f4" data-category="negotiation attack defense" data-keywords="BATNA 代替案 交渉 協力拒否 上司 不利">
+      <h3><span class="num">4</span>BATNA強化フレーム</h3>
+      <div class="pillrow"><span class="pill negotiation">交渉</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">代替案がない人は交渉で弱い。別ルートを持つだけで、相手への依存度が下がり、態度が変わる。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>相手が協力しない場合の別案を作る。</li>
+          <li>別案のコスト・期限・責任範囲を明示する。</li>
+          <li>脅しではなく、合理的な選択肢として提示する。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>他部署が情報を出さないなら、「協力ありなら3日短縮、なしなら推定で進めるが、インターフェース責任は先方に残る」と提示する。</div>
+      <div class="script">使うセリフ：
+「A案は貴部門の確認込みで安全に進める案、B案はこちら単独で進める案です。B案の場合、未確認部分のリスクは残ります。どちらで進めるのがよいでしょうか。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f5" data-category="negotiation meeting" data-keywords="ZOPA 交渉可能領域 納期 工数 要求 交換">
+      <h3><span class="num">5</span>ZOPA設計フレーム</h3>
+      <div class="pillrow"><span class="pill negotiation">交渉</span><span class="pill meeting">会議</span></div>
+      <p class="summary">「無理です」では負けやすい。期限・範囲・品質・責任・承認手順を変数にして、交渉可能領域を作る。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>譲れない条件を明確にする。</li>
+          <li>譲れる条件を洗い出す。</li>
+          <li>相手の譲れない条件を仮説化する。</li>
+          <li>交換できる変数を増やす。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>納期短縮を要求されたら、「範囲削減」「検証段階化」「承認簡略化」のどれを取るか選ばせる。</div>
+      <div class="script">使うセリフ：
+「納期短縮は検討できます。ただし同じ範囲・同じ品質保証・同じ承認手順では成立しません。範囲、検証、承認のどれを調整しますか。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f6" data-category="attack negotiation meeting" data-keywords="アンカー 基準値 見積もり 価格 工数 納期">
+      <h3><span class="num">6</span>アンカー先打ちフレーム</h3>
+      <div class="pillrow"><span class="pill attack">攻勢・反転</span><span class="pill negotiation">交渉</span></div>
+      <p class="summary">最初に置かれた基準値は議論全体を支配する。相手の基準を待つな。自分に有利な比較軸を先に置く。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>過去案件・標準工数・規格・相場を探す。</li>
+          <li>妥当レンジを先に提示する。</li>
+          <li>相手の極端な要求は「その条件なら」と条件付きで扱う。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「見積もりが高い」と言われる前に、「過去案件では10〜15日、今回は追加要件で+3日、妥当レンジは13〜18日」と先に置く。</div>
+      <div class="script">使うセリフ：
+「まず基準を置きます。過去の同等案件はA〜B日です。今回は追加条件Cがあるため、妥当レンジはD〜E日です。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f7" data-category="defense meeting attack" data-keywords="争点分解 論破 口喧嘩 詰められた 定義 根拠 因果">
+      <h3><span class="num">7</span>争点分解フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill meeting">会議</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">強い言葉で押された時ほど、論点を分解する。抽象攻撃を具体論に落とすと相手の勢いは落ちる。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>事実：いつ、何が起きたか。</li>
+          <li>定義：何をもって悪い・遅い・不十分と言うのか。</li>
+          <li>因果：それが何を引き起こしたのか。</li>
+          <li>責任：誰のどの役割か。</li>
+          <li>提案：次に何を変えるか。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「お前の対応が悪い」と言われたら、「悪いの定義」「対象行動」「影響」「代替案」を順に聞く。</div>
+      <div class="script">使うセリフ：
+「整理させてください。“悪い”という評価を、事実・影響・次の対策に分けたいです。具体的に、いつのどの対応を指していますか。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f8" data-category="negotiation politics attack" data-keywords="価値交換 手柄 面子 交換 協力拒否 社内政治">
+      <h3><span class="num">8</span>価値交換フレーム</h3>
+      <div class="pillrow"><span class="pill negotiation">交渉</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">人は正論だけでは動かない。相手が欲しい評価・手柄・安心・時間・面子を通貨として扱う。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>相手が欲しいものを推定する。</li>
+          <li>自分が提供できるものを棚卸しする。</li>
+          <li>Give→Getの順で交換する。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>相手部署の協力が必要なら、「成果報告では相手部署の支援として明記する。その代わりレビューを優先してほしい」と提案する。</div>
+      <div class="script">使うセリフ：
+「この成果は貴部門の支援として明記します。その代わり、今回のレビューだけ優先的に入っていただけると助かります。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f9" data-category="defense attack politics meeting" data-keywords="正当性 ルール データ 前例 権威 証拠 会議">
+      <h3><span class="num">9</span>正当性の柱フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">「自分は正しい」では弱い。規範・データ・前例・権威のうち最低2本で主張を支える。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>規範：ルール、プロセス、規格、契約。</li>
+          <li>データ：実験値、工数、発生率、ログ。</li>
+          <li>前例：過去案件、他部署事例。</li>
+          <li>権威：専門家、監査、顧客要求、責任者判断。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>仕様変更を止めたいなら、「規格上の制約」「不具合率上昇データ」「過去に同条件で却下された前例」を合わせて出す。</div>
+      <div class="script">使うセリフ：
+「これは好みの問題ではありません。ルール上A、データ上B、過去事例上Cなので、このまま進めるのは妥当ではありません。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f10" data-category="defense meeting negotiation attack" data-keywords="リスク反転 責任 決裁 納期 上司 会議">
+      <h3><span class="num">10</span>リスク反転フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill meeting">会議</span><span class="pill negotiation">交渉</span></div>
+      <p class="summary">押し付けられた要求は、選択肢とリスクに変換して、決定者に選ばせる。これで責任の押し付けを防ぐ。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>A/B/Cの選択肢にする。</li>
+          <li>各選択肢のメリット・リスク・責任を明示する。</li>
+          <li>「どれで決裁しますか」と聞く。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「テストを省いて出せ」と言われたら、省略案・段階導入案・通常検証案のリスクを比較する。</div>
+      <div class="script">使うセリフ：
+「Aは早いですが品質リスクが残ります。Bは2日遅れますがリスクを下げられます。Cは通常品質ですが納期は延びます。どのリスクを取る判断にしますか。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f11" data-category="meeting defense politics" data-keywords="プロセス合意 会議 脱線 議題 決め方">
+      <h3><span class="num">11</span>プロセス合意フレーム</h3>
+      <div class="pillrow"><span class="pill meeting">会議</span><span class="pill defense">防御</span></div>
+      <p class="summary">会議で不利になる原因は、議論内容ではなく「決め方」が曖昧なこと。先にプロセスを握る。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>今日の目的を言う。</li>
+          <li>論点を3つ以内に絞る。</li>
+          <li>決定者と決定条件を明確にする。</li>
+          <li>論点外・人格攻撃を止める基準を作る。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>荒れそうな会議では冒頭で「今日は原因追及ではなく、再発防止策と決裁条件を決める」と宣言する。</div>
+      <div class="script">使うセリフ：
+「今日の目的はAを決めることです。論点は1、2、3に絞ります。個人評価ではなく、再発防止と次アクションに限定して進めます。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f12" data-category="defense politics meeting" data-keywords="証拠 時系列 責任転嫁 記録 メール 議事録 評価">
+      <h3><span class="num">12</span>証拠の時系列フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">記憶で戦うな。時系列で固定せよ。責任転嫁に最も効くのは、感情ではなく日付と記録である。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>日付、依頼、回答、未決、承認を並べる。</li>
+          <li>評価語を入れず、事実だけ書く。</li>
+          <li>関係者に共有し、共通認識にする。</li>
+          <li>次のアクションと担当を明記する。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「あなたが放置した」と言われたら、「○/○依頼、○/○回答待ち、○/○再確認、現在未承認」と1枚で示す。</div>
+      <div class="script">使うセリフ：
+「認識ズレを避けるため、事実ベースで時系列を整理します。○日に依頼、○日に確認、○日時点で未承認です。次の判断者は誰にしますか。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f13" data-category="defense meeting negotiation" data-keywords="要約 同意 転換 SAP 口喧嘩 上司 会議">
+      <h3><span class="num">13</span>要約→同意→転換フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill meeting">会議</span></div>
+      <p class="summary">正面反論は相手の闘争心を上げる。一度受け止めてから、議論の向きを変える。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>要約：相手の懸念を短く言い直す。</li>
+          <li>同意：一部だけ同意する。</li>
+          <li>転換：だからこそ、次の選択肢に移る。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「遅い」と言われたら、「納期懸念ですね。重要です。だから範囲・検証・承認のどれを調整するか決めましょう」と返す。</div>
+      <div class="script">使うセリフ：
+「つまり懸念はAですね。その点は重要です。だからこそ、今はBかCのどちらで進めるか決める必要があります。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f14" data-category="meeting attack defense" data-keywords="スティールマン 反論 論破 会議 上司 口喧嘩">
+      <h3><span class="num">14</span>スティールマン反転フレーム</h3>
+      <div class="pillrow"><span class="pill meeting">会議</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">相手の主張を弱く解釈して叩くと泥沼になる。あえて強く解釈してから、条件不足を突く。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>相手の主張を最も合理的な形に言い換える。</li>
+          <li>その主張が成立する条件を示す。</li>
+          <li>現在不足している条件や副作用を示す。</li>
+          <li>より現実的な代替案に移す。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「全部急いでやれ」に対し、「最短で価値を出したい意図は正しい。ただし検証省略の条件では品質リスクが高い」と返す。</div>
+      <div class="script">使うセリフ：
+「ご意図は、最短で成果を出すことだと理解しています。それ自体は正しいです。ただ、その案が成立するにはA条件が必要で、現状は未達です。代替としてB案が現実的です。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f15" data-category="defense meeting attack" data-keywords="ソクラテス 質問 口喧嘩 論破 定義 根拠 例外">
+      <h3><span class="num">15</span>ソクラテス質問フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">不利な場で無理に話すな。問う側に回れば、相手の根拠不足・定義不足・因果の飛躍が見える。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>定義質問：それは何を意味しますか。</li>
+          <li>根拠質問：何を根拠にしていますか。</li>
+          <li>例外質問：逆のケースはありますか。</li>
+          <li>影響質問：それをすると何が起きますか。</li>
+          <li>代替質問：他の選択肢はありますか。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「普通はこうする」と言われたら、「普通とはどの基準ですか」「過去案件ではどうでしたか」と聞く。</div>
+      <div class="script">使うセリフ：
+「確認です。その判断の基準は何でしょうか。根拠となるデータや前例はありますか。もし例外があるなら、今回がどちらに当たるか整理したいです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f16" data-category="meeting defense attack" data-keywords="3文主張 結論 根拠 次アクション 口喧嘩 会議">
+      <h3><span class="num">16</span>3文主張フレーム</h3>
+      <div class="pillrow"><span class="pill meeting">会議</span><span class="pill defense">防御</span></div>
+      <p class="summary">攻められている時ほど長く話すな。結論・根拠・次アクションの3文で主導権を取り戻す。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>結論：私は○○を提案します。</li>
+          <li>根拠：理由はA/Bです。</li>
+          <li>次：今日は××を決めたいです。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>議論が荒れたら、「結論：段階導入を提案。理由：品質リスクを下げつつ納期影響を抑えるため。今日決めたいのは対象範囲」と返す。</div>
+      <div class="script">使うセリフ：
+「結論としてAを提案します。理由はBとCです。今日ここで決めたいのはDです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f17" data-category="politics negotiation meeting" data-keywords="面子 出口 逃げ道 上司 交渉 社内政治 炎上">
+      <h3><span class="num">17</span>面子保存の出口フレーム</h3>
+      <div class="pillrow"><span class="pill politics">社内政治</span><span class="pill negotiation">交渉</span></div>
+      <p class="summary">相手を完全敗北させると、恨みと反撃が残る。勝つには、相手が降りられる理由を用意する。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>相手の過去判断を否定しない。</li>
+          <li>前提が変わったことにする。</li>
+          <li>相手の貢献や意図を認める。</li>
+          <li>新しい案への移行を自然にする。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>相手案が間違いでも、「当時の情報では妥当だった。新データが出たので更新する」と言う。</div>
+      <div class="script">使うセリフ：
+「当時の前提ではその判断は合理的だったと思います。ただ、その後Aという情報が出たので、現時点ではB案に更新するのが安全です。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f18" data-category="defense meeting politics" data-keywords="境界線 罵倒 ハラスメント 口喧嘩 炎上 上司">
+      <h3><span class="num">18</span>境界線フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill meeting">会議</span></div>
+      <p class="summary">人格攻撃・罵倒・圧力に乗った瞬間、相手の土俵で負ける。冷静に境界線を引く。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>観測：今起きた発言・行動を指摘する。</li>
+          <li>影響：議論に与える悪影響を言う。</li>
+          <li>要求：事実と論点に戻す。</li>
+          <li>次：続く場合の対応を示す。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>「無能」と言われたら、「その表現では議論が進まない。事実と対策に戻したい」と返す。</div>
+      <div class="script">使うセリフ：
+「今の表現は人格評価に聞こえます。その形だと議論が前に進みません。事実、影響、次の対策に戻してください。続く場合は、上位者同席で再設定します。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f19" data-category="politics defense attack" data-keywords="観衆 場 第三者 会議 上司 社内政治 評価">
+      <h3><span class="num">19</span>観衆設計フレーム</h3>
+      <div class="pillrow"><span class="pill politics">社内政治</span><span class="pill defense">防御</span></div>
+      <p class="summary">誰の前で戦うかで勝敗は変わる。勝てない場で即反撃するより、場を再設計する方が強い。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>1on1で解くべきか判断する。</li>
+          <li>第三者同席が必要か判断する。</li>
+          <li>議事録・決定者・専門家を入れるか判断する。</li>
+          <li>公開範囲を広げるリスクを読む。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>会議で吊し上げられたら、その場で感情反論せず、「論点整理して関係者同席で再設定」と提案する。</div>
+      <div class="script">使うセリフ：
+「この場で印象論のまま進めると誤解が残ります。論点と事実を整理したうえで、関係者同席で再度決めたいです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f20" data-category="attack politics negotiation" data-keywords="サラミ合意 小さなYES 提案 合意 社内政治">
+      <h3><span class="num">20</span>サラミ合意フレーム</h3>
+      <div class="pillrow"><span class="pill attack">攻勢・反転</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">大きな合意をいきなり取りに行くと潰される。小さなYESを積み上げ、最後に自然な帰結にする。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>大目標を小さな合意に分割する。</li>
+          <li>反対されにくい順に並べる。</li>
+          <li>合意を記録する。</li>
+          <li>最終提案を既合意の延長にする。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>改善提案を通したいなら、問題認識→データ取得→小規模実験→効果確認→展開の順に進める。</div>
+      <div class="script">使うセリフ：
+「まず大きな導入を決める必要はありません。問題認識の合意、データ取得の合意、小規模検証の合意まで進めたいです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f21" data-category="attack meeting negotiation" data-keywords="反対意見 先取り Prebuttal 提案 会議 反論">
+      <h3><span class="num">21</span>反対意見先取りフレーム</h3>
+      <div class="pillrow"><span class="pill attack">攻勢・反転</span><span class="pill meeting">会議</span></div>
+      <p class="summary">反論されてから防御すると遅い。想定反論を自分から出し、処理済みにする。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>相手が言いそうな反対を3つ書く。</li>
+          <li>それぞれに短い回答を用意する。</li>
+          <li>会議では自分から「懸念は3つあります」と言う。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>提案前に「コスト、時間、責任範囲が懸念だと思うので先に整理します」と言う。</div>
+      <div class="script">使うセリフ：
+「この提案への懸念は、おそらくコスト、時間、責任範囲の3点です。先にそれぞれの対策を示します。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f22" data-category="politics attack meeting" data-keywords="タイミング 順序 締切 会議 上司 社内政治">
+      <h3><span class="num">22</span>タイミング支配フレーム</h3>
+      <div class="pillrow"><span class="pill politics">社内政治</span><span class="pill attack">攻勢・反転</span></div>
+      <p class="summary">同じ内容でも、出す順番とタイミングで結果は変わる。政治は内容だけでなく、順序のゲームである。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>サプライズで出すか、事前根回しするか選ぶ。</li>
+          <li>決定者の関心が高いタイミングを狙う。</li>
+          <li>会議序盤で基準を置く。</li>
+          <li>疲労した終盤の雑決定を避ける。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>会議終盤に重要論点を詰められたら、「次回冒頭で10分確保」と返す。</div>
+      <div class="script">使うセリフ：
+「これは重要な判断なので、会議終盤の残り時間で決めるのは危険です。次回の冒頭で10分確保して、選択肢とリスクを出します。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f23" data-category="defense politics meeting" data-keywords="責任分解 RACI 責任転嫁 役割 決裁 会議">
+      <h3><span class="num">23</span>責任分解フレーム</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">責任が曖昧だと全部あなたのせいになる。決める人・実行する人・助言する人・共有される人を分ける。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>D：Decision。誰が決めるか。</li>
+          <li>E：Execute。誰が実行するか。</li>
+          <li>C：Consult。誰に相談するか。</li>
+          <li>I：Inform。誰に共有するか。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>トラブル時に「実装は私、仕様判断はAさん、レビューはBさん、承認はCさん」と分解する。</div>
+      <div class="script">使うセリフ：
+「責任を混ぜると再発します。決裁、実行、レビュー、共有を分けます。今回の未決はどの役割で止まっていたか確認したいです。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+    <article class="card framework" id="f24" data-category="defense politics meeting" data-keywords="エスカレーション 上司 ハラスメント 議事録 コンプラ 炎上">
+      <h3><span class="num">24</span>エスカレーション・ラダー</h3>
+      <div class="pillrow"><span class="pill defense">防御</span><span class="pill politics">社内政治</span></div>
+      <p class="summary">上にあげるかどうかを感情で決めると負ける。段階、条件、記録、撤退線を先に決める。</p>
+      <div class="structure">
+        <strong>構造</strong>
+        <ol>
+          <li>1on1で整理する。</li>
+          <li>小会議と議事録で固定する。</li>
+          <li>決定権者を同席させる。</li>
+          <li>正式プロセスに乗せる。</li>
+          <li>これ以上は損という撤退線を持つ。</li>
+        </ol>
+      </div>
+      <div class="example"><strong>具体例：</strong>合意が何度も反故にされるなら、2回目で議事録、3回目で上位者同席、それでも無理なら正式ルートへ。</div>
+      <div class="script">使うセリフ：
+「同じ認識ズレが繰り返されているため、次回から議事録を残します。それでも判断が進まない場合は、決定権者同席で再設定します。」</div>
+      <button class="copybtn" onclick="copyText(this)">セリフをコピー</button>
+    </article>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2>状況別：最初に使うべきフレーム早見表</h2>
+  <table>
+    <thead>
+      <tr><th>状況</th><th>最初に使うフレーム</th><th>狙い</th><th>初手の一言</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>責任転嫁された</td><td>12 証拠の時系列 → 23 責任分解</td><td>個人攻撃を役割とプロセスの話に戻す</td><td>「事実ベースで時系列を整理します。」</td></tr>
+      <tr><td>口喧嘩で詰められた</td><td>7 争点分解 → 13 要約同意転換</td><td>抽象攻撃を具体論に落とす</td><td>「具体的に、いつのどの行動を指していますか。」</td></tr>
+      <tr><td>会議で不利</td><td>11 プロセス合意 → 10 リスク反転</td><td>議論の決め方を握る</td><td>「今日決めることを先に揃えます。」</td></tr>
+      <tr><td>納期・工数で揉める</td><td>5 ZOPA → 10 リスク反転 → 6 アンカー</td><td>無理要求をトレードオフ化する</td><td>「短縮には範囲・品質・承認の調整が必要です。」</td></tr>
+      <tr><td>相手が協力しない</td><td>4 BATNA → 8 価値交換</td><td>依存度を下げ、協力メリットを作る</td><td>「協力ありのA案、なしのB案があります。」</td></tr>
+      <tr><td>上司・権力者が相手</td><td>2 盤面マッピング → 17 面子保存</td><td>正面衝突を避け、相手が降りる道を作る</td><td>「ご意図は理解しています。その上で条件を整理します。」</td></tr>
+      <tr><td>提案を通したい</td><td>21 反対意見先取り → 20 サラミ合意</td><td>反論を先に潰し、小さく通す</td><td>「懸念は3点あると思うので先に示します。」</td></tr>
+      <tr><td>評判を守りたい</td><td>3 三層の優位 → 19 観衆設計</td><td>事実・解釈・物語を整え、見る人を選ぶ</td><td>「誤解が残らないよう、事実と背景を整理します。」</td></tr>
+      <tr><td>相手が感情的</td><td>18 境界線 → 13 要約同意転換</td><td>人格攻撃を止め、論点に戻す</td><td>「人格評価ではなく、事実と対策に戻しましょう。」</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>実戦テンプレート集</h2>
+  <h3>1. 会議後の記録固定メール</h3>
+  <div class="script">件名：本日の論点整理と次アクション
+
+本日の議論について、認識ズレ防止のため整理します。
+
+1. 決定事項
+- ○○
+
+2. 未決事項
+- ○○：判断者は○○さん
+- ○○：追加情報は○/○までに確認
+
+3. リスク
+- A案：メリット○○ / リスク○○
+- B案：メリット○○ / リスク○○
+
+4. 次アクション
+- ○○：担当○○、期限○/○
+
+認識違いがあればご指摘ください。</div>
+
+  <h3>2. 責任転嫁された時の一言</h3>
+  <div class="script">「個人責任の話にする前に、時系列・役割・判断ポイントを分けたいです。事実としては、○日にA、○日にB、○日時点でCです。」</div>
+
+  <h3>3. 強い要求を受けた時の一言</h3>
+  <div class="script">「実現可能性はあります。ただし、同じ納期・同じ範囲・同じ品質保証を同時に満たすのは難しいです。どの条件を調整するか決めたいです。」</div>
+
+  <h3>4. 罵倒・人格攻撃を受けた時の一言</h3>
+  <div class="script">「その表現では議論が前に進みません。事実、影響、次の対策に戻してください。続く場合は、場を改めます。」</div>
+
+  <h3>5. 相手に逃げ道を与えつつ逆転する一言</h3>
+  <div class="script">「当時の前提ではその判断は合理的でした。ただ、新しい情報が出たので、現時点では判断を更新するのが安全です。」</div>
+</section>
+
+<section class="section">
+  <h2>最後に：一番危険な負け筋</h2>
+  <p>
+    最も危険なのは、相手に腹が立った瞬間に「言い返すこと」を勝利条件にしてしまうことです。
+    口では勝っても、観衆・記録・評価・決定権者を失えば、実務では負けです。
+  </p>
+  <p>
+    強い人は、怒りを否定しません。しかし怒りをそのまま出さず、<strong>証拠、選択肢、場、時間、記録</strong>に変換します。
+    この変換能力こそが、社内政治・人間関係・口論での本質的な戦闘力です。
+  </p>
+</section>
+
+</main>
+
+<footer>
+  形勢逆転のための24思考フレームワーク 実戦プレイブック / Standalone HTML
+</footer>
+
+<script>
+  const search = document.getElementById('search');
+  const category = document.getElementById('category');
+  const scenario = document.getElementById('scenario');
+  const cards = Array.from(document.querySelectorAll('.framework'));
+
+  function normalize(s){ return (s || '').toLowerCase().replace(/\s+/g,''); }
+
+  function filterCards(){
+    const q = normalize(search.value);
+    const cat = category.value;
+    const sc = normalize(scenario.value);
+    cards.forEach(card=>{
+      const text = normalize(card.innerText + ' ' + card.dataset.keywords);
+      const cats = card.dataset.category.split(' ');
+      const okQ = !q || text.includes(q);
+      const okC = cat === 'all' || cats.includes(cat);
+      const okS = scenario.value === 'all' || text.includes(sc);
+      card.classList.toggle('hidden', !(okQ && okC && okS));
+    });
+  }
+  search.addEventListener('input', filterCards);
+  category.addEventListener('change', filterCards);
+  scenario.addEventListener('change', filterCards);
+
+  function copyText(btn){
+    const script = btn.previousElementSibling.innerText.replace(/^使うセリフ：\n?/,'');
+    navigator.clipboard.writeText(script).then(()=>{
+      const old = btn.textContent;
+      btn.textContent = 'コピー済み';
+      setTimeout(()=>btn.textContent=old,1200);
+    });
+  }
+
+  function generateMemo(){
+    const situation = document.getElementById('situation').value.trim() || '未入力';
+    const desired = document.getElementById('desired').value.trim() || '未入力';
+    const evidence = document.getElementById('evidence').value.trim() || '未入力';
+    const memo = `【形勢逆転・即席作戦メモ】
+
+1. 現状
+${situation}
+
+2. 勝利条件
+${desired}
+
+3. 使える証拠
+${evidence}
+
+4. 初手で使うフレーム
+- 7. 争点分解：抽象攻撃を、事実・定義・因果・責任・提案に分ける。
+- 13. 要約→同意→転換：相手の懸念を一度受け止め、次の意思決定へ移す。
+- 10. リスク反転：A/B/C案にして、決定者にリスクを選ばせる。
+- 12. 証拠の時系列：日付・依頼・回答・未決・承認を固定する。
+
+5. 最初の一言
+「整理させてください。個人評価の話にする前に、事実・役割・次の判断を分けたいです。
+事実としてはA、B、Cです。したがって、ここで決めるべきなのは、誰が悪いかではなく、どのリスクを取って次に進めるかです。」
+
+6. 会議後に残す記録
+- 決定事項：
+- 未決事項：
+- 判断者：
+- 担当：
+- 期限：
+- リスク：
+- 次アクション：
+
+7. 禁止事項
+- 感情で反撃しない。
+- 相手の人格を攻撃しない。
+- 証拠のない断定をしない。
+- その場の論破を勝利条件にしない。`;
+    document.getElementById('memo').innerText = memo;
+  }
+
+  function copyMemo(){
+    const memo = document.getElementById('memo').innerText;
+    navigator.clipboard.writeText(memo);
+  }
+</script>
+</body>
+</html>

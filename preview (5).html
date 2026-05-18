@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>創造性・革新性のための思考フレームワーク24</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #687382;
+      --line: #d9dee7;
+      --accent: #1f4e79;
+      --accent2: #0f766e;
+      --soft: #eef4fa;
+      --soft2: #ecfdf5;
+      --warn: #8a5a00;
+      --shadow: 0 10px 28px rgba(24, 39, 75, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.75;
+    }
+    header.hero {
+      background: linear-gradient(135deg, #102a43, #1f4e79 55%, #0f766e);
+      color: #fff;
+      padding: 56px 24px 42px;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.04em; }
+    .subtitle { font-size: 1.08rem; color: rgba(255,255,255,0.88); max-width: 850px; margin: 0; }
+    .meta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 999px; font-size: 0.9rem;
+      background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.18);
+    }
+    main { padding: 28px 24px 64px; }
+    .panel {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; box-shadow: var(--shadow); margin: 0 auto 22px; max-width: 1180px;
+    }
+    .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-top: 14px; }
+    .toc-grid a { text-decoration: none; color: var(--accent); background: var(--soft); border: 1px solid #d6e5f2; padding: 10px 12px; border-radius: 12px; font-weight: 650; }
+    .controls { position: sticky; top: 0; z-index: 10; background: rgba(245,246,248,0.94); backdrop-filter: blur(8px); padding: 12px 24px; border-bottom: 1px solid var(--line); }
+    .control-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto auto auto; gap: 10px; align-items: center; }
+    input, select, button, textarea {
+      font: inherit; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: #fff; color: var(--ink);
+    }
+    input:focus, select:focus, textarea:focus { outline: 3px solid rgba(31,78,121,0.16); border-color: var(--accent); }
+    button { cursor: pointer; font-weight: 700; background: var(--accent); color: #fff; border-color: var(--accent); }
+    button.secondary { background: #fff; color: var(--accent); }
+    button.ghost { background: #fff; color: var(--ink); }
+    h2 { font-size: 1.65rem; margin: 0 0 10px; letter-spacing: -0.03em; }
+    h3 { font-size: 1.18rem; margin: 22px 0 8px; }
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .note { color: var(--muted); font-size: 0.95rem; }
+    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+    .flow .step { background: #fbfcfe; border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+    .step strong { color: var(--accent); }
+    .framework {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; margin: 18px auto; max-width: 1180px; box-shadow: var(--shadow);
+    }
+    .framework-head { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+    .num { width: 46px; height: 46px; display: grid; place-items: center; background: var(--accent); color: #fff; border-radius: 14px; font-weight: 800; font-size: 1.1rem; }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 0; }
+    .tag { font-size: 0.82rem; border-radius: 999px; padding: 4px 9px; background: var(--soft); color: var(--accent); border: 1px solid #d6e5f2; }
+    .summary { font-size: 1.02rem; margin: 14px 0; }
+    .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+    .box { background: #fbfcfe; border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .box.green { background: var(--soft2); border-color: #c7ead8; }
+    ol, ul { padding-left: 1.35em; }
+    li { margin: 0.32em 0; }
+    .template { margin-top: 14px; background: #fffaf0; border: 1px solid #f1d59b; color: #3f2f08; border-radius: 14px; padding: 14px; }
+    .template textarea { width: 100%; min-height: 96px; margin-top: 8px; resize: vertical; }
+    .example { border-left: 4px solid var(--accent2); padding-left: 14px; color: #263238; }
+    .mini-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.94rem; }
+    .mini-table th, .mini-table td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; }
+    .mini-table th { background: var(--soft); text-align: left; color: var(--accent); }
+    .worksheet { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; margin: 18px auto; max-width: 1180px; }
+    .worksheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .field { background: #fbfcfe; border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+    .field label { display: block; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+    .field textarea { width: 100%; min-height: 120px; }
+    .footer { max-width: 1180px; margin: 32px auto 0; color: var(--muted); font-size: 0.92rem; }
+    .hidden { display: none !important; }
+    .copy-ok { color: var(--accent2); font-weight: 700; margin-left: 8px; font-size: 0.9rem; }
+    @media (max-width: 800px) {
+      .control-inner { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .framework-head { grid-template-columns: 1fr; }
+      .num { width: 42px; height: 42px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .controls, button, .template textarea { display: none !important; }
+      header.hero { background: #fff; color: #000; border-bottom: 2px solid #000; }
+      .subtitle, .pill { color: #000; border-color: #000; background: #fff; }
+      .panel, .framework, .worksheet { box-shadow: none; break-inside: avoid; border-color: #999; }
+      main { padding: 0; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>創造性・革新性のための<br>思考フレームワーク24</h1>
+      <p class="subtitle">ひらめきを待たず、再現性のある「思考操作」として創造性を引き出すための実践HTML。新規事業、製品開発、業務改革、コミュニティ設計、研究開発の発想整理に使える。</p>
+      <div class="meta-row">
+        <span class="pill">単一HTML</span>
+        <span class="pill">検索・フィルタ対応</span>
+        <span class="pill">印刷/PDF保存対応</span>
+        <span class="pill">ワークシート付き</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="control-inner">
+      <input id="search" type="search" placeholder="キーワード検索：例）問い、制約、類推、矛盾、検証、非対称" />
+      <select id="category">
+        <option value="all">全カテゴリ</option>
+        <option value="問い">問いを変える</option>
+        <option value="発散">発散する</option>
+        <option value="構造化">構造化する</option>
+        <option value="検証">検証する</option>
+        <option value="競争優位">競争優位を作る</option>
+        <option value="実装">実装を速くする</option>
+      </select>
+      <button class="secondary" onclick="window.print()">印刷 / PDF保存</button>
+      <button class="ghost" onclick="clearFilters()">リセット</button>
+    </div>
+  </div>
+
+  <main>
+    <section class="panel">
+      <div class="section-title">
+        <h2>使い方：まずこの5ステップで回す</h2>
+        <span class="note">迷ったら、最初は①問いの再定義ループから始める</span>
+      </div>
+      <div class="flow">
+        <div class="step"><strong>1. テーマを書く</strong><br>「何を良くしたいのか」を一文にする。</div>
+        <div class="step"><strong>2. 型を選ぶ</strong><br>問い・発散・構造化・検証・優位・実装から選ぶ。</div>
+        <div class="step"><strong>3. 10分で粗く埋める</strong><br>完璧にしない。空欄を埋めることを優先。</div>
+        <div class="step"><strong>4. 一番痛い箇所を選ぶ</strong><br>効果が大きく、早く試せる仮説を1つ選ぶ。</div>
+        <div class="step"><strong>5. 24時間以内に試す</strong><br>文章、図、モック、簡易実験で検証する。</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>目次</h2>
+      <div class="toc-grid" id="toc"></div>
+    </section>
+
+    <section class="worksheet" id="quick-worksheet">
+      <h2>共通ワークシート</h2>
+      <p class="note">各フレームワークを使う前に、ここを埋めると議論が散らかりにくくなる。ブラウザ上で直接入力できる。</p>
+      <div class="worksheet-grid">
+        <div class="field"><label>テーマ</label><textarea placeholder="例：新しい障害物検知デバイスの価値を高めたい"></textarea></div>
+        <div class="field"><label>現在の問い</label><textarea placeholder="例：もっと高性能なセンサを追加すべきか？"></textarea></div>
+        <div class="field"><label>本当の目的</label><textarea placeholder="例：ユーザーが暗所で安全に移動できる確率を上げる"></textarea></div>
+        <div class="field"><label>制約</label><textarea placeholder="例：低コスト、軽量、バッテリー駆動、説明不要、屋外対応"></textarea></div>
+        <div class="field"><label>成功指標</label><textarea placeholder="例：1〜3mの障害物検知率、誤警報率、装着負担、価格"></textarea></div>
+        <div class="field"><label>次の実験</label><textarea placeholder="例：既存カメラ+IRで夜間1m検知を10ケース試す"></textarea></div>
+      </div>
+    </section>
+
+    <div id="frameworks"></div>
+
+    <section class="panel">
+      <h2>実戦での選び方</h2>
+      <table class="mini-table">
+        <tr><th>状況</th><th>使うフレームワーク</th><th>狙い</th></tr>
+        <tr><td>アイデアが浅い</td><td>1, 2, 4, 9, 11</td><td>問い・前提・類推で探索空間を広げる</td></tr>
+        <tr><td>議論が機能追加に偏る</td><td>3, 19, 20</td><td>目的、境界、顧客ジョブに戻す</td></tr>
+        <tr><td>反論が多く進まない</td><td>7, 8, 16</td><td>失敗条件を先に取り込み、案を強くする</td></tr>
+        <tr><td>競合に真似されそう</td><td>14, 21, 22</td><td>資産転用、非対称性、矛盾解決で模倣困難にする</td></tr>
+        <tr><td>開発・検証が遅い</td><td>23, 24</td><td>フィードバックを速くし、体験の穴を先に見つける</td></tr>
+      </table>
+    </section>
+
+    <div class="footer">
+      <p>このHTMLは外部通信を行わない単一ファイルです。必要に応じてブラウザの「印刷」からPDF化できます。</p>
+    </div>
+  </main>
+
+  <script>
+    const frameworks = [
+      {
+        n: 1, name: "問いの再定義ループ", en: "Question Reframing Loop", cat: "問い", tags: ["問い", "本質", "再定義"],
+        summary: "革新は答えよりも問いの質で決まる。問いを変えれば、探索する解空間そのものが変わる。",
+        structure: ["現在の問いを一文で書く", "なぜそれが必要かを5回掘る", "問いを反対方向にする", "誰・何・いつ・どこ・なぜ・どうで問いを10個作る", "最も行動を変える問いを採用する"],
+        example: "元の問いが『新機能を追加して差別化したい』なら、目的を掘る。顧客離れを防ぎたい、乗り換えを面倒にしたい、学習資産を失いたくない状態を作りたい、という本質が出る。すると問いは『機能を増やすには？』ではなく『乗り換えコストを10倍にするには？』に変わる。解は機能追加ではなく、履歴、テンプレート、データ移行、外部連携、運用知識の蓄積になる。",
+        template: "現在の問い：\n本当の目的：\n5回Why：\n逆の問い：\n新しい問い候補10個：\n採用する問い："
+      },
+      {
+        n: 2, name: "前提破壊・逆転", en: "Assumption Reversal", cat: "問い", tags: ["前提", "逆転", "常識破壊"],
+        summary: "常識は便利だが、同時に発想の檻でもある。暗黙の前提を逆転させると、新しい設計空間が見える。",
+        structure: ["当たり前を20個書く", "各前提を逆にする", "逆前提が成立する条件を考える", "最小プロトタイプへ落とす", "逆前提が価値になる顧客を探す"],
+        example: "前提『ユーザーは説明書を読む』を逆転して『ユーザーは説明書を読まない』にする。すると説明書を厚くする発想ではなく、初回起動で自然に正しい操作へ誘導するUI、誤操作しても戻れる設計、セットアップ診断、色や形状による物理的ガイドが候補になる。",
+        template: "業界の当たり前：\n逆転した前提：\n成立条件：\nその条件を満たす仕組み：\n最初の実験："
+      },
+      {
+        n: 3, name: "目的―手段切断", en: "Means–Ends Separation", cat: "問い", tags: ["目的", "手段", "指標"],
+        summary: "手段への執着を断ち切り、目的に最短で届く別手段を探す。",
+        structure: ["現在の施策や仕様を列挙する", "それぞれの本当の目的を書く", "目的を測定可能な状態にする", "代替手段を10個出す", "効果・速さ・リスク・可逆性で選ぶ"],
+        example: "『高精度センサを追加する』という手段の目的が『誤検知を減らす』なら、成功指標は誤検知率を1/5にすること。代替案として、ソフト補正、ユーザー確認フロー、使用条件の自動判定、環境ガイド、自己診断、例外時のみ高精度モードなどが出る。",
+        template: "いま考えている手段：\n本当の目的：\n成功指標：\n代替手段10個：\n最有力案と理由："
+      },
+      {
+        n: 4, name: "制約の発明", en: "Constraint Invention", cat: "発散", tags: ["制約", "発散", "低コスト"],
+        summary: "自由すぎると凡庸になる。勝てる制約を意図的に置くことで、独自の解が出る。",
+        structure: ["制約候補を10個作る", "価値を上げる制約を2〜3個選ぶ", "制約下で案を30分量産する", "良案を制約から少し解放して最適化する", "制約がブランドや優位性になるか評価する"],
+        example: "『追加部品なし』『作業時間半分』『教育ゼロ』を制約にすると、新部品追加ではなく、既存部品の兼用、組立順序の変更、部品形状そのものを治具化する、誤挿入できない幾何形状にする、といった案が出る。",
+        template: "あえて置く制約：\n制約が価値になる理由：\n制約下の案：\n制約を少し緩めた改善案：\n実験方法："
+      },
+      {
+        n: 5, name: "異常起点イノベーション", en: "Anomaly-First", cat: "構造化", tags: ["現場", "異常", "未充足ニーズ"],
+        summary: "現場の例外、裏技、ヒヤリハットは未充足ニーズの入口である。",
+        structure: ["現場の例外や手戻りを集める", "異常を不足している機能・情報・権限として書き換える", "頻度と損失で順位付けする", "異常を予防・検知・復旧する案を出す", "最も損失が大きいものから試す"],
+        example: "『たまに詰まる』という異常を、単に詰まり防止だけで捉えない。詰まる前の兆候を検知できない、詰まった後の復旧が遅い、ユーザーが原因を理解できない、という不足に分解する。解は、兆候検出、復旧シーケンス、自動ログ、ユーザー向け対処ガイドになる。",
+        template: "観察した異常：\nその異常で失われるもの：\n不足している情報・機能・権限：\n予防案：\n検知案：\n復旧案："
+      },
+      {
+        n: 6, name: "連続体スイープ", en: "Spectrum Sweep", cat: "発散", tags: ["極端", "変数", "探索"],
+        summary: "二択ではなく、重要変数を連続体として振り切る。極端な条件から構造を学ぶ。",
+        structure: ["重要変数を1つ選ぶ", "最小から最大まで10段階にする", "0と無限大の世界を考える", "極端で成立する仕組みを抽出する", "現実的な中間解へ戻す"],
+        example: "サポート量を0から無限大まで振る。サポートゼロなら自己診断、自動復旧、誤操作防止が必須。サポート無限大なら代行、常駐、運用込みサブスクが成立する。中間解として、通常は自動診断、重要時だけ人が介入するサービスが設計できる。",
+        template: "選ぶ変数：\n0の世界：\n無限大の世界：\n極端から学べる原理：\n現実的な中間案："
+      },
+      {
+        n: 7, name: "反例ファースト設計", en: "Counterexample First", cat: "検証", tags: ["反例", "失敗", "リスク"],
+        summary: "うまくいく理由より、壊れる理由を先に扱う。反例を設計条件に変える。",
+        structure: ["アイデアを一文で書く", "失敗する反例を15個出す", "技術・運用・心理・経済に分類する", "上位3つを設計条件にする", "設計を作り直す"],
+        example: "『アプリで習慣化する』という案に対して、通知がうるさい、入力が面倒、最初だけ使う、成果が見えない、飽きる、という反例を先に出す。すると、通知強化ではなく、入力ゼロ、失敗しても続く、成果が自動で見える、週1だけ振り返る設計に変わる。",
+        template: "アイデア：\n失敗する反例15個：\n最も危険な反例3つ：\n設計条件への変換：\n修正版アイデア："
+      },
+      {
+        n: 8, name: "敵の最強化", en: "Steelman Innovation", cat: "検証", tags: ["反論", "説得", "強化"],
+        summary: "反対者の主張を最も賢い形にしてから、それでも成立する設計にする。",
+        structure: ["反対意見を3つ書く", "それぞれを最強の論理に言い直す", "それでも成立する条件を作る", "設計に反映する", "反対者が納得する証拠を準備する"],
+        example: "『現場が回らない』という反対を、『例外処理が増えて運用コストが指数的に増える』と最強化する。すると、運用者に努力を求めるのではなく、例外処理をプロダクト側に内包する、縮退運転できる、異常時の判断基準を自動提示する設計が必要になる。",
+        template: "反対意見：\n最強化した反対意見：\n成立条件：\n設計への反映：\n納得させる証拠："
+      },
+      {
+        n: 9, name: "類推距離ラダー", en: "Analogical Distance Ladder", cat: "発散", tags: ["類推", "抽象化", "遠い業界"],
+        summary: "近い業界だけでなく、遠い業界・自然界・社会制度から構造を借りる。",
+        structure: ["問題構造を抽象化する", "近い業界の類似例を探す", "遠い業界の類似例を探す", "自然界や社会制度の類似例を探す", "原理を抽出し自分の文脈へ写像する"],
+        example: "混雑問題を待ち行列として抽象化する。類推元としてテーマパーク、空港保安検査、血流、物流倉庫を考える。原理は入口制御、優先レーン、バッファ、予測分散、ボトルネック監視。これを工場ラインやアプリ処理に移植できる。",
+        template: "問題の構造：\n近い類推：\n遠い類推：\n自然界・制度の類推：\n抽出した原理：\n移植案："
+      },
+      {
+        n: 10, name: "置換可能性マップ", en: "Substitution Mapping", cat: "構造化", tags: ["置換", "自動化", "アーキテクチャ"],
+        summary: "人、部品、情報、時間、エネルギーの置き換え可能性を網羅する。",
+        structure: ["システム要素を分解する", "各要素の置換候補を10個出す", "置換で得る価値を評価する", "置換の副作用を見る", "最良の置換を組み合わせる"],
+        example: "人の判断を置換する候補として、ルール、統計モデル、画像認識、センサ、ユーザー自己申告、二段階確認、外部専門家レビューがある。完全自動化だけでなく、半自動化やガイド付き判断も設計対象になる。",
+        template: "置換したい要素：\n置換候補：\n得られる価値：\n副作用：\n採用する置換："
+      },
+      {
+        n: 11, name: "形態分析マトリクス", en: "Morphological Matrix", cat: "発散", tags: ["組合せ", "分解", "探索空間"],
+        summary: "要素分解と組合せ探索で、頭の中だけでは出ない構成を作る。",
+        structure: ["重要要素を5〜8個に分ける", "各要素の方式候補を5〜10個出す", "ランダムに組み合わせる", "矛盾する組合せを優先して考える", "成立条件を設計する"],
+        example: "サービスを入力方法、処理方法、通知方法、課金方法、サポート方法に分解する。入力は音声、処理はAI、通知は週1レポート、課金は成果報酬、サポートはコミュニティ、という組合せを作ると、従来の月額SaaSとは違う形が出る。",
+        template: "要素1と候補：\n要素2と候補：\n要素3と候補：\n意外な組合せ：\n成立条件：\n試す案："
+      },
+      {
+        n: 12, name: "属性分解→再結合", en: "Attribute Decompose & Recompose", cat: "構造化", tags: ["属性", "再結合", "再設計"],
+        summary: "対象を属性に分け、普段結びつかない属性を再結合する。",
+        structure: ["対象の属性を分解する", "各属性の極端案を出す", "意外な属性同士を組み合わせる", "新しい一貫性を与える", "使用場面で検証する"],
+        example: "椅子を、座る、移動、保管、所有、時間という属性に分ける。『座る時間は5分だけ』『所有しない』『保管しない』『街に点在する』と再結合すると、個人所有の椅子ではなく、短時間休憩インフラという発想になる。",
+        template: "対象：\n属性分解：\n各属性の極端案：\n新しい組合せ：\n一貫したコンセプト："
+      },
+      {
+        n: 13, name: "コンポーネント役割交換", en: "Role Swap", cat: "構造化", tags: ["部品", "機能統合", "機械設計"],
+        summary: "部品や機能の役割を交換し、部品点数削減や新機能追加を同時に狙う。",
+        structure: ["機能ブロック図を書く", "各ブロックの役割を書く", "役割を入れ替えたら成立するか考える", "成立条件を追加する", "統合による副作用を評価する"],
+        example: "筐体は支えるだけという前提を変え、筐体が状態を検知する役割も持てないか考える。ひずみ、振動、温度、接触状態を筐体から取れれば、別センサを減らしながら自己診断機能を追加できる。",
+        template: "部品・機能一覧：\n現在の役割：\n交換できる役割：\n成立条件：\nメリットと副作用："
+      },
+      {
+        n: 14, name: "エクサプテーション探索", en: "Exaptation Search", cat: "競争優位", tags: ["転用", "既存資産", "新用途"],
+        summary: "本来の目的とは違う用途で、既存資産を化けさせる。",
+        structure: ["既存資産を棚卸しする", "各資産の副作用・余剰能力を書く", "副作用が価値になる文脈を探す", "最小実験で市場反応を見る", "当たり文脈へ絞る"],
+        example: "高精度な流量制御技術の本来目的が医療装置内の安定制御だとしても、副作用として微量制御、ログ取得、再現性がある。これらは培養、化粧品調合、飲料、教育実験、小型研究装置など別用途で価値になる可能性がある。",
+        template: "既存資産：\n本来用途：\n副作用・余剰能力：\n価値になりそうな文脈：\n最小実験："
+      },
+      {
+        n: 15, name: "負の空間発想", en: "Negative Space", cat: "発散", tags: ["削除", "無い世界", "設計"],
+        summary: "あるものではなく、無いものに注目する。削除によって設計テーマを発見する。",
+        structure: ["業界の当たり前を列挙する", "それが無い世界を想像する", "無いことで困ることを書く", "困らない仕組みを設計する", "削除が価値になるか検証する"],
+        example: "サポートが無い世界を考える。困るのは復旧できない、原因が分からない、設定を間違えること。ならば、自己診断、自動復旧、ログの自動送信、誤操作できないUIが必要になる。サポート削減が、逆に製品価値を高める。",
+        template: "削除する当たり前：\n無い世界で困ること：\n困らない仕組み：\n削除による価値：\n検証方法："
+      },
+      {
+        n: 16, name: "生成→殺す→救う", en: "Generate–Kill–Rescue", cat: "検証", tags: ["アイデア選別", "統合", "批判"],
+        summary: "アイデアを量産し、殺し、死んだ案から良い部品だけを救う。",
+        structure: ["短時間で30案出す", "致命傷をつけて殺す", "死んだ案の良い要素を抽出する", "良い要素同士を合成する", "合成案を再評価する"],
+        example: "30案のうち大半は弱い。しかし、弱い案にも『即効性』『入力ゼロ』『説明が簡単』『見た目が良い』などの部品がある。死んだ案から部品を回収し、強い部品だけを合成すると、単独案より実用的なコンセプトになる。",
+        template: "量産した案：\n殺した理由：\n救える良い要素：\n合成案：\n次に試すこと："
+      },
+      {
+        n: 17, name: "10x / 10% 二軸設計", en: "Dual-Track Innovation", cat: "実装", tags: ["改善", "飛躍", "両利き"],
+        summary: "10%改善と10倍飛躍を同時に走らせ、現実と未来の両方を取る。",
+        structure: ["10%改善テーマを1つ選ぶ", "10x飛躍テーマを1つ選ぶ", "共通資産を探す", "短期成果と長期学習を分ける", "片方の学びをもう片方へ移植する"],
+        example: "装置開発なら、10%改善は作業時間20%短縮、10x飛躍は作業そのものを不要にする自動化。短期改善で現場の信用を得ながら、ログやUI資産を蓄積し、長期の自動化に転用する。",
+        template: "10%改善案：\n10x飛躍案：\n共通資産：\n短期実験：\n長期実験："
+      },
+      {
+        n: 18, name: "未来からの逆算", en: "Backcasting", cat: "実装", tags: ["未来", "逆算", "ロードマップ"],
+        summary: "今できることから考えると小さくまとまる。未来の当たり前から逆算する。",
+        structure: ["3年後の当たり前を文章化する", "成立条件を分解する", "今すぐ作れる条件を選ぶ", "90日以内の検証に落とす", "未来像と現実のズレを更新する"],
+        example: "3年後に『教育なしで装置が安定稼働する』のが当たり前だと置く。成立条件は自己診断、誤操作耐性、ログ、復旧ガイド、遠隔支援。今すぐできるのはログ設計と復旧プロトコルの整備。そこから始める。",
+        template: "未来の当たり前：\n成立条件：\n今すぐ作れる条件：\n90日実験：\n更新した未来像："
+      },
+      {
+        n: 19, name: "境界線の引き直し", en: "System Boundary Redraw", cat: "構造化", tags: ["提供範囲", "事業設計", "境界"],
+        summary: "どこまでを自分の仕事にするかで価値が変わる。境界を広げる・狭める。",
+        structure: ["現在の提供範囲を図示する", "境界を外へ広げる案を出す", "境界を内へ狭める案を出す", "価値とコストを比較する", "限定的に提供して試す"],
+        example: "製品だけを売るのではなく、設置、教育、保守、廃棄、データ活用まで含めると顧客価値は増える。一方で、教育部分を外部パートナー化して自社はコア機能に集中する選択もある。境界設計は事業設計そのもの。",
+        template: "現在の境界：\n外へ広げる案：\n内へ狭める案：\n価値とコスト：\n試す境界変更："
+      },
+      {
+        n: 20, name: "ジョブ分解", en: "Job Decomposition", cat: "構造化", tags: ["顧客", "ジョブ", "体験"],
+        summary: "顧客は製品ではなく、自分の進歩を買っている。ジョブを工程に分けて痛みを探す。",
+        structure: ["顧客が達成したい進歩を書く", "開始・準備・実行・確認・後処理に分解する", "各工程の痛みを書く", "排除・代替・軽減の案を出す", "最大の痛みに集中する"],
+        example: "顧客のジョブが『失敗なく短時間で検査を完了したい』なら、準備、実行、確認、記録、後処理に分解する。確認工程で不安が大きいなら、自動検証、判定理由の表示、失敗時のロールバックが価値になる。",
+        template: "顧客の進歩：\n工程分解：\n各工程の痛み：\n排除案：\n代替案：\n軽減案："
+      },
+      {
+        n: 21, name: "価値の非対称設計", en: "Asymmetry Engineering", cat: "競争優位", tags: ["模倣困難", "データ", "ネットワーク効果"],
+        summary: "競合と同じ土俵で戦わない。真似しづらい非対称な資産を作る。",
+        structure: ["競合もできる対称領域を列挙する", "自分だけが持てる資産を探す", "資産が強くなるループを設計する", "模倣コストを見積もる", "非対称性を守る仕組みを作る"],
+        example: "機能だけなら競合に真似される。しかし、運用ログが蓄積するほど精度が上がる、コミュニティ参加者が増えるほど価値が増える、現場ノウハウがテンプレート化される、という構造なら模倣コストが上がる。",
+        template: "対称領域：\n非対称資産：\n資産が強くなるループ：\n競合の模倣コスト：\n守る仕組み："
+      },
+      {
+        n: 22, name: "矛盾採掘", en: "Contradiction Mining", cat: "競争優位", tags: ["矛盾", "両立", "TRIZ的"],
+        summary: "Aを上げるとBが下がるという矛盾を、革新の核として扱う。",
+        structure: ["両立したい目的を2つ書く", "両立しない理由を書く", "時間・空間・条件・役割で分離する", "分離案を統合する", "副作用を評価する"],
+        example: "『簡単にしたい』と『自由度が欲しい』は矛盾する。時間分離すれば、初心者には簡単UI、慣れたら詳細UIを段階解放する。役割分離すれば、一般ユーザーは簡単、管理者は詳細設定という設計になる。",
+        template: "目的A：\n目的B：\n矛盾の理由：\n時間分離案：\n空間分離案：\n条件分離案：\n役割分離案："
+      },
+      {
+        n: 23, name: "フィードバック圧縮", en: "Feedback Compression", cat: "実装", tags: ["検証速度", "プロトタイプ", "学習"],
+        summary: "創造性は試行回数で増える。試行回数はフィードバック速度で決まる。",
+        structure: ["現在の学習ループ時間を測る", "作る・触る・測る・直すに分解する", "最も遅い工程を特定する", "近似手段に置換する", "1日で回る最小ループを作る"],
+        example: "実機でしか検証できないと1ループに数週間かかる。文章プロトタイプ、Figma的なUIモック、紙芝居、簡易治具、シミュレーションで先に当たりをつければ、実機検証は有望案だけに絞れる。",
+        template: "現在の学習ループ：\n一番遅い工程：\n近似手段：\n1日で回る実験：\n得たい判断："
+      },
+      {
+        n: 24, name: "物語プロトタイピング", en: "Narrative Prototyping", cat: "実装", tags: ["体験", "ストーリー", "UX"],
+        summary: "形にする前に、ユーザーの体験を文章で作り、価値の穴を見つける。",
+        structure: ["ユーザー視点の一日を書く", "導入・利用・トラブル・解決を描く", "感情の谷をマークする", "谷を埋める仕組みを設計する", "物語を更新して矛盾を減らす"],
+        example: "ユーザーが開封し、設定で迷い、エラーに遭遇し、サポートに連絡し、復旧するまでの物語を書く。設定で不安、エラーで混乱、原因不明で怒りが出るなら、QRセットアップ、診断表示、復旧ボタン、サポート用ログ共有が必要になる。",
+        template: "ユーザーの一日：\n導入場面：\n利用場面：\nトラブル場面：\n感情の谷：\n谷を埋める仕組み："
+      }
+    ];
+
+    function render() {
+      const root = document.getElementById('frameworks');
+      const toc = document.getElementById('toc');
+      root.innerHTML = '';
+      toc.innerHTML = '';
+      frameworks.forEach(f => {
+        const a = document.createElement('a');
+        a.href = `#fw-${f.n}`;
+        a.textContent = `${f.n}. ${f.name}`;
+        toc.appendChild(a);
+
+        const article = document.createElement('article');
+        article.className = 'framework';
+        article.id = `fw-${f.n}`;
+        article.dataset.cat = f.cat;
+        article.dataset.text = `${f.name} ${f.en} ${f.cat} ${f.tags.join(' ')} ${f.summary} ${f.example}`.toLowerCase();
+        article.innerHTML = `
+          <div class="framework-head">
+            <div class="num">${f.n}</div>
+            <div>
+              <h2>${f.name}<br><span class="note">${f.en}</span></h2>
+              <div class="tags">${f.tags.map(t => `<span class="tag">${t}</span>`).join('')}<span class="tag">${f.cat}</span></div>
+            </div>
+          </div>
+          <p class="summary"><strong>概要：</strong>${f.summary}</p>
+          <div class="grid-2">
+            <div class="box">
+              <h3>構造</h3>
+              <ol>${f.structure.map(s => `<li>${s}</li>`).join('')}</ol>
+            </div>
+            <div class="box green">
+              <h3>具体例・使い方</h3>
+              <p class="example">${f.example}</p>
+            </div>
+          </div>
+          <div class="template">
+            <strong>実践テンプレート</strong>
+            <button class="secondary" style="margin-left:10px; padding:6px 10px;" onclick="copyTemplate(${f.n})">テンプレートをコピー</button><span id="copied-${f.n}" class="copy-ok"></span>
+            <textarea id="tpl-${f.n}">${f.template}</textarea>
+          </div>
+        `;
+        root.appendChild(article);
+      });
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const c = document.getElementById('category').value;
+      document.querySelectorAll('.framework').forEach(el => {
+        const okQ = !q || el.dataset.text.includes(q);
+        const okC = c === 'all' || el.dataset.cat === c;
+        el.classList.toggle('hidden', !(okQ && okC));
+      });
+    }
+
+    function clearFilters() {
+      document.getElementById('search').value = '';
+      document.getElementById('category').value = 'all';
+      applyFilters();
+    }
+
+    async function copyTemplate(n) {
+      const text = document.getElementById(`tpl-${n}`).value;
+      try {
+        await navigator.clipboard.writeText(text);
+        const el = document.getElementById(`copied-${n}`);
+        el.textContent = 'コピーしました';
+        setTimeout(() => el.textContent = '', 1400);
+      } catch (e) {
+        alert('コピーできませんでした。テキストエリアから手動でコピーしてください。');
+      }
+    }
+
+    render();
+    document.getElementById('search').addEventListener('input', applyFilters);
+    document.getElementById('category').addEventListener('change', applyFilters);
+  </script>
+</body>
+</html>

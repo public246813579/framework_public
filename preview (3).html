@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>戦略的有利化フレームワーク24｜実用ワークブック</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #17202a;
+      --muted: #637083;
+      --line: #dbe1ea;
+      --accent: #23395d;
+      --accent2: #526d9a;
+      --soft: #eef3ff;
+      --danger: #7b2f2f;
+      --good: #1f6f52;
+      --shadow: 0 10px 28px rgba(30, 41, 59, .10);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+      background: linear-gradient(180deg, #edf2ff 0%, var(--bg) 260px);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+    a { color: var(--accent); }
+    .container { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    header.hero {
+      padding: 44px 0 24px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    h1 {
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin: 0 0 14px;
+    }
+    h2 {
+      font-size: clamp(24px, 2.4vw, 34px);
+      letter-spacing: -0.03em;
+      margin: 44px 0 14px;
+      padding-top: 12px;
+    }
+    h3 {
+      font-size: 21px;
+      line-height: 1.35;
+      margin: 0 0 10px;
+    }
+    p { margin: 0 0 14px; }
+    .lead {
+      font-size: 18px;
+      color: #334155;
+      max-width: 920px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #44546a;
+    }
+    .notice {
+      background: #fff8e7;
+      border: 1px solid #ead8aa;
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      color: #4f3b13;
+      margin: 18px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(15,23,42,.04);
+      padding: 20px;
+    }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    @media (max-width: 900px) {
+      .span-4, .span-6, .span-8 { grid-column: span 12; }
+      .container { padding: 16px; }
+      .hero-card { padding: 22px; }
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246,247,251,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
+    }
+    .toolbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .toolbar-left, .toolbar-right { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button, .button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 9px 13px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    button:hover, .button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(15,23,42,.08); }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    label { font-weight: 700; display: block; margin: 0 0 6px; }
+    .field { margin-bottom: 14px; }
+    .small { font-size: 13px; color: var(--muted); }
+    .muted { color: var(--muted); }
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .toc a {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+    }
+    .toc a:hover { background: var(--soft); }
+    .workflow {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+    }
+    .step:before {
+      counter-increment: step;
+      content: counter(step);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .filters {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width: 800px) { .filters { grid-template-columns: 1fr; } }
+    .framework-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      margin: 18px 0;
+      overflow: hidden;
+      box-shadow: 0 3px 18px rgba(15,23,42,.05);
+    }
+    .framework-head {
+      padding: 22px 22px 12px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+    }
+    .framework-no {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 5px 10px;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .tag {
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid #cfdbf8;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .framework-body {
+      padding: 18px 22px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px) { .framework-body { grid-template-columns: 1fr; } .framework-head { grid-template-columns: 1fr; } }
+    ul { padding-left: 1.2em; margin-top: 8px; }
+    li { margin-bottom: 5px; }
+    details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #fbfcff;
+      margin-top: 10px;
+    }
+    summary { cursor: pointer; font-weight: 800; }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 10px 0;
+    }
+    @media (max-width: 600px) { .score-grid { grid-template-columns: repeat(2, 1fr); } }
+    .score-grid label { font-size: 12px; color: var(--muted); font-weight: 700; }
+    .score-grid select { padding: 7px 8px; font-size: 14px; }
+    .score-total {
+      font-weight: 900;
+      color: var(--accent);
+      background: var(--soft);
+      border-radius: 12px;
+      padding: 8px 10px;
+      display: inline-block;
+    }
+    .note-area {
+      min-height: 92px;
+      margin-top: 8px;
+    }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .matrix-table th, .matrix-table td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+    }
+    .matrix-table th {
+      background: var(--soft);
+      text-align: left;
+    }
+    .footer {
+      color: var(--muted);
+      padding: 40px 0 70px;
+      text-align: center;
+    }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: #eef2f7;
+      border: 1px solid #d6dde8;
+      border-radius: 7px;
+      padding: 1px 6px;
+    }
+    .print-only { display: none; }
+    @media print {
+      .toolbar, .filters, button, .note-actions, .no-print { display: none !important; }
+      body { background: #fff; }
+      .container { max-width: none; padding: 0; }
+      .hero-card, .card, .framework-card { box-shadow: none; break-inside: avoid; }
+      .framework-card { page-break-inside: avoid; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <div class="toolbar-inner">
+      <div class="toolbar-left">
+        <a class="button" href="#top">先頭</a>
+        <a class="button" href="#workflow">統合ワークフロー</a>
+        <a class="button" href="#frameworks">24フレーム</a>
+        <a class="button" href="#worksheet">実行シート</a>
+      </div>
+      <div class="toolbar-right">
+        <button onclick="window.print()">印刷 / PDF化</button>
+        <button onclick="exportNotes()">メモを書き出し</button>
+        <button onclick="clearAll()" title="保存済みメモとスコアを消去">リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="container">
+    <header class="hero">
+      <div class="hero-card">
+        <h1>戦略的に自分に有利な状況・環境を作る<br>24の思考フレームワーク</h1>
+        <p class="lead">これは「相手を騙す技術」ではなく、<strong>自分の強み・制約・選択肢・信用・仕組みを設計し、自然に有利なポジションへ移動するための実用ワークブック</strong>です。各フレームに、構造・使い方・具体例・記入欄・優先度スコアを付けています。</p>
+        <div class="pill-row">
+          <span class="pill">オフライン利用可</span>
+          <span class="pill">メモはブラウザ内に自動保存</span>
+          <span class="pill">印刷 / PDF化対応</span>
+          <span class="pill">検索・タグ絞り込み対応</span>
+        </div>
+        <div class="notice">
+          <strong>使い方：</strong>まず「統合ワークフロー」で今の状況を整理し、次に24フレームから必要なものを選びます。各フレームは「影響度・実現性・オプション価値・リスク低さ」でスコア化できます。高得点のものから今週の行動に落としてください。
+        </div>
+      </div>
+    </header>
+
+    <section id="workflow">
+      <h2>統合ワークフロー：有利な環境を作る8ステップ</h2>
+      <div class="workflow">
+        <div class="step"><h3>有利の定義</h3><p>何を増やしたいのかを決める。裁量、収入、時間、評判、選択肢、学習、人脈など。</p></div>
+        <div class="step"><h3>制約の固定</h3><p>時間、体力、権限、資金、精神コストを先に固定する。無理な設計を捨てる。</p></div>
+        <div class="step"><h3>土俵の選択</h3><p>自分の強みが効く場所へ移る。勝てないゲームで正面衝突しない。</p></div>
+        <div class="step"><h3>オプション形成</h3><p>代替案、逃げ道、別ルートを作る。交渉力は選択肢から生まれる。</p></div>
+        <div class="step"><h3>利害の整列</h3><p>周囲があなたを助けると得をする構造にする。正論ではなく利害で設計する。</p></div>
+        <div class="step"><h3>情報とタイミング</h3><p>早く、構造化された情報を持つ。相手が困る直前に判断材料を出す。</p></div>
+        <div class="step"><h3>仕組み化</h3><p>テンプレ、標準、デフォルト、ツールで有利を固定する。努力ではなく構造で勝つ。</p></div>
+        <div class="step"><h3>撤退と再配分</h3><p>不利な沼から抜ける基準を持つ。時間と信用を有望な場所へ再配分する。</p></div>
+      </div>
+    </section>
+
+    <section id="situation" class="grid">
+      <div class="span-8 card">
+        <h2 style="margin-top:0">現在地整理シート</h2>
+        <p class="muted">まずここを埋めると、どのフレームを使うべきか判断しやすくなります。入力内容はブラウザ内に保存されます。</p>
+        <div class="field"><label for="ctx-goal">1. 今、有利にしたい状況</label><textarea id="ctx-goal" data-save="ctx-goal" placeholder="例：社内で重要案件に入りたい／交渉で条件を良くしたい／学習や副業の時間を確保したい"></textarea></div>
+        <div class="field"><label for="ctx-win">2. 自分にとっての「有利」の定義</label><textarea id="ctx-win" data-save="ctx-win" placeholder="例：裁量が増える、選択肢が増える、信用が蓄積する、時間を失わない"></textarea></div>
+        <div class="field"><label for="ctx-constraints">3. 制約</label><textarea id="ctx-constraints" data-save="ctx-constraints" placeholder="例：平日夜は疲れている、権限がない、予算がない、上司の承認が必要"></textarea></div>
+        <div class="field"><label for="ctx-stakeholders">4. 関係者と利害</label><textarea id="ctx-stakeholders" data-save="ctx-stakeholders" placeholder="例：上司＝リスク低減、同僚＝工数削減、他部署＝手戻り削減"></textarea></div>
+      </div>
+      <div class="span-4 card">
+        <h2 style="margin-top:0">最初に選ぶべきフレーム</h2>
+        <table class="matrix-table">
+          <tr><th>状況</th><th>使うフレーム</th></tr>
+          <tr><td>何を目指すべきか曖昧</td><td>1, 2, 10</td></tr>
+          <tr><td>交渉で弱い</td><td>4, 5, 6</td></tr>
+          <tr><td>周囲が動かない</td><td>6, 7, 20</td></tr>
+          <tr><td>評価されにくい</td><td>15, 16, 21</td></tr>
+          <tr><td>仕事が遅れる</td><td>2, 13, 19</td></tr>
+          <tr><td>新しい挑戦をしたい</td><td>14, 22, 23, 24</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>全体マップ</h2>
+      <div class="toc" id="toc"></div>
+    </section>
+
+    <section id="frameworks">
+      <h2>24フレームワーク本編</h2>
+      <p class="muted">検索、タグ、スコア順で絞り込めます。メモとスコアは自動保存されます。</p>
+      <div class="filters no-print">
+        <div><label for="search">検索</label><input id="search" placeholder="例：交渉、評判、撤退、ボトルネック"></div>
+        <div><label for="tagFilter">タグ</label><select id="tagFilter"><option value="">すべて</option></select></div>
+        <div><label for="sortMode">並び替え</label><select id="sortMode"><option value="id">番号順</option><option value="score">スコア高い順</option><option value="tag">タグ順</option></select></div>
+      </div>
+      <div id="frameworkList"></div>
+    </section>
+
+    <section id="worksheet">
+      <h2>実行シート：今週の戦略を1枚に落とす</h2>
+      <div class="grid">
+        <div class="span-6 card">
+          <h3>1. 今週使うフレーム上位3つ</h3>
+          <textarea data-save="weekly-top3" placeholder="例：5 BATNA強化、6 インセンティブ整列、18 デフォルト設計"></textarea>
+        </div>
+        <div class="span-6 card">
+          <h3>2. 今週の具体アクション</h3>
+          <textarea data-save="weekly-action" placeholder="例：上司に出す1枚提案を作る／別部署のAさんに相談する／レビュー依頼テンプレを作る"></textarea>
+        </div>
+        <div class="span-6 card">
+          <h3>3. 失ってはいけないもの</h3>
+          <textarea data-save="weekly-guardrails" placeholder="例：信用、健康、婚約者との時間、法令遵守、睡眠"></textarea>
+        </div>
+        <div class="span-6 card">
+          <h3>4. 撤退・見直し条件</h3>
+          <textarea data-save="weekly-exit" placeholder="例：2週間反応がなければ提案先を変える／協力者が見つからなければスコープ縮小"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>倫理的ガードレール</h2>
+      <div class="card">
+        <p><strong>このワークブックの狙いは、相手を不当に操作することではなく、自分の選択肢・信用・構造的優位を増やすことです。</strong>短期的に相手を騙す、情報を隠す、責任を押し付ける、過度に依存させる方法は、長期の評判資本を毀損します。</p>
+        <p>有利化の本質は、<strong>周囲にとっても使いやすく、協力したくなり、結果的にあなたの裁量と選択肢が増える構造</strong>を作ることです。</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>作成日：2026-05-18　|　単一HTMLファイル。外部ライブラリ不使用。</p>
+    </div>
+  </main>
+
+  <script>
+    const frameworks = [
+  {
+    "id": 1,
+    "name": "目的関数再定義フレーム",
+    "en": "Goal Function Design",
+    "tag": "土俵設定",
+    "summary": "不利な状況の多くは、他人が定義した勝ち方に乗っていることから始まる。まず「何をもって自分に有利と呼ぶのか」を再定義する。",
+    "structure": [
+      "本当に欲しい成果を一文で書く。承認・見栄・安心感と切り分ける。",
+      "成果指標を2〜4個に絞る。例：裁量、収入、時間自由度、学習量、人脈、評判。",
+      "犠牲にしないものを明記する。健康、信用、家族関係、法令遵守など。",
+      "今の行動がその指標に効いているかを週1回確認する。"
+    ],
+    "workflow": [
+      "現状のゴールを書き出す。",
+      "それが誰の評価基準かを確認する。",
+      "自分の長期目的に直結する指標へ置き換える。",
+      "日々の意思決定ルールに変換する。"
+    ],
+    "example": "社内で「評価される」ことを目的にすると、上司の好みに合わせすぎて消耗する。目的を「重要案件に入る裁量を得る」に変えると、行動は資料作成の丁寧さだけでなく、意思決定者への事前説明、論点整理、成果の可視化へ移る。結果として、評価は副産物になる。",
+    "questions": [
+      "今、自分は誰のゲームで勝とうとしているか？",
+      "本当に増やしたい資本は何か？",
+      "この1ヶ月で測るべき指標は何か？"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "制約先出しフレーム",
+    "en": "Constraint-First Design",
+    "tag": "自滅防止",
+    "summary": "能力不足よりも、制約を無視した設計が失敗を生む。時間・体力・権限・資金・集中力を最初に固定して、その中で最適化する。",
+    "structure": [
+      "使える時間、精神コスト、資金、権限を数値化する。",
+      "制約を破るタスクを事前に除外する。",
+      "制約内で最大成果が出る形式を選ぶ。",
+      "制約変更が必要なら、交渉・委任・自動化を先に行う。"
+    ],
+    "workflow": [
+      "今週使える時間を現実的に見積もる。",
+      "やるべきことを成果に近い順に並べる。",
+      "制約を超えるものを削るか、スコープを小さくする。",
+      "80点で出す基準を先に決める。"
+    ],
+    "example": "完璧な報告書を作ろうとして締切を破るより、48時間以内に『結論・根拠・未確認点・次アクション』だけを出す。品質は後で上げられるが、信頼は締切遅延で失いやすい。",
+    "questions": [
+      "このタスクに使える本当の上限時間は？",
+      "何を捨てれば締切を守れるか？",
+      "品質80点の定義は何か？"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "レバレッジ棚卸しフレーム",
+    "en": "Leverage Inventory",
+    "tag": "梃子",
+    "summary": "努力量ではなく、努力が何倍に増幅されるかを見る。技術・信用・資本・ネットワーク・仕組みの棚卸しを行う。",
+    "structure": [
+      "自分のレバレッジを5分類で列挙する：技術、信用、資本、ネットワーク、仕組み。",
+      "一度作れば何度も使える資産を特定する。",
+      "他人の成果にも貢献する形に変える。",
+      "最も増幅率が高いものに集中投資する。"
+    ],
+    "workflow": [
+      "今持っているスキル・人脈・成果物を書き出す。",
+      "それぞれが何人に影響するかを見積もる。",
+      "再利用可能なテンプレ・ツール・標準に変換する。",
+      "月1つだけ強化テーマを決める。"
+    ],
+    "example": "単発で分析資料を作るだけなら一度の成果で終わる。分析テンプレートや自動集計ツールにして共有すれば、他部署の仕事にも使われ、あなたの影響力が継続的に増える。",
+    "questions": [
+      "自分の成果で再利用できるものは何か？",
+      "他人の仕事を楽にする資産は何か？",
+      "最も複利が効く投資先はどれか？"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "オプション最大化フレーム",
+    "en": "Option Expansion",
+    "tag": "選択肢",
+    "summary": "有利さは選択肢の数と質で決まる。選択肢が1つしかない状態は、能力が高くても交渉力が弱い。",
+    "structure": [
+      "現ルートが止まった場合の代替ルートを3つ作る。",
+      "各ルートの発火条件を決める。",
+      "維持コストが小さい形でオプションを残す。",
+      "月1回、選択肢の価値を更新する。"
+    ],
+    "workflow": [
+      "今の選択肢をすべて書く。",
+      "最悪シナリオを想定する。",
+      "代替案を内部・外部・自力の3方向で作る。",
+      "小さな準備行動を予定表に入れる。"
+    ],
+    "example": "今の部署で希望案件に入れない場合、別部署への接点、社内公募、社外転職、資格取得、個人プロジェクトを並行で小さく保持する。選択肢があるだけで、精神的にも交渉上も有利になる。",
+    "questions": [
+      "今のルートが消えたら何をするか？",
+      "オプション維持に月何時間使うか？",
+      "最も安く保持できる逃げ道は何か？"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BATNA強化フレーム",
+    "en": "Best Alternative to a Negotiated Agreement",
+    "tag": "交渉力",
+    "summary": "交渉力は話術ではなく、合意しなかった場合の代替案の強さで決まる。BATNAを強くすると、態度も条件も変わる。",
+    "structure": [
+      "交渉が不成立だった場合の最善代替案を明確化する。",
+      "その代替案の価値を上げる行動を取る。",
+      "相手のBATNAも推定する。",
+      "自分のBATNAを露骨に見せず、余裕として伝える。"
+    ],
+    "workflow": [
+      "交渉テーマを1つ選ぶ。",
+      "合意しない場合の代替案を書く。",
+      "代替案の弱点を補強する。",
+      "相手が失うものを整理する。"
+    ],
+    "example": "異動希望を伝える前に、別チームの協力者、社外市場価値、現在部署での代替成果を準備する。『ここしかない』状態を避けることで、要求ではなく提案として話せる。",
+    "questions": [
+      "この交渉が失敗したら何を選ぶか？",
+      "その代替案を今週どう強くできるか？",
+      "相手の代替案は何か？"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "インセンティブ整列フレーム",
+    "en": "Incentive Alignment",
+    "tag": "協力構造",
+    "summary": "人は正論ではなく、自分の利害で動く。あなたの成功が相手の成功にもなる構造を作る。",
+    "structure": [
+      "関係者ごとに得・損・恐れ・評価基準を整理する。",
+      "自分の提案が相手の得になる接続点を探す。",
+      "相手が協力したことを可視化する。",
+      "協力の見返りを早く、小さく返す。"
+    ],
+    "workflow": [
+      "関係者マップを作る。",
+      "各人のKPIや困りごとを書く。",
+      "自分の目的と相手の目的の交点を探す。",
+      "相手の言葉で提案文を作る。"
+    ],
+    "example": "品質改善を進めたいなら『品質が重要です』では弱い。製造部には手戻り削減、上司にはリスク低減、開発者には再設計工数削減として提示する。相手の得に翻訳するのが鍵。",
+    "questions": [
+      "相手は何で評価されているか？",
+      "自分の成功は相手の何を楽にするか？",
+      "協力してくれた人をどう可視化するか？"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "期待値制御フレーム",
+    "en": "Expectation Management",
+    "tag": "責任設計",
+    "summary": "不利な状況は、曖昧な期待値から生まれる。できること、できないこと、条件付きでできることを先に合意する。",
+    "structure": [
+      "依頼内容を成果物・期限・品質・責任範囲に分解する。",
+      "不確実な点を明示する。",
+      "途中報告のタイミングを先に設定する。",
+      "変更があれば再合意する。"
+    ],
+    "workflow": [
+      "依頼を受けたら即着手せず、条件を確認する。",
+      "成果物のサンプルや粒度を合わせる。",
+      "リスクと未確定事項を先に共有する。",
+      "途中で期待値を補正する。"
+    ],
+    "example": "『いい感じにまとめて』という依頼にそのまま乗ると後出し修正で不利になる。最初に『A4一枚、結論優先、数字は暫定、金曜17時版』と定義すれば、責任範囲を守れる。",
+    "questions": [
+      "相手は何を成果物だと思っているか？",
+      "自分はどこまで責任を負うのか？",
+      "途中で期待値を合わせる場はあるか？"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "情報優位フレーム",
+    "en": "Information Advantage",
+    "tag": "情報戦",
+    "summary": "有利な人は、情報を多く持つだけでなく、早く構造化し、意思決定に使える形で出せる。",
+    "structure": [
+      "一次情報、数値情報、意思決定者の意図を分けて集める。",
+      "ノイズを捨てる基準を作る。",
+      "情報を論点・根拠・示唆・アクションに整理する。",
+      "共有し、情報ハブになる。"
+    ],
+    "workflow": [
+      "問題発生時に事実と推測を分ける。",
+      "影響範囲と緊急度を整理する。",
+      "未確認事項を明示する。",
+      "1ページで共有する。"
+    ],
+    "example": "不具合発生時に『たぶん原因はXです』と語るより、『発生条件、影響範囲、再現性、暫定対策、未確認点』を整理して出す。するとあなたが議論の基準点になる。",
+    "questions": [
+      "この件の一次情報は何か？",
+      "事実と推測を分けられているか？",
+      "意思決定者が知りたい形式になっているか？"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "タイミング裁定フレーム",
+    "en": "Timing Arbitrage",
+    "tag": "機会窓",
+    "summary": "同じ提案でも、出すタイミングで価値は変わる。相手が必要とする直前に準備済みであることが有利を生む。",
+    "structure": [
+      "予算、評価、会議、方針決定のカレンダーを把握する。",
+      "需要が高まる前に材料を準備する。",
+      "困っている瞬間に差し出す。",
+      "タイミングを逃した提案は寝かせる。"
+    ],
+    "workflow": [
+      "意思決定イベントを時系列で並べる。",
+      "各イベントの2〜4週間前に必要資料を準備する。",
+      "相手の困りごとが最大化する瞬間を狙う。",
+      "提案は短く、判断しやすく出す。"
+    ],
+    "example": "年度末に予算要求しても遅い。予算案を作る前の段階で、選択肢・費用対効果・リスクを比較表で出す。相手が判断材料を探している時に出すから通る。",
+    "questions": [
+      "次の意思決定日はいつか？",
+      "相手はその前に何に困るか？",
+      "今から準備できる判断材料は何か？"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "ゲーム選択フレーム",
+    "en": "Choose Your Game",
+    "tag": "土俵移動",
+    "summary": "勝てないゲームで努力しても消耗する。自分の強みが効くゲームを選び、不得意なゲームの比率を下げる。",
+    "structure": [
+      "自分の強みが効く条件を特定する。",
+      "今の環境でその条件が満たされているか見る。",
+      "満たされないなら役割・案件・場所を変える。",
+      "勝てないゲームは撤退基準を持つ。"
+    ],
+    "workflow": [
+      "過去に勝てた場面を3つ書く。",
+      "共通条件を抽出する。",
+      "現在の仕事や人間関係をその条件で評価する。",
+      "勝てる土俵に寄せる行動を選ぶ。"
+    ],
+    "example": "口の強い人が勝つ会議で正面から戦うより、事前資料・データ・構造化で議論の土俵を変える。話術勝負から設計勝負に移せば、自分の強みが効く。",
+    "questions": [
+      "自分が自然に勝てる条件は何か？",
+      "今のゲームはその条件を満たしているか？",
+      "土俵を変える最小行動は何か？"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "非対称性設計フレーム",
+    "en": "Asymmetry Design",
+    "tag": "差別化",
+    "summary": "互角の競争では消耗する。相手が真似しづらく、自分には自然にできる非対称性を作る。",
+    "structure": [
+      "周囲が弱い軸を探す。",
+      "自分が強い軸を掛け合わせる。",
+      "掛け合わせを成果物に固定する。",
+      "真似されても先に進めるよう更新する。"
+    ],
+    "workflow": [
+      "周囲の平均的な強みと弱みを観察する。",
+      "自分だけが持つ組み合わせを探す。",
+      "その組み合わせが効く案件を取る。",
+      "成果を見える形にする。"
+    ],
+    "example": "機械設計だけでなく、Python自動化、英語、サステナビリティ知識を組み合わせる。単体では珍しくなくても、掛け合わせると代替されにくいポジションになる。",
+    "questions": [
+      "周囲が面倒がっていることは何か？",
+      "自分が比較的苦なくできることは何か？",
+      "どの掛け合わせが希少か？"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "影響範囲拡張フレーム",
+    "en": "Sphere of Influence",
+    "tag": "影響力",
+    "summary": "自分が制御できないものに怒っても不利になる。制御可能・影響可能・制御不能を分け、影響可能領域を増やす。",
+    "structure": [
+      "問題を制御可能、影響可能、制御不能に分類する。",
+      "制御可能な部分に即アクションを打つ。",
+      "影響可能な部分には人・情報・提案で働きかける。",
+      "制御不能な部分から感情労力を引き上げる。"
+    ],
+    "workflow": [
+      "悩みを1つ選ぶ。",
+      "3分類に分けて書く。",
+      "制御可能な一手を今日打つ。",
+      "影響可能な相手に渡す材料を作る。"
+    ],
+    "example": "会社方針は制御できない。しかし、方針を現場向けに翻訳する資料、リスク整理、実行案は作れる。そこを握ると、現場への影響力が増える。",
+    "questions": [
+      "これは本当に自分が制御できるか？",
+      "影響可能に変えるには誰と何が必要か？",
+      "制御不能なことに時間を使いすぎていないか？"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "ボトルネック支配フレーム",
+    "en": "Bottleneck Ownership",
+    "tag": "要所掌握",
+    "summary": "価値の流れはボトルネックで決まる。詰まりを見つけ、それを改善する標準を作った人が有利になる。",
+    "structure": [
+      "プロセス全体の流れを描く。",
+      "待ち時間、手戻り、属人化が大きい場所を探す。",
+      "ボトルネックを改善する小さな仕組みを作る。",
+      "標準化して周囲に使わせる。"
+    ],
+    "workflow": [
+      "仕事の流れを左から右へ書く。",
+      "各工程の待ち時間と失敗頻度を書く。",
+      "最大の詰まりを1つ選ぶ。",
+      "テンプレ、チェックリスト、自動化で改善する。"
+    ],
+    "example": "レビューの手戻りが多いなら、設計レビュー前チェックリストを作る。毎回の手戻りが減り、あなたは単なる担当者ではなく、プロセス改善の中心になる。",
+    "questions": [
+      "全体の流れで一番詰まる場所はどこか？",
+      "そこを改善すると誰が得をするか？",
+      "自分が作れる標準は何か？"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "下方限定・上方開放フレーム",
+    "en": "Downside Limited, Upside Open",
+    "tag": "非対称リスク",
+    "summary": "致命傷を避けつつ、当たりを引く回数を増やす。小さく賭け、大きく伸びる可能性を残す。",
+    "structure": [
+      "致命傷の条件を定義する：信用、健康、法令、資金、人間関係。",
+      "失敗しても小さく済む実験にする。",
+      "成功した場合に拡張できる設計にする。",
+      "結果を学習資産として残す。"
+    ],
+    "workflow": [
+      "挑戦案を1つ選ぶ。",
+      "最悪ケースを具体化する。",
+      "損失上限を設定する。",
+      "1週間以内の小実験に変換する。"
+    ],
+    "example": "大きな新規企画をいきなり通すのではなく、1ページ提案と簡易PoCで反応を見る。失敗しても時間損失は小さく、反応が良ければ正式案件化できる。",
+    "questions": [
+      "この挑戦の致命傷は何か？",
+      "損失をどこまで小さくできるか？",
+      "当たった場合、どう拡張するか？"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "評判資本の複利フレーム",
+    "en": "Reputation Compound",
+    "tag": "信用",
+    "summary": "長期の有利は評判の複利で決まる。信頼、能力、協力姿勢を可視化し、伝播する形にする。",
+    "structure": [
+      "評判を信頼、能力、協力姿勢に分解する。",
+      "約束を守る範囲を狭く明確にする。",
+      "成果を第三者が説明できる形で残す。",
+      "助けた相手の成果にもなるようにする。"
+    ],
+    "workflow": [
+      "今伸ばしたい評判を1つ選ぶ。",
+      "その評判を証明する行動を決める。",
+      "成果物を残す。",
+      "周囲に自然に伝わる形式で共有する。"
+    ],
+    "example": "『できる人』と言われたいなら、難しい仕事を抱え込むより、約束を守り、論点を整理し、他人が使える成果物を残す。評判は自己主張ではなく、再現性ある行動で蓄積する。",
+    "questions": [
+      "今の自分は何で覚えられているか？",
+      "どんな評判を複利化したいか？",
+      "それを証明する小さな約束は何か？"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "ナラティブ設計フレーム",
+    "en": "Narrative & Positioning",
+    "tag": "立ち位置",
+    "summary": "人は事実をそのまま見ない。事実をどう解釈するかで評価が決まる。自分の役割を一貫した物語ではなく、実務的なポジションとして定義する。",
+    "structure": [
+      "自分は何を解決する人かを一文にする。",
+      "過去の成果をその一文に接続する。",
+      "他人が紹介しやすい短い表現にする。",
+      "実態とズレないように成果で裏付ける。"
+    ],
+    "workflow": [
+      "自分の強みを動詞で書く。",
+      "誰のどんな問題を解くのかを書く。",
+      "一文に圧縮する。",
+      "資料、発言、成果共有で一貫させる。"
+    ],
+    "example": "『何でも頑張る若手』では弱い。『複雑な技術課題を、意思決定できる形に構造化する人』と定義すれば、指名される仕事が変わる。",
+    "questions": [
+      "自分は何を解決する人として覚えられたいか？",
+      "その証拠になる成果は何か？",
+      "他人が紹介しやすい一文になっているか？"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "ルール化・契約化フレーム",
+    "en": "Rule / Contract Thinking",
+    "tag": "境界線",
+    "summary": "暗黙の期待は不利を生む。責任、期限、品質、判断基準を明文化し、後出し要求を防ぐ。",
+    "structure": [
+      "曖昧な点を洗い出す。",
+      "最小限のルールとして文書化する。",
+      "関係者と合意する。",
+      "運用しながら更新履歴を残す。"
+    ],
+    "workflow": [
+      "揉めそうな依頼を1つ選ぶ。",
+      "期限、責任者、成果物、判断基準を書く。",
+      "短い合意文を作る。",
+      "メールやチャットで残す。"
+    ],
+    "example": "レビュー依頼時に『なるべく早く見てください』ではなく、『金曜17時までに、構造・安全・コスト観点でコメントください』と書く。曖昧さを減らすほど不利が減る。",
+    "questions": [
+      "この件で後から揉めそうな曖昧さは何か？",
+      "最小ルールは何か？",
+      "記録として残っているか？"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "デフォルト設計フレーム",
+    "en": "Default Architecture",
+    "tag": "仕組み",
+    "summary": "人は意志よりもデフォルトに従う。何もしなければ自分に有利な流れになるよう、初期設定を設計する。",
+    "structure": [
+      "人が面倒がる行動を特定する。",
+      "望ましい行動が最も簡単になるようにする。",
+      "テンプレ、初期値、会議体、通知で誘導する。",
+      "反対されない小さな変更として入れる。"
+    ],
+    "workflow": [
+      "周囲が毎回迷う場面を探す。",
+      "その場面の標準フォーマットを作る。",
+      "使う方が楽な形にする。",
+      "自分が管理者ではなく支援者に見えるよう導入する。"
+    ],
+    "example": "会議の議題テンプレを作り、全員が使いやすい場所に置く。自然と論点の置き方があなたの設計に沿うようになり、会議の主導権が取りやすくなる。",
+    "questions": [
+      "周囲が毎回迷っている作業は何か？",
+      "望ましい行動を最も楽にするには？",
+      "自分に有利な初期値は何か？"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "依存関係切り離しフレーム",
+    "en": "Decoupling",
+    "tag": "自律性",
+    "summary": "他人の都合に依存するほど不利になる。依存先を減らし、接続点を明確にして、自分の速度を守る。",
+    "structure": [
+      "成果が止まる依存先を列挙する。",
+      "代替手段、先回り、並列化を考える。",
+      "依存先に渡す入力形式を標準化する。",
+      "待ち時間に進められる別作業を用意する。"
+    ],
+    "workflow": [
+      "今止まっている仕事を1つ選ぶ。",
+      "何に依存しているかを書く。",
+      "依存を減らす方法を3つ出す。",
+      "相手が判断しやすい形で依頼を出す。"
+    ],
+    "example": "承認待ちで止まるなら、承認者に長文説明を投げるのではなく、『選択肢A/B/C、推奨、リスク、必要判断』の形式にする。相手の認知負荷を下げると依存時間が減る。",
+    "questions": [
+      "自分の速度を止めている依存先は何か？",
+      "相手の判断負荷を下げられるか？",
+      "待ち時間に進む並列タスクは何か？"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "同盟・連合フレーム",
+    "en": "Alliance Building",
+    "tag": "味方設計",
+    "summary": "個人の正しさだけでは組織は動かない。利害が一致する相手と小さく組み、連合として動く。",
+    "structure": [
+      "利害が一致する相手を探す。",
+      "小さな協力で信頼残高を作る。",
+      "共通KPIや共通課題で結びつける。",
+      "成果を共同名義で出す。"
+    ],
+    "workflow": [
+      "同じ課題で困っている人を探す。",
+      "相手に小さな価値提供をする。",
+      "共同で出せる成果物を作る。",
+      "上位者には連合の成果として見せる。"
+    ],
+    "example": "開発部だけで改善提案を出すより、製造、品質、サービスの困りごとをまとめて共同提案にする。単独意見ではなく組織横断のニーズになるため通りやすい。",
+    "questions": [
+      "自分と同じ方向に得をする人は誰か？",
+      "最初に提供できる小さな価値は何か？",
+      "共同成果として見せられるか？"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "スイッチングコスト設計フレーム",
+    "en": "Switching Cost Design",
+    "tag": "定着",
+    "summary": "あなたの成果物を周囲が使い続けるほど、あなたの価値は固定される。ただし囲い込みではなく、便利さと信頼で定着させる。",
+    "structure": [
+      "周囲が繰り返し使う成果物を作る。",
+      "使い方を簡単にする。",
+      "改善依頼があなたに集まる導線を作る。",
+      "属人化しすぎず、運用中心を握る。"
+    ],
+    "workflow": [
+      "繰り返し発生する作業を選ぶ。",
+      "テンプレ、ツール、チェックリストにする。",
+      "利用者の手間を減らす。",
+      "改善履歴を管理する。"
+    ],
+    "example": "計算シートや設計チェックリストを作り、皆が使うようになると、あなたは単なる作成者ではなく運用改善の中心になる。結果として情報も相談も集まりやすくなる。",
+    "questions": [
+      "周囲が継続的に使う成果物は何か？",
+      "使う方が楽になる設計か？",
+      "改善依頼が自分に返ってくるか？"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "小さく賭けて学ぶフレーム",
+    "en": "Rapid Experiment Loop",
+    "tag": "実験",
+    "summary": "完璧な計画よりも、速い実験が環境を変える。小さく試し、反応を見て、次を修正する。",
+    "structure": [
+      "仮説を一文にする。",
+      "最小実験を設計する。",
+      "観察する指標を決める。",
+      "学びを記録し、次の実験へつなげる。"
+    ],
+    "workflow": [
+      "試したい仮説を書く。",
+      "1日〜1週間でできる最小実験にする。",
+      "成功・失敗の判定基準を決める。",
+      "結果を次の行動に変換する。"
+    ],
+    "example": "新しい業務改善を一気に導入するのではなく、1チームだけで1週間試す。反応、工数削減、反対理由を見てから本格展開すれば、失敗のコストが小さい。",
+    "questions": [
+      "この仮説を最小で試す方法は？",
+      "何を見れば成功と判断できるか？",
+      "失敗しても得られる学びは何か？"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "OODA観測優位フレーム",
+    "en": "Observe / Orient / Decide / Act",
+    "tag": "速度",
+    "summary": "変化する状況では、正解を待つより観察・解釈・決定・行動のループを速く回す方が有利になる。",
+    "structure": [
+      "Observe：事実、数字、現場の温度感を取る。",
+      "Orient：状況の意味づけを更新する。",
+      "Decide：可逆な小さな決定をする。",
+      "Act：動いて結果から学ぶ。"
+    ],
+    "workflow": [
+      "今見えている事実を書く。",
+      "前提が変わった点を書く。",
+      "小さな決定を1つする。",
+      "24〜72時間以内に行動し、結果を見る。"
+    ],
+    "example": "会議で意見対立が起きたら、結論を無理に決めず、『次に取るデータ』『誰に確認するか』『いつ再判断するか』を決める。次の論点を先に握ることで有利になる。",
+    "questions": [
+      "今わかっている事実は何か？",
+      "前提は何が変わったか？",
+      "可逆な一手は何か？"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "撤退基準フレーム",
+    "en": "Exit Criteria / Kill Rules",
+    "tag": "損切り",
+    "summary": "不利な人はサンクコストで逃げ遅れる。事前に撤退基準を作れば、時間・信用・体力を守れる。",
+    "structure": [
+      "継続条件と撤退条件を数値化する。",
+      "レビュー頻度を決める。",
+      "撤退後の代替行動をセットで用意する。",
+      "感情ではなく基準で判断する。"
+    ],
+    "workflow": [
+      "継続中の案件を1つ選ぶ。",
+      "成功条件と撤退条件を書く。",
+      "次回レビュー日を決める。",
+      "撤退した場合の次手を書く。"
+    ],
+    "example": "社内プロジェクトで3回連続意思決定が先送りされ、協力部署も決まらないなら、関与比率を下げる。完全撤退でなくても、時間配分を減らして別の有望案件に移す。",
+    "questions": [
+      "どの状態になったら撤退するか？",
+      "撤退を妨げる感情は何か？",
+      "撤退後に何へ資源を移すか？"
+    ]
+  }
+];
+    const scoreKeys = ["impact", "feasibility", "option", "risk"];
+    const scoreLabels = {
+      impact: "影響度",
+      feasibility: "実現性",
+      option: "選択肢増",
+      risk: "低リスク"
+    };
+
+    function saveValue(key, value) {
+      localStorage.setItem("advfw_" + key, value);
+    }
+    function loadValue(key, fallback = "") {
+      return localStorage.getItem("advfw_" + key) ?? fallback;
+    }
+    function totalScore(id) {
+      return scoreKeys.reduce((sum, k) => sum + Number(loadValue(`score_${id}_${k}`, 0)), 0);
+    }
+    function makeScoreSelect(id, key) {
+      const val = loadValue(`score_${id}_${key}`, "0");
+      let options = `<option value="0">0</option>`;
+      for (let i = 1; i <= 5; i++) {
+        options += `<option value="${i}" ${String(i)===String(val) ? "selected" : ""}>${i}</option>`;
+      }
+      return `<div><label>${scoreLabels[key]}</label><select data-score="${id}_${key}" onchange="onScoreChange(${id}, '${key}', this.value)">${options}</select></div>`;
+    }
+    function onScoreChange(id, key, value) {
+      saveValue(`score_${id}_${key}`, value);
+      const el = document.querySelector(`[data-total="${id}"]`);
+      if (el) el.textContent = totalScore(id);
+      if (document.getElementById("sortMode").value === "score") renderFrameworks();
+    }
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s]));
+    }
+    function frameworkText(f) {
+      return `${f.id}. ${f.name} / ${f.en}\n概要: ${f.summary}\n構造:\n- ${f.structure.join("\n- ")}\n使い方:\n- ${f.workflow.join("\n- ")}\n具体例: ${f.example}\n問い:\n- ${f.questions.join("\n- ")}`;
+    }
+    function copyFramework(id) {
+      const f = frameworks.find(x => x.id === id);
+      navigator.clipboard.writeText(frameworkText(f)).then(() => alert("フレームワークをコピーしました。"));
+    }
+    function renderToc() {
+      const toc = document.getElementById("toc");
+      toc.innerHTML = frameworks.map(f => `<a href="#fw-${f.id}"><strong>${f.id}. ${escapeHtml(f.name)}</strong><br><span class="small">${escapeHtml(f.tag)} / ${escapeHtml(f.en)}</span></a>`).join("");
+      const tags = [...new Set(frameworks.map(f => f.tag))].sort();
+      const tagFilter = document.getElementById("tagFilter");
+      tagFilter.innerHTML = `<option value="">すべて</option>` + tags.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join("");
+    }
+    function renderFrameworks() {
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const tag = document.getElementById("tagFilter").value;
+      const sort = document.getElementById("sortMode").value;
+      let list = [...frameworks];
+      if (q) {
+        list = list.filter(f => JSON.stringify(f).toLowerCase().includes(q));
+      }
+      if (tag) {
+        list = list.filter(f => f.tag === tag);
+      }
+      if (sort === "score") {
+        list.sort((a,b) => totalScore(b.id) - totalScore(a.id) || a.id - b.id);
+      } else if (sort === "tag") {
+        list.sort((a,b) => a.tag.localeCompare(b.tag, "ja") || a.id - b.id);
+      }
+      const root = document.getElementById("frameworkList");
+      root.innerHTML = list.map(f => `
+        <article class="framework-card" id="fw-${f.id}">
+          <div class="framework-head">
+            <div>
+              <span class="framework-no">FRAME ${String(f.id).padStart(2,"0")}</span>
+              <h3>${escapeHtml(f.name)} <span class="muted">/ ${escapeHtml(f.en)}</span></h3>
+              <p>${escapeHtml(f.summary)}</p>
+            </div>
+            <span class="tag">${escapeHtml(f.tag)}</span>
+          </div>
+          <div class="framework-body">
+            <div>
+              <h4>構造</h4>
+              <ul>${f.structure.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
+              <h4>実際の使い方</h4>
+              <ol>${f.workflow.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ol>
+              <details open>
+                <summary>具体例</summary>
+                <p>${escapeHtml(f.example)}</p>
+              </details>
+            </div>
+            <div>
+              <h4>自分に当てはめる問い</h4>
+              <ul>${f.questions.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
+              <h4>優先度スコア</h4>
+              <div class="score-grid">${scoreKeys.map(k => makeScoreSelect(f.id, k)).join("")}</div>
+              <p class="score-total">合計：<span data-total="${f.id}">${totalScore(f.id)}</span> / 20</p>
+              <h4>メモ</h4>
+              <textarea class="note-area" data-save="note_${f.id}" placeholder="このフレームを自分の状況にどう使うかを書く"></textarea>
+              <div class="note-actions no-print" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                <button onclick="copyFramework(${f.id})">内容をコピー</button>
+                <a class="button" href="#worksheet">実行シートへ</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join("") || `<div class="card"><p>該当するフレームがありません。</p></div>`;
+      bindAutosave(root);
+    }
+    function bindAutosave(scope=document) {
+      scope.querySelectorAll("[data-save]").forEach(el => {
+        const key = el.getAttribute("data-save");
+        if (el.value === "") el.value = loadValue(key);
+        el.addEventListener("input", () => saveValue(key, el.value));
+      });
+    }
+    function exportNotes() {
+      const lines = [];
+      lines.push("戦略的有利化フレームワーク24｜メモ書き出し");
+      lines.push("作成日時: " + new Date().toLocaleString());
+      lines.push("");
+      document.querySelectorAll("[data-save]").forEach(el => {
+        const key = el.getAttribute("data-save");
+        const value = loadValue(key);
+        if (value && value.trim()) {
+          lines.push("## " + key);
+          lines.push(value.trim());
+          lines.push("");
+        }
+      });
+      frameworks.forEach(f => {
+        const s = totalScore(f.id);
+        if (s > 0) lines.push(`${f.id}. ${f.name}: score ${s}/20`);
+      });
+      const blob = new Blob([lines.join("\n")], {type: "text/plain;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "strategic_advantage_notes.txt";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    function clearAll() {
+      if (!confirm("このHTMLに保存されたメモとスコアを消去します。よろしいですか？")) return;
+      Object.keys(localStorage).filter(k => k.startsWith("advfw_")).forEach(k => localStorage.removeItem(k));
+      location.reload();
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      renderToc();
+      bindAutosave();
+      renderFrameworks();
+      ["search", "tagFilter", "sortMode"].forEach(id => document.getElementById(id).addEventListener("input", renderFrameworks));
+    });
+  </script>
+</body>
+</html>

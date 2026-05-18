@@ -1,0 +1,1452 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>素晴らしい人脈づくりのための24思考フレームワーク</title>
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --paper: #fffdf8;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --line: #ddd6c8;
+      --accent: #1f5f5b;
+      --accent2: #b7791f;
+      --soft: #edf7f5;
+      --danger: #7f1d1d;
+      --shadow: 0 14px 40px rgba(31,41,51,.10);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(31,95,91,.12), transparent 28rem),
+        radial-gradient(circle at top right, rgba(183,121,31,.12), transparent 30rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.82;
+    }
+    header {
+      padding: 56px 24px 32px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(255,253,248,.96), rgba(237,247,245,.92));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "NETWORK";
+      position: absolute;
+      right: -22px;
+      bottom: -26px;
+      font-size: 92px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      color: rgba(31,95,91,.06);
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 1.16;
+      margin: 0 0 16px;
+      letter-spacing: -0.04em;
+    }
+    h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      margin: 48px 0 16px;
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 22px;
+      margin: 12px 0 8px;
+      line-height: 1.35;
+    }
+    p { margin: 0 0 14px; }
+    .lead {
+      font-size: 18px;
+      max-width: 900px;
+      color: #374151;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #374151;
+      font-size: 14px;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247,244,239,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(221,214,200,.7);
+      padding: 14px 0;
+      margin-bottom: 20px;
+    }
+    .toolbarInner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+    input[type="search"], input[type="text"], textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+    textarea { min-height: 92px; resize: vertical; }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    button, .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+    button:hover, .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(31,41,51,.08);
+    }
+    button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card, .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(31,41,51,.06);
+      padding: 22px;
+    }
+    .cardTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .phase {
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid rgba(31,95,91,.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .tagline {
+      color: #374151;
+      font-weight: 700;
+      border-left: 4px solid var(--accent2);
+      padding-left: 12px;
+      margin-bottom: 18px;
+    }
+    details {
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+    }
+    details:last-child { padding-bottom: 0; }
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--accent);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "＋";
+      display: inline-block;
+      width: 1.4em;
+      color: var(--accent2);
+    }
+    details[open] summary::before { content: "−"; }
+    ol, ul { margin-top: 8px; padding-left: 1.4rem; }
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      margin: 6px 0;
+      padding: 8px 10px;
+      background: #fff;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+    }
+    .sectionIntro {
+      color: var(--muted);
+      max-width: 900px;
+    }
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .step {
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .step b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .template {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 16px;
+      padding: 16px;
+      white-space: pre-wrap;
+      overflow:auto;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .small { font-size: 13px; color: var(--muted); }
+    .note {
+      padding: 16px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+    }
+    .formGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .full { grid-column: 1 / -1; }
+    .footer {
+      margin-top: 48px;
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .hidden { display: none !important; }
+    @media (max-width: 900px) {
+      .grid, .two, .workflow, .formGrid { grid-template-columns: 1fr; }
+      .toolbarInner { grid-template-columns: 1fr; }
+      .hero { padding: 28px; }
+    }
+    @media print {
+      body { background: white; }
+      .toolbar, .noPrint, button { display: none !important; }
+      .card, .panel, .hero { box-shadow: none; break-inside: avoid; }
+      details { page-break-inside: avoid; }
+      details:not([open]) > *:not(summary) { display: block; }
+      summary::before { content: "" !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <section class="hero">
+      <h1>素晴らしい人脈づくりのための<br>24の本質思考フレームワーク</h1>
+      <p class="lead">人脈を「知り合いの数」ではなく、信頼・紹介・共同作業・機会が自然に回る<strong>関係資産</strong>として設計するための実践レポート兼ワークブックです。各フレームは、概要・構造・具体例・使い方・チェックリスト付きです。</p>
+      <div class="meta">
+        <span class="pill">単体HTML</span>
+        <span class="pill">検索・フィルタ対応</span>
+        <span class="pill">チェック状態をブラウザ保存</span>
+        <span class="pill">印刷・PDF化対応</span>
+        <span class="pill">記入欄・テンプレ付き</span>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="toolbar noPrint">
+      <div class="toolbarInner">
+        <input type="search" id="search" placeholder="フレームワーク名・概要・フェーズで検索">
+        <div class="buttons">
+          <button class="primary" data-filter="all">全て</button>
+          <button data-filter="設計">設計</button>
+          <button data-filter="探索">探索</button>
+          <button data-filter="理解">理解</button>
+          <button data-filter="価値提供">価値提供</button>
+          <button data-filter="信頼">信頼</button>
+          <button data-filter="紹介">紹介</button>
+          <button data-filter="運用">運用</button>
+          <button onclick="window.print()">印刷/PDF化</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>このHTMLの使い方</h2>
+      <p class="sectionIntro">全部を読むより、まず自分の目的に合わせて使うのが正解です。人脈形成は“気合い”ではなく、目的設計・価値提供・フォローアップの運用です。</p>
+      <div class="workflow">
+        <div class="step"><b>1. 目的</b>北極星を決め、必要な役割を明確化する。</div>
+        <div class="step"><b>2. 探索</b>役割密度の高い場・紹介ルートを選ぶ。</div>
+        <div class="step"><b>3. 初回</b>問い、5分価値、次の一手で終わらせる。</div>
+        <div class="step"><b>4. 深化</b>成果物・共同作業・紹介で関係を進める。</div>
+        <div class="step"><b>5. 運用</b>24-7-30、温度スコア、月次レトロで改善する。</div>
+      </div>
+    </section>
+
+    <h2>24フレームワーク本編</h2>
+    <p class="sectionIntro">カード内の「概要」「構造」「具体例」「具体的な使い方」「チェックリスト」を開閉できます。チェック状態は同じブラウザに保存されます。</p>
+    <section class="grid" id="cards">
+      
+      <article class="card" data-phase="設計" data-name="ノーススター関係設計">
+        <div class="cardTop">
+          <span class="num">01</span>
+          <span class="phase">設計</span>
+        </div>
+        <h3>ノーススター関係設計</h3>
+        <p class="tagline">人脈を“連絡先”ではなく、人生・事業の目的に向かう関係資産として設計する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈づくりで最も多い失敗は、目的のない交流を増やしてしまうことです。会う人数が増えても、人生・キャリア・事業の北極星に接続していなければ、疲労と予定だけが増えます。このフレームワークでは、まず3年後に到達したい状態を定義し、そこに必要な情報・信用・顧客接点・資金・仲間・専門知識を分解します。その上で、具体的な人物名ではなく“役割”として必要な関係を定義します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>3年後の達成状態を1文で書く</li>
+<li>必要資源を列挙する：知識・信用・顧客・資金・仲間・実装力</li>
+<li>必要資源を持つ役割を定義する</li>
+<li>その役割の人に自分が返せる価値を考える</li>
+<li>今月会うべき役割を3つに絞る</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：3年後に医療機器領域で新規事業を立ち上げたい場合、必要な役割は、病院現場の意思決定者、規制対応経験者、製造・品質保証のキーパーソン、初期顧客候補、プロトタイプ実装者、事業開発経験者になります。ここで重要なのは、有名人に会うことではなく、自分の北極星に対して不可欠な役割を特定することです。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>毎月1回、現在の人脈活動を棚卸しし、『この関係は自分の北極星に接続しているか』『接続していないなら、学び・友情・趣味として割り切れるか』を判断します。曖昧な交流は削り、目的に接続する役割への接点づくりに時間を再配分します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="1-0"> 3年後の目的が1文で書ける</label></li><li><label><input type="checkbox" data-check="1-1"> 必要な役割を10個以上書いた</label></li><li><label><input type="checkbox" data-check="1-2"> 今月会うべき3役割を選んだ</label></li><li><label><input type="checkbox" data-check="1-3"> 各役割に返せる価値を1つ書いた</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="設計" data-name="リレーションシップ・ポートフォリオ">
+        <div class="cardTop">
+          <span class="num">02</span>
+          <span class="phase">設計</span>
+        </div>
+        <h3>リレーションシップ・ポートフォリオ</h3>
+        <p class="tagline">人脈を投資ポートフォリオのように、役割・距離・時間軸で分散する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈は偏ると脆くなります。社内の同世代だけ、同業エンジニアだけ、友人だけ、経営者だけ、といった偏りは情報や機会の偏りを生みます。優れた人脈は、強い絆と弱い絆、短期で助け合える人と長期で効いてくる人、実務者と意思決定者、異業界と同業界がバランスよく存在します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>役割軸：意思決定者・実務者・専門家・発信者・顧客・投資家・仲間</li>
+<li>距離軸：親友・協力者・知人・弱いつながり</li>
+<li>時間軸：今役立つ・半年後効く・3年後効く</li>
+<li>不足カテゴリを見つける</li>
+<li>不足カテゴリに対して接点づくりを行う</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：社内エンジニアとして成長したい人が、社内の技術者とだけ付き合っていると、技術力は伸びても事業・市場・顧客の視点が不足します。そこで、病院関係者、営業、品質保証、海外拠点、起業家、大学研究者などを少しずつポートフォリオに加えます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>四半期に一度、自分の関係リストを見て、どのカテゴリが厚く、どこが薄いかを可視化します。薄いカテゴリに対して『今月は顧客現場に近い人2名と話す』『海外ビジネス経験者1名と話す』のように行動へ落とします。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="2-0"> 強い絆と弱い絆を分けて把握している</label></li><li><label><input type="checkbox" data-check="2-1"> 社内・社外の偏りを把握している</label></li><li><label><input type="checkbox" data-check="2-2"> 同業・異業界の偏りを把握している</label></li><li><label><input type="checkbox" data-check="2-3"> 不足している役割を今月補う予定がある</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="価値提供" data-name="ギブ・ファースト・フライホイール">
+        <div class="cardTop">
+          <span class="num">03</span>
+          <span class="phase">価値提供</span>
+        </div>
+        <h3>ギブ・ファースト・フライホイール</h3>
+        <p class="tagline">見返りを求める前に、相手の成果につながる小さな価値を先に渡す。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈の強さは、相手から何を得るかではなく、相手の成功にどれだけ貢献できるかで決まります。ただし、単なる親切や雑な助言では不十分です。価値提供とは、相手の仕事・意思決定・成果が前に進む形に変換して渡すことです。小さな価値提供が信頼を生み、信頼が再接触を生み、再接触が紹介を生みます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>相手の課題を聞く</li>
+<li>相手がすぐ使える形に変換する</li>
+<li>5分で読める/使える粒度にする</li>
+<li>見返りを求めず渡す</li>
+<li>成果が出たら一緒に振り返る</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：知人が『社内でAI活用提案を通したいが、上司が反応しない』と言っていたら、AI活用の一般論を語るのではなく、『上司向け1枚提案書テンプレ』『ROI試算の項目表』『反論想定Q&amp;A』を作って渡します。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>会話後24時間以内に、相手の言っていた課題に関係する短いメモ、比較表、チェックリスト、紹介候補などを送ります。ポイントは、相手がそのまま誰かに転送できるほど整理することです。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="3-0"> 相手の課題を具体的に聞いた</label></li><li><label><input type="checkbox" data-check="3-1"> 自分の助言ではなく相手の成果物に変換した</label></li><li><label><input type="checkbox" data-check="3-2"> 5分以内に使える形にした</label></li><li><label><input type="checkbox" data-check="3-3"> 見返りを求めなかった</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="価値提供" data-name="5分で価値ルール">
+        <div class="cardTop">
+          <span class="num">04</span>
+          <span class="phase">価値提供</span>
+        </div>
+        <h3>5分で価値ルール</h3>
+        <p class="tagline">忙しい相手に、5分以内で理解・判断・行動できる価値を渡す。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>優秀な人ほど時間がありません。長文の相談、曖昧な提案、前置きの長い自己紹介は読まれません。最初の接点では、5分で相手が価値を感じる情報単位に圧縮する必要があります。これは文章力ではなく、相手の意思決定コストを下げる設計です。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>結論1行</li>
+<li>根拠3点</li>
+<li>相手への利点1つ</li>
+<li>次のアクション1つ</li>
+<li>所要時間を明記する</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『医療機器の環境規制対応について、今見るべき論点は3つです。1つ目は製品単位のCO2算定、2つ目は材料情報の透明化、3つ目は修理性・分解性です。御社の現状なら、まずBOMに環境属性を付与する小さな検証から始めるのが最短です。15分だけ壁打ちできます。』</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>初回メッセージ、紹介依頼、フォローアップ、社内提案のすべてをこの形式にします。長文レポートを送る場合でも、冒頭に5分版を置きます。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="4-0"> 1行結論がある</label></li><li><label><input type="checkbox" data-check="4-1"> 根拠が3点以内</label></li><li><label><input type="checkbox" data-check="4-2"> 次のアクションが1つ</label></li><li><label><input type="checkbox" data-check="4-3"> 相手の読む負担が小さい</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="探索" data-name="役割ベース・ターゲティング">
+        <div class="cardTop">
+          <span class="num">05</span>
+          <span class="phase">探索</span>
+        </div>
+        <h3>役割ベース・ターゲティング</h3>
+        <p class="tagline">有名人や肩書きではなく、自分の目的に必要な“役割”で会う相手を決める。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈づくりで『すごい人に会いたい』と考えると失敗します。すごい人に会っても、目的に関係なければ薄い会話で終わります。必要なのは、自分の目的を進めるために必要な役割を特定し、その役割を持つ人と会うことです。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>目的を決める</li>
+<li>必要な意思決定・知識・資源を分解する</li>
+<li>それを持つ役割名を書く</li>
+<li>役割ごとに会う理由を作る</li>
+<li>接点のありそうな場を探す</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：起業準備なら、起業家だけでなく、顧客候補、法務・会計、採用経験者、営業経験者、プロダクト開発者、コミュニティ運営者、資金調達経験者が必要です。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>出会った相手に肩書きを聞くだけではなく、『普段どんな意思決定に関わっていますか』『どんな人から相談されますか』と聞き、相手の役割を理解します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="5-0"> 目的から必要役割を分解した</label></li><li><label><input type="checkbox" data-check="5-1"> 会いたい人名ではなく役割名で書いた</label></li><li><label><input type="checkbox" data-check="5-2"> 各役割に会う理由がある</label></li><li><label><input type="checkbox" data-check="5-3"> 役割ごとの接点場所を考えた</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="理解" data-name="相手インセンティブ・マップ">
+        <div class="cardTop">
+          <span class="num">06</span>
+          <span class="phase">理解</span>
+        </div>
+        <h3>相手インセンティブ・マップ</h3>
+        <p class="tagline">相手が何で評価され、何を恐れ、何に制約されているかを理解する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人間関係が前に進まない理由の多くは、相手のインセンティブを無視していることです。自分にとって良い提案でも、相手の評価指標・リスク・制約に合っていなければ動きません。相手の立場で『動く理由』と『動けない理由』を整理します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>評価指標：何で評価されるか</li>
+<li>リスク：失敗すると何を失うか</li>
+<li>制約：時間・予算・権限・政治</li>
+<li>欲求：何を実現したいか</li>
+<li>期限：いつまでに必要か</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：現場責任者に新しいツールを提案する場合、便利さよりも、作業停止リスク、教育コスト、監査対応、現場の抵抗感が重要になります。そこを無視して『効率化できます』と言っても動きません。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>会話中に『それがうまくいくと、あなたにとって何が一番大きいですか』『逆に導入で一番怖いことは何ですか』と聞きます。相手の答えをメモし、以後の提案をその言語に翻訳します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="6-0"> 相手のKPIを把握した</label></li><li><label><input type="checkbox" data-check="6-1"> 相手のリスクを把握した</label></li><li><label><input type="checkbox" data-check="6-2"> 相手の制約を把握した</label></li><li><label><input type="checkbox" data-check="6-3"> 提案を相手の言語に翻訳した</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="信頼" data-name="信頼方程式">
+        <div class="cardTop">
+          <span class="num">07</span>
+          <span class="phase">信頼</span>
+        </div>
+        <h3>信頼方程式</h3>
+        <p class="tagline">信頼を、能力・一貫性・親密性・自己都合の4要素に分解する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>信頼は雰囲気ではありません。『この人はできる』『約束を守る』『話しやすい』『自己都合で動いていない』という複数要素の掛け算です。関係が深まらないとき、どこが不足しているかを診断できます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>能力：この人に任せると成果が出そうか</li>
+<li>一貫性：言動が安定し約束を守るか</li>
+<li>親密性：安心して話せるか</li>
+<li>自己都合：自分の利益だけで動いていないか</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：能力は高いが、自分の話ばかりする人は自己都合が高く見え、信頼されにくい。逆に親しみやすくても、約束を守らない人は一貫性が低く、重要な紹介を受けにくい。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>関係が停滞している相手ごとに、4要素を5点満点で自己評価します。最も低い要素を1つだけ選び、改善行動を設定します。例えば一貫性が弱いなら、次回までに小さな約束を必ず守ります。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="7-0"> 能力を示す実績がある</label></li><li><label><input type="checkbox" data-check="7-1"> 小さな約束を守っている</label></li><li><label><input type="checkbox" data-check="7-2"> 相手が話しやすい空気を作っている</label></li><li><label><input type="checkbox" data-check="7-3"> 自分都合の依頼が多くない</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="理解" data-name="問いの梯子インタビュー">
+        <div class="cardTop">
+          <span class="num">08</span>
+          <span class="phase">理解</span>
+        </div>
+        <h3>問いの梯子インタビュー</h3>
+        <p class="tagline">雑談から、相手の本質的な課題と次の一手へ降りていく質問設計。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>雑談力だけでは強い人脈は作れません。重要なのは、相手の状況を理解し、課題の構造を一緒に明確化し、次の行動まで導く問いです。問いの梯子は、事実から意図、制約、重要度、次の一手へと段階的に深めます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>事実：今何をしているか</li>
+<li>意図：なぜそれをしているか</li>
+<li>制約：何が難しいか</li>
+<li>重要度：解けると何が変わるか</li>
+<li>次の一手：最小実験は何か</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『新規事業を担当しています』→『なぜ今そのテーマなのですか』→『一番詰まっているのは何ですか』→『それが解けると組織に何が起きますか』→『今週できる最小の検証は何ですか』。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>初対面ではいきなり深い質問をしません。事実から入り、相手が話し始めたら徐々に深めます。最後に必ず『次に何を試すか』へ接続します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="8-0"> 事実だけで終わっていない</label></li><li><label><input type="checkbox" data-check="8-1"> 相手の意図を聞いた</label></li><li><label><input type="checkbox" data-check="8-2"> 制約を聞いた</label></li><li><label><input type="checkbox" data-check="8-3"> 次の一手を合意した</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="深化" data-name="共通課題ミニプロジェクト">
+        <div class="cardTop">
+          <span class="num">09</span>
+          <span class="phase">深化</span>
+        </div>
+        <h3>共通課題ミニプロジェクト</h3>
+        <p class="tagline">仲良くなるより、小さな課題を一緒に解くほうが関係は早く深まる。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>強い関係は会食だけでは生まれません。一緒に問題を解いた経験、短い修羅場、成果を出した共同作業が信頼を作ります。大きなプロジェクトである必要はありません。1週間から1ヶ月で終わる小さな共通課題を設定します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>相手の課題を聞く</li>
+<li>小さく切れる部分を探す</li>
+<li>成果物を定義する</li>
+<li>役割分担する</li>
+<li>短期で完了して振り返る</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『社内で提案が通らない』という相手に対して、提案全体を作るのではなく、『上司に刺さる1枚目だけを一緒に作る』というミニプロジェクトにします。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>初回会話の終わりに『これなら1週間で一緒に試せそうですね』と言える粒度を探します。小さな共同作業が成功したら、次の大きな協業に進めます。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="9-0"> 1週間〜1ヶ月で終わる</label></li><li><label><input type="checkbox" data-check="9-1"> 成果物が明確</label></li><li><label><input type="checkbox" data-check="9-2"> 相手にも自分にもメリットがある</label></li><li><label><input type="checkbox" data-check="9-3"> 完了後に振り返る予定がある</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="価値提供" data-name="成果物ウェッジ">
+        <div class="cardTop">
+          <span class="num">10</span>
+          <span class="phase">価値提供</span>
+        </div>
+        <h3>成果物ウェッジ</h3>
+        <p class="tagline">会話ではなく、相手が再利用できる成果物で関係に楔を打つ。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>記憶に残る人は、良いことを言った人ではなく、後から使えるものを残した人です。成果物は、相手の会議・提案・意思決定・学習に再利用されます。再利用されるたびにあなたの価値が思い出され、紹介の材料にもなります。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>相手の課題を1つ選ぶ</li>
+<li>再利用できる形式にする</li>
+<li>1枚メモ・表・テンプレ・チェックリストにする</li>
+<li>相手の文脈に合わせて名前を付ける</li>
+<li>必要なら紹介文も添える</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：相手が『海外拠点への説明が難しい』と言っていれば、英語の説明テンプレ、比較表、Q&amp;A、論点リストを作って渡します。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>会った後に必ず『相手が明日使えるものは何か』を考えます。美しい資料より、即利用できる粗いテンプレの方が価値があります。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="10-0"> 相手が明日使える</label></li><li><label><input type="checkbox" data-check="10-1"> 転送しやすい</label></li><li><label><input type="checkbox" data-check="10-2"> 1枚または短いテンプレになっている</label></li><li><label><input type="checkbox" data-check="10-3"> 相手の課題に直結している</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="深化" data-name="マイクロ・コミットメント階段">
+        <div class="cardTop">
+          <span class="num">11</span>
+          <span class="phase">深化</span>
+        </div>
+        <h3>マイクロ・コミットメント階段</h3>
+        <p class="tagline">大きな依頼の前に、小さな合意を階段状に積む。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>初対面で大きな依頼をすると、相手の負担が重すぎて断られます。関係は小さなコミットメントの連続で進みます。5分の返信、15分の通話、30分のレビュー、小さな共同作業、紹介、共同案件というように段階を上げます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>5分：返信・一言コメント</li>
+<li>15分：短い壁打ち</li>
+<li>30分：資料レビュー</li>
+<li>1週間：小さな検証</li>
+<li>1ヶ月：共同作業</li>
+<li>長期：案件・紹介・協業</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：著名な経営者にいきなり『相談に乗ってください』ではなく、『この1枚の仮説に違和感があれば一言だけください』から始めます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>次の依頼を考えるときは、相手が心理的に受け入れやすい最小単位にします。断られたら階段を一段下げます。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="11-0"> 初回依頼が5〜15分以内</label></li><li><label><input type="checkbox" data-check="11-1"> 相手の負担が明確に小さい</label></li><li><label><input type="checkbox" data-check="11-2"> 次の段階が見えている</label></li><li><label><input type="checkbox" data-check="11-3"> 断られた場合の下位依頼がある</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="紹介" data-name="紹介依頼デザイン">
+        <div class="cardTop">
+          <span class="num">12</span>
+          <span class="phase">紹介</span>
+        </div>
+        <h3>紹介依頼デザイン</h3>
+        <p class="tagline">紹介してほしい人・目的・相手メリット・紹介文を明確にして、紹介者の負担を消す。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>紹介は『誰かいい人いませんか』では生まれません。紹介者は、誰を紹介すべきか、なぜ紹介すべきか、紹介先に迷惑がないかを判断する必要があります。この判断コストを下げるほど、紹介は起こりやすくなります。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>目的：何のために会いたいか</li>
+<li>条件：どんな役割・経験の人か</li>
+<li>相手メリット：紹介先に何を返せるか</li>
+<li>所要時間：何分か</li>
+<li>紹介文テンプレ：転送だけで済む形</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『医療現場の検査機器運用で、日々の非効率やヒヤリハットに詳しい方を探しています。15分だけ現場課題を聞きたいです。代わりに、聞いた内容を匿名化して業務改善の論点メモとして返せます。紹介文案も下に置きます。』</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>紹介を依頼するときは、必ず相手がコピペできる文面を添えます。紹介者の信用を守るため、相手に売り込まないことも明記します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="12-0"> 会いたい人の条件が具体的</label></li><li><label><input type="checkbox" data-check="12-1"> 紹介先のメリットがある</label></li><li><label><input type="checkbox" data-check="12-2"> 所要時間が短い</label></li><li><label><input type="checkbox" data-check="12-3"> 紹介文テンプレを添えた</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="紹介" data-name="紹介される自分の1行定義">
+        <div class="cardTop">
+          <span class="num">13</span>
+          <span class="phase">紹介</span>
+        </div>
+        <h3>紹介される自分の1行定義</h3>
+        <p class="tagline">他人があなたを紹介しやすいように、説明コストを極限まで下げる。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>紹介されない人の多くは、価値がないのではなく、説明しにくいのです。『何をしている人かよく分からない』『誰に紹介すればよいか分からない』と思われると、紹介は止まります。紹介される人は、自分の役割を1行で説明できます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>誰の</li>
+<li>どんな問題を</li>
+<li>どんな強みで</li>
+<li>どう解決する人か</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『現場・機械・ソフトの間で詰まる製品開発課題を、検証設計と実装で前に進めるエンジニアです。』</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>自己紹介、SNSプロフィール、名刺、イベントでの一言をすべてこの1行に寄せます。さらに、紹介してほしい相手のタイプも明示します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="13-0"> 1行で説明できる</label></li><li><label><input type="checkbox" data-check="13-1"> 誰の問題を解くか明確</label></li><li><label><input type="checkbox" data-check="13-2"> 何に強いか明確</label></li><li><label><input type="checkbox" data-check="13-3"> 紹介してほしい相手が分かる</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="準備" data-name="会う前の仮説メモ3点">
+        <div class="cardTop">
+          <span class="num">14</span>
+          <span class="phase">準備</span>
+        </div>
+        <h3>会う前の仮説メモ3点</h3>
+        <p class="tagline">会う前に、相手の課題・望む成果・提供価値の仮説を置く。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>準備なしの面談は、ただの雑談になりやすいです。相手の情報を過剰に調べる必要はありませんが、最低限の仮説を持つと質問の質が上がります。仮説は外れても構いません。外れた仮説を修正する過程で相手理解が深まります。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>相手が抱える課題仮説</li>
+<li>相手が望む成果仮説</li>
+<li>自分が提供できる価値仮説</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：海外事業経験者に会う前なら、『日本本社との意思決定スピードに課題があるかも』『現地顧客理解を社内に伝えることが成果かも』『自分は技術と事業の翻訳メモを提供できるかも』と仮説を置きます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>面談前の10分で3点だけ書きます。面談中に『勝手な仮説ですが、こういう点で困ることはありますか』と確認します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="14-0"> 課題仮説を書いた</label></li><li><label><input type="checkbox" data-check="14-1"> 成果仮説を書いた</label></li><li><label><input type="checkbox" data-check="14-2"> 提供価値仮説を書いた</label></li><li><label><input type="checkbox" data-check="14-3"> 面談中に仮説を検証した</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="信頼" data-name="3つの物語ストーリーバンク">
+        <div class="cardTop">
+          <span class="num">15</span>
+          <span class="phase">信頼</span>
+        </div>
+        <h3>3つの物語ストーリーバンク</h3>
+        <p class="tagline">能力・誠実さ・利他性を伝えるための短い物語を準備する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人は事実だけでなく、物語で相手を覚えます。ただし、自慢話ばかりでは警戒されます。必要なのは、失敗から学んだ話、工夫して成果を出した話、他者を支援した話の3種類です。これにより、能力・誠実さ・利他性が自然に伝わります。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>失敗→学び：誠実さ</li>
+<li>工夫→成果：能力</li>
+<li>他者支援→成果：利他性</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『昔、品質にこだわりすぎて納期調整が遅れた経験があります。そこから、80%で早く出してレビューを受ける設計に変えました。』という話は、弱みと改善力の両方を伝えます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>各物語を90秒以内で話せるようにします。相手の関心に合わせて出し分けます。自慢ではなく、相手が自分を判断する材料として話します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="15-0"> 失敗談がある</label></li><li><label><input type="checkbox" data-check="15-1"> 成果談がある</label></li><li><label><input type="checkbox" data-check="15-2"> 支援談がある</label></li><li><label><input type="checkbox" data-check="15-3"> 各90秒以内で話せる</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="価値提供" data-name="相手の成功メトリクス翻訳">
+        <div class="cardTop">
+          <span class="num">16</span>
+          <span class="phase">価値提供</span>
+        </div>
+        <h3>相手の成功メトリクス翻訳</h3>
+        <p class="tagline">自分の価値を、相手の評価指標に変換して伝える。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>同じ価値でも、相手の言語に翻訳しないと刺さりません。エンジニアにとっては技術的に面白いことでも、管理職にとってはコスト・納期・品質・リスク・人材育成への影響が重要です。相手の成功メトリクスに合わせて表現を変えます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>自分の提供価値を書く</li>
+<li>相手の評価指標を特定する</li>
+<li>時間・コスト・リスク・品質・売上・信用に変換する</li>
+<li>相手の言葉で言い直す</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『Pythonで自動化できます』ではなく、『毎週2時間かかっている集計を15分にし、ミスによる手戻りを減らせます』と伝えます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>相手ごとに価値の言い換え表を作ります。実務者には作業負担、管理職にはリスクと成果、経営層には事業インパクトで語ります。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="16-0"> 相手のKPIを把握した</label></li><li><label><input type="checkbox" data-check="16-1"> 自分の価値を定量・定性で翻訳した</label></li><li><label><input type="checkbox" data-check="16-2"> 専門用語を相手の言葉にした</label></li><li><label><input type="checkbox" data-check="16-3"> 相手にとっての利点を明示した</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="探索" data-name="セレンディピティ工学">
+        <div class="cardTop">
+          <span class="num">17</span>
+          <span class="phase">探索</span>
+        </div>
+        <h3>セレンディピティ工学</h3>
+        <p class="tagline">偶然の出会いを、母数・質・再接触率で意図的に増やす。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>良い出会いは偶然に見えますが、実際には出会いの母数、場の質、再接触の仕組みで大きく変わります。運任せではなく、偶然が起きやすい環境を設計します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>母数：新規接点の数</li>
+<li>質：目的に合う場・役割の密度</li>
+<li>再接触率：フォローの仕組み</li>
+<li>記録：誰と何を話したか</li>
+<li>改善：効いた場を増やす</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：月2回の勉強会参加、週1回のSNS発信、月3件の紹介依頼、会った人への24時間フォローを続けると、偶然の質が上がります。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>『今月の新規接点10件、再接触5件、共同作業1件』のようにKPI化します。無目的な飲み会より、目的に近い場に反復参加します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="17-0"> 新規接点の月間目標がある</label></li><li><label><input type="checkbox" data-check="17-1"> 質の高い場を選んでいる</label></li><li><label><input type="checkbox" data-check="17-2"> 再接触の仕組みがある</label></li><li><label><input type="checkbox" data-check="17-3"> 結果を振り返っている</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="探索" data-name="会う場所ROIキャンバス">
+        <div class="cardTop">
+          <span class="num">18</span>
+          <span class="phase">探索</span>
+        </div>
+        <h3>会う場所ROIキャンバス</h3>
+        <p class="tagline">イベントやコミュニティを、時間投資の観点で選ぶ。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈づくりでは、どこに行くかが重要です。大規模イベントは母数が多い一方で関係が浅くなりやすい。少人数の勉強会は濃いが出会いの数は少ない。自分の目的に対して、場の投資対効果を判断します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>役割密度：会いたい役割がいるか</li>
+<li>深まりやすさ：継続参加・少人数・共同作業があるか</li>
+<li>自分の価値提供余地：貢献できるか</li>
+<li>参加コスト：時間・金・移動・疲労</li>
+<li>紹介連鎖性：参加者が誰を知っているか</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：有名人が登壇する大規模イベントより、参加者同士で課題を持ち寄る小規模勉強会の方が、実際の協業につながることがあります。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>イベント参加前に5項目を5点満点で評価し、合計が低い場には行かないか、目的を明確にして短時間だけ参加します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="18-0"> 会いたい役割がいる</label></li><li><label><input type="checkbox" data-check="18-1"> 継続接点が作れる</label></li><li><label><input type="checkbox" data-check="18-2"> 自分が貢献できる</label></li><li><label><input type="checkbox" data-check="18-3"> 参加コストに見合う</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="初回接点" data-name="初回接点の勝ち筋3点セット">
+        <div class="cardTop">
+          <span class="num">19</span>
+          <span class="phase">初回接点</span>
+        </div>
+        <h3>初回接点の勝ち筋3点セット</h3>
+        <p class="tagline">問い・5分価値・次の一手で、初対面を次の関係へ進める。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>初回接点で名刺交換だけしても関係は残りません。必要なのは、相手が話したくなる問い、すぐ役立つ小さな価値、負担の軽い次の一手です。この3点が揃うと、初対面が関係の入口になります。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>相手の関心に合う問い</li>
+<li>その場または直後に渡せる5分価値</li>
+<li>15分以内の次アクション</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：イベントで出会った相手に『今のテーマで一番意思決定が難しい部分は何ですか』と聞き、会話後に論点整理を送り、『来週15分だけ仮説確認しませんか』と提案します。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>イベントや会食の前に、自分が提供できる5分価値を3つ準備します。会話中は売り込まず、相手の課題に合わせて1つだけ出します。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="19-0"> 良い問いを用意した</label></li><li><label><input type="checkbox" data-check="19-1"> 5分価値を用意した</label></li><li><label><input type="checkbox" data-check="19-2"> 次の一手を提案した</label></li><li><label><input type="checkbox" data-check="19-3"> 名刺交換だけで終わらなかった</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="運用" data-name="24-7-30フォローアップ">
+        <div class="cardTop">
+          <span class="num">20</span>
+          <span class="phase">運用</span>
+        </div>
+        <h3>24-7-30フォローアップ</h3>
+        <p class="tagline">会った後24時間・7日・30日の再接触で関係を資産化する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈は会った瞬間ではなく、会った後の運用で決まります。ほとんどの人はフォローをしないため、ここを丁寧にやるだけで差がつきます。24時間以内に要点と感謝、7日以内に追加価値、30日以内に共同作業か再会を設計します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>24時間以内：お礼・要点・小さな価値</li>
+<li>7日以内：追加情報・進捗共有</li>
+<li>30日以内：再会・共同作業・紹介依頼</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『本日はありがとうございました。特にAとBの論点が印象的でした。話に出たテンプレを添付します。もしよければ来週15分だけ、Cの仮説を確認させてください。』</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>会った直後にメモを取り、翌日までに必ず送ります。カレンダーに7日後・30日後のリマインドを入れます。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="20-0"> 24時間以内に連絡した</label></li><li><label><input type="checkbox" data-check="20-1"> 7日以内に追加価値を送った</label></li><li><label><input type="checkbox" data-check="20-2"> 30日以内に次の接点を作った</label></li><li><label><input type="checkbox" data-check="20-3"> 会話内容を記録した</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="運用" data-name="関係の温度スコアリング">
+        <div class="cardTop">
+          <span class="num">21</span>
+          <span class="phase">運用</span>
+        </div>
+        <h3>関係の温度スコアリング</h3>
+        <p class="tagline">人脈の強さを感覚ではなく、関係の進度として可視化する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈を記憶だけで管理すると、重要な関係を放置します。関係の温度を0〜5で可視化すると、次に何をすべきか分かります。温度を一段上げる行動を設計することで、関係は進みます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>0：一度会っただけ</li>
+<li>1：相互理解がある</li>
+<li>2：小さな約束を守った</li>
+<li>3：共同作業した</li>
+<li>4：紹介が生まれた</li>
+<li>5：長期の戦友関係</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：温度1の相手には、相手の課題に関係する短い資料を送って温度2へ。温度2の相手には、小さな共同作業を提案して温度3へ進めます。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>月1回、重要な関係20名を見直します。各人に対して『温度を1段上げる次の行動』を書きます。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="21-0"> 重要人物リストがある</label></li><li><label><input type="checkbox" data-check="21-1"> 温度を0〜5で評価した</label></li><li><label><input type="checkbox" data-check="21-2"> 次に1段上げる行動がある</label></li><li><label><input type="checkbox" data-check="21-3"> 放置している重要関係を見つけた</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="境界線" data-name="断る設計・倫理フィルタ">
+        <div class="cardTop">
+          <span class="num">22</span>
+          <span class="phase">境界線</span>
+        </div>
+        <h3>断る設計・倫理フィルタ</h3>
+        <p class="tagline">質の高い人脈を守るために、搾取・支配・不誠実な関係を切る。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈は増やすだけでは危険です。時間を奪う人、利用だけする人、不誠実な人、境界線を越える人を放置すると、良い関係に使うエネルギーが失われます。断る力は人脈づくりの一部です。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>違和感を記録する</li>
+<li>金・名誉・支配・不誠実のどれかを判定する</li>
+<li>短く断る</li>
+<li>必要なら代替案を出す</li>
+<li>繰り返す相手とは距離を置く</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『今は優先度が合わないため難しいです。もし○○が目的であれば、△△の資料が参考になると思います。』のように、短く明確に断ります。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>返答に迷う依頼はすぐ承諾せず、『確認して返します』と時間を取ります。自分の北極星と倫理に合わない関係は増やしません。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="22-0"> 違和感を無視していない</label></li><li><label><input type="checkbox" data-check="22-1"> 断る定型文がある</label></li><li><label><input type="checkbox" data-check="22-2"> 相手の都合に流されていない</label></li><li><label><input type="checkbox" data-check="22-3"> 良い関係に時間を残している</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="深化" data-name="対立を明確化するプロトコル">
+        <div class="cardTop">
+          <span class="num">23</span>
+          <span class="phase">深化</span>
+        </div>
+        <h3>対立を明確化するプロトコル</h3>
+        <p class="tagline">意見の違いを、関係破壊ではなく相互理解と検証に変える。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>深い関係では必ず意見の違いが出ます。そこで迎合すると薄い関係になり、攻撃すると壊れます。対立を明確化し、事実・解釈・目的・実験に分けることで、議論しながら信頼を深めます。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>事実：一致している事実を確認する</li>
+<li>解釈：どこで見方が違うかを分ける</li>
+<li>目的：何を達成したいかを確認する</li>
+<li>実験：小さく試して判断する</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：『AとBの事実は一致しています。違いは、Cをリスクと見るか機会と見るかですね。目的はDで同じなので、Eを2週間試して判断しませんか。』</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>反論するときは人格ではなく構造に触れます。『あなたが間違っている』ではなく『前提Aが変わると結論も変わると思います』と言います。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="23-0"> 事実と解釈を分けた</label></li><li><label><input type="checkbox" data-check="23-1"> 目的の一致点を確認した</label></li><li><label><input type="checkbox" data-check="23-2"> 人格批判を避けた</label></li><li><label><input type="checkbox" data-check="23-3"> 小さな検証に落とした</label></li>
+          </ul>
+        </details>
+      </article>
+    
+      <article class="card" data-phase="運用" data-name="リレーションシップ・レトロスペクティブ">
+        <div class="cardTop">
+          <span class="num">24</span>
+          <span class="phase">運用</span>
+        </div>
+        <h3>リレーションシップ・レトロスペクティブ</h3>
+        <p class="tagline">月次で人脈活動を振り返り、効いた行動と無駄な行動を改善する。</p>
+        <details open>
+          <summary>概要</summary>
+          <p>人脈づくりは才能ではなく運用です。会う、記録する、価値提供する、振り返る、改善する。このサイクルを回す人だけが、関係資産を蓄積できます。やりっぱなしではなく、月次で何が効いたかを見直します。</p>
+        </details>
+        <details>
+          <summary>構造</summary>
+          <ol><li>今月の新規接点数</li>
+<li>再接触数</li>
+<li>価値提供数</li>
+<li>共同作業数</li>
+<li>紹介数</li>
+<li>無駄だった活動</li>
+<li>来月の改善1つ</li></ol>
+        </details>
+        <details>
+          <summary>具体例</summary>
+          <p>例：今月イベントに5回行ったが再接触が1件しかないなら、イベント選びよりフォローアップが課題です。逆に紹介は多いが共同作業が少ないなら、ミニプロジェクト提案が不足しています。</p>
+        </details>
+        <details>
+          <summary>具体的な使い方</summary>
+          <p>月末に30分だけ振り返ります。改善点は1つに絞ります。全部直そうとすると続きません。</p>
+        </details>
+        <details>
+          <summary>実行チェックリスト</summary>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check="24-0"> 月次レビューをした</label></li><li><label><input type="checkbox" data-check="24-1"> 効いた行動を特定した</label></li><li><label><input type="checkbox" data-check="24-2"> 無駄な活動を削った</label></li><li><label><input type="checkbox" data-check="24-3"> 来月の改善を1つに絞った</label></li>
+          </ul>
+        </details>
+      </article>
+    
+    </section>
+
+    <section class="panel" style="margin-top:48px;">
+      <h2>実践ワークシート：あなたの人脈設計</h2>
+      <p class="sectionIntro">ここに書いた内容はブラウザのローカル保存です。機密情報や実名を入れたくない場合は、イニシャルや役割名で管理してください。</p>
+      <div class="formGrid">
+        <label>3年後の北極星
+          <textarea data-store="northstar" placeholder="例：医療機器×AI×事業開発で、社内外から相談される人材になる"></textarea>
+        </label>
+        <label>今月会うべき3役割
+          <textarea data-store="roles" placeholder="例：病院現場責任者、規制対応経験者、事業開発経験者"></textarea>
+        </label>
+        <label>自分の紹介用1行定義
+          <textarea data-store="profileLine" placeholder="私は【誰の】【どんな問題】を【どんな強み】で解く人です"></textarea>
+        </label>
+        <label>今月の価値提供テーマ
+          <textarea data-store="giveTheme" placeholder="例：相手の提案書を1枚で強くする、AI活用の論点整理を渡す"></textarea>
+        </label>
+        <label class="full">今月の人脈KPI
+          <textarea data-store="kpi" placeholder="例：新規接点10、再接触5、成果物3、共同作業1、紹介依頼2"></textarea>
+        </label>
+      </div>
+      <div class="buttons noPrint" style="margin-top:14px;">
+        <button class="primary" onclick="saveTextAreas()">記入内容を保存</button>
+        <button onclick="clearTextAreas()">記入内容を消去</button>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:24px;">
+      <h2>関係温度スコア表</h2>
+      <p class="sectionIntro">重要人物を役割ベースで管理し、次の一手を明確にします。実名を入れる必要はありません。</p>
+      <table id="scoreTable">
+        <thead>
+          <tr>
+            <th>相手/役割</th>
+            <th>温度 0〜5</th>
+            <th>相手の課題</th>
+            <th>次の一手</th>
+            <th class="noPrint">操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="buttons noPrint" style="margin-top:14px;">
+        <button class="primary" onclick="addRow()">行を追加</button>
+        <button onclick="exportRows()">JSON出力</button>
+        <button onclick="clearRows()">表を消去</button>
+      </div>
+      <p class="small">温度基準：0 一度会った / 1 相互理解 / 2 小さな約束 / 3 共同作業 / 4 紹介発生 / 5 戦友</p>
+    </section>
+
+    <section class="two" style="margin-top:24px;">
+      <div class="panel">
+        <h2>テンプレ1：紹介依頼</h2>
+        <div class="template">件名：ご紹介のお願い：〇〇に詳しい方
+
+〇〇さん
+
+少しご相談です。
+現在、【目的】のために、【会いたい人の条件】に当てはまる方を探しています。
+
+お願いしたいことは、まず15分だけ課題を聞かせていただくことです。
+売り込みではなく、現場理解・仮説検証が目的です。
+
+相手の方には、ヒアリング内容を匿名化したうえで、
+【相手に返せる価値：論点メモ、比較表、チェックリスト等】としてお返しできます。
+
+もし該当しそうな方がいれば、以下の文面を転送いただくだけで大丈夫です。
+
+——転送文——
+〇〇に関心を持っている知人がいます。
+【相手にとっての価値】を返せるとのことなので、
+もし15分ほど話してもよければおつなぎします。
+——ここまで——</div>
+      </div>
+      <div class="panel">
+        <h2>テンプレ2：24時間フォロー</h2>
+        <div class="template">〇〇さん
+
+本日はありがとうございました。
+特に印象に残ったのは以下の3点です。
+
+1. 【相手の課題・関心1】
+2. 【相手の課題・関心2】
+3. 【次に検証すべき論点】
+
+話に出た【資料/テンプレ/論点メモ】を簡単にまとめました。
+そのまま使えるように短くしています。
+
+もしよければ、来週15分だけ、
+【具体的な次の一手】について壁打ちさせてください。</div>
+      </div>
+      <div class="panel">
+        <h2>テンプレ3：初回面談の質問</h2>
+        <div class="template">1. いま一番時間を使っているテーマは何ですか？
+2. なぜ今それが重要なのですか？
+3. そこで一番詰まっている制約は何ですか？
+4. それが解けると、あなたや組織に何が起きますか？
+5. 今週、小さく試せることは何ですか？
+6. 私が5分で手伝えるとしたら、どの論点が一番助かりますか？</div>
+      </div>
+      <div class="panel">
+        <h2>テンプレ4：断る文面</h2>
+        <div class="template">〇〇さん
+
+お声がけありがとうございます。
+内容は理解しましたが、現在の優先テーマとは少し離れるため、
+今回はお受けするのが難しいです。
+
+もし目的が【相手の目的】であれば、
+【代替案：資料・別の人・別の場】が参考になるかもしれません。
+
+また条件が変われば、その際に改めて相談させてください。</div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:24px;">
+      <h2>90日運用プラン</h2>
+      <table>
+        <thead><tr><th>期間</th><th>重点</th><th>行動</th><th>成果物</th></tr></thead>
+        <tbody>
+          <tr><td>1〜2週</td><td>設計</td><td>北極星、必要役割、紹介用1行定義を作る</td><td>人脈設計シート</td></tr>
+          <tr><td>3〜4週</td><td>探索</td><td>役割密度の高い場を3つ試す。紹介依頼を2件出す</td><td>場ROIメモ</td></tr>
+          <tr><td>5〜8週</td><td>価値提供</td><td>会った相手に5分価値を渡す。24-7-30を徹底する</td><td>1枚メモ/テンプレ3本</td></tr>
+          <tr><td>9〜12週</td><td>深化</td><td>共同作業1件、紹介発生1件を狙う</td><td>ミニプロジェクト成果物</td></tr>
+          <tr><td>月末</td><td>改善</td><td>関係温度を見直し、無駄な場を削る</td><td>月次レトロ</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="note" style="margin-top:24px;">
+      <strong>重要な現実：</strong>
+      人脈づくりで一番差が出るのは、会話の上手さではありません。相手の成功メトリクスを理解し、5分で使える価値を渡し、会った後に淡々とフォローする運用力です。人脈は魅力ではなく、設計と継続で増えます。
+    </section>
+
+    <div class="footer">
+      作成日：2026-05-18 / 単体HTMLワークブック
+    </div>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const search = document.getElementById('search');
+    let currentFilter = 'all';
+
+    function applyFilter() {
+      const q = search.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const phase = card.dataset.phase;
+        const text = card.innerText.toLowerCase();
+        const okFilter = currentFilter === 'all' || phase === currentFilter;
+        const okSearch = !q || text.includes(q);
+        card.classList.toggle('hidden', !(okFilter && okSearch));
+      });
+    }
+
+    search.addEventListener('input', applyFilter);
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentFilter = btn.dataset.filter;
+        document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('primary'));
+        btn.classList.add('primary');
+        applyFilter();
+      });
+    });
+
+    document.querySelectorAll('input[type="checkbox"][data-check]').forEach(chk => {
+      const key = 'network-check-' + chk.dataset.check;
+      chk.checked = localStorage.getItem(key) === '1';
+      chk.addEventListener('change', () => localStorage.setItem(key, chk.checked ? '1' : '0'));
+    });
+
+    function saveTextAreas() {
+      document.querySelectorAll('[data-store]').forEach(el => {
+        localStorage.setItem('network-ws-' + el.dataset.store, el.value);
+      });
+      alert('保存しました。');
+    }
+    function loadTextAreas() {
+      document.querySelectorAll('[data-store]').forEach(el => {
+        el.value = localStorage.getItem('network-ws-' + el.dataset.store) || '';
+      });
+    }
+    function clearTextAreas() {
+      if (!confirm('記入内容を消去しますか？')) return;
+      document.querySelectorAll('[data-store]').forEach(el => {
+        localStorage.removeItem('network-ws-' + el.dataset.store);
+        el.value = '';
+      });
+    }
+    loadTextAreas();
+
+    const tbody = document.querySelector('#scoreTable tbody');
+    function getRows() {
+      try { return JSON.parse(localStorage.getItem('network-score-rows') || '[]'); }
+      catch { return []; }
+    }
+    function saveRows() {
+      const rows = Array.from(tbody.querySelectorAll('tr')).map(tr => {
+        const inputs = tr.querySelectorAll('input, select, textarea');
+        return {
+          name: inputs[0].value,
+          temp: inputs[1].value,
+          issue: inputs[2].value,
+          action: inputs[3].value
+        };
+      });
+      localStorage.setItem('network-score-rows', JSON.stringify(rows));
+    }
+    function addRow(row = {name:'', temp:'1', issue:'', action:''}) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" value="${escapeAttr(row.name)}" placeholder="例：病院現場責任者A"></td>
+        <td><select>
+          ${[0,1,2,3,4,5].map(n => `<option value="${n}" ${String(row.temp)===String(n)?'selected':''}>${n}</option>`).join('')}
+        </select></td>
+        <td><textarea placeholder="相手の課題">${escapeHtml(row.issue)}</textarea></td>
+        <td><textarea placeholder="次にやること">${escapeHtml(row.action)}</textarea></td>
+        <td class="noPrint"><button onclick="this.closest('tr').remove(); saveRows();">削除</button></td>
+      `;
+      tbody.appendChild(tr);
+      tr.querySelectorAll('input, select, textarea').forEach(el => el.addEventListener('input', saveRows));
+      saveRows();
+    }
+    function loadRows() {
+      const rows = getRows();
+      if (!rows.length) {
+        addRow({name:'例：事業開発経験者', temp:'1', issue:'社内提案の通し方', action:'24時間以内に論点メモを送る'});
+        addRow({name:'例：現場責任者', temp:'0', issue:'現場課題の一次情報', action:'紹介依頼テンプレを使って接点を作る'});
+      } else {
+        rows.forEach(addRow);
+      }
+    }
+    function clearRows() {
+      if (!confirm('スコア表を消去しますか？')) return;
+      localStorage.removeItem('network-score-rows');
+      tbody.innerHTML = '';
+    }
+    function exportRows() {
+      saveRows();
+      const data = localStorage.getItem('network-score-rows') || '[]';
+      const blob = new Blob([data], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'relationship_score_rows.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/`/g, '&#96;');
+    }
+    loadRows();
+  </script>
+</body>
+</html>
