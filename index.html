@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ブラウザで使える思考フレームワーク集をカード形式で探せる静的ポータルサイト。問題解決、意思決定、人間関係、創造性、戦略設計に役立つ実用HTMLへのリンク集です。">
+  <title>Thinking Framework Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#frameworks">カード一覧へ移動</a>
+  <header class="hero">
+    <nav class="topbar" aria-label="サイト内ナビゲーション">
+      <a class="brand" href="./" aria-label="Thinking Framework Library ホーム">TFL</a>
+      <div class="nav-links">
+        <a href="#selector">状況から選ぶ</a>
+        <a href="#frameworks">一覧</a>
+        <a href="#paths">おすすめ順</a>
+        <a href="#notice">注意事項</a>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <section class="hero-copy" aria-labelledby="site-title">
+        <p class="eyebrow">Practical HTML Workbook Portal</p>
+        <h1 id="site-title">Thinking Framework Library</h1>
+        <p class="tagline">考えを、構造に変える。</p>
+        <p class="hero-description">図で選び、実務で使う。問題解決、対話、創造性、戦略設計のHTMLワークブック集です。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#selector">今の状況から選ぶ</a>
+          <a class="button ghost" href="#frameworks">全カードを見る</a>
+        </div>
+      </section>
+
+      <aside class="hero-panel" aria-label="ライブラリ概要">
+        <div>
+          <span class="metric" id="total-count">8</span>
+          <span class="metric-label">HTML workbooks</span>
+        </div>
+        <p>外部API・CDN・画像素材を使わず、リポジトリ内のHTMLにリンクするGitHub Pages向けポータルです。</p>
+        <ul>
+          <li>図解カード・検索・用途別フィルター</li>
+          <li>スマホ対応のカードUI</li>
+          <li>教育・思考整理目的の中立的な紹介</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="selector section" id="selector" aria-labelledby="selector-title">
+      <div class="section-heading">
+        <p class="eyebrow">Quick Selector</p>
+        <h2 id="selector-title">何をしたいですか？</h2>
+        <p>現在の課題に近いボタンを選ぶと、関連するフレームワーク集だけに絞り込めます。</p>
+      </div>
+      <div class="quick-grid" id="quick-selector" aria-label="用途別フィルター"></div>
+    </section>
+
+    <section class="library section" id="frameworks" aria-labelledby="frameworks-title">
+      <div class="section-heading">
+        <p class="eyebrow">Framework Cards</p>
+        <h2 id="frameworks-title">フレームワーク集を探す</h2>
+        <p>各カードは本文転載ではなく、図解と実務での使い方に絞って再構成しています。</p>
+      </div>
+
+      <div class="filter-bar" aria-label="検索と絞り込み">
+        <label class="search-box" for="search-input">
+          <span>キーワード検索</span>
+          <input id="search-input" type="search" placeholder="例：意思決定、会話、創造性" autocomplete="off">
+        </label>
+        <label for="category-filter">
+          <span>カテゴリ</span>
+          <select id="category-filter">
+            <option value="all">すべて</option>
+          </select>
+        </label>
+        <label for="usecase-filter">
+          <span>おすすめ用途</span>
+          <select id="usecase-filter">
+            <option value="all">すべて</option>
+          </select>
+        </label>
+        <button class="button reset" id="reset-filters" type="button">条件をリセット</button>
+      </div>
+
+      <div class="result-summary" aria-live="polite">
+        <span id="result-count">0</span> 件表示中
+      </div>
+      <div class="card-grid" id="card-grid"></div>
+      <p class="empty-state" id="empty-state" hidden>条件に合うカードがありません。検索語やフィルターを変更してください。</p>
+    </section>
+
+    <section class="paths section" id="paths" aria-labelledby="paths-title">
+      <div class="section-heading">
+        <p class="eyebrow">Recommended Paths</p>
+        <h2 id="paths-title">目的別のおすすめ順</h2>
+        <p>迷ったときは、目的に近い順番で開いてください。</p>
+      </div>
+      <div class="path-grid" id="path-grid"></div>
+    </section>
+
+    <section class="notice section" id="notice" aria-labelledby="notice-title">
+      <div class="notice-card">
+        <p class="eyebrow">Legal / Copyright Notice</p>
+        <h2 id="notice-title">著作権・利用上の注意</h2>
+        <ul>
+          <li>このサイトはリポジトリ内のHTMLファイルを紹介するポータルです。</li>
+          <li>各ページの著作権はそれぞれの作成者に帰属します。</li>
+          <li>無断転載ではなく、紹介・リンク・最小限の要約を目的としています。</li>
+          <li>問題がある場合はIssueで連絡してください。</li>
+          <li>外部素材、外部フォント、CDN、有料素材は使用していません。</li>
+          <li>本サイトは教育・思考整理目的であり、法務・医療・投資等の専門助言ではありません。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Thinking Framework Library — Static portal for GitHub Pages.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
